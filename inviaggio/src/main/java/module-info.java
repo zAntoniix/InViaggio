@@ -5,6 +5,7 @@ module org.example.inviaggio {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
+    requires java.sql;
 
     opens org.example.inviaggio to javafx.fxml;
     exports org.example.inviaggio;
