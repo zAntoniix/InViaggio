@@ -18,16 +18,16 @@ public class Corsa {
 
     //Costruttore
 
-    public Corsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, float costoBase, Time oraPartenza, Time oraArrivo) {
+    public Corsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo,Time oraPartenza, Time oraArrivo, float costoBase) {
         this.tipoMezzo = tipoMezzo;
         this.data = data;
-        this.numPosti = setPosti(tipoMezzo);
         this.luogoPartenza = luogoPartenza;
         this.luogoArrivo = luogoArrivo;
-        this.codiceCorsa = generaCodCorsa();
-        this.costoBase = costoBase;
         this.oraPartenza = oraPartenza;
         this.oraArrivo = oraArrivo;
+        this.numPosti = setPosti(tipoMezzo);
+        this.costoBase = costoBase;
+        this.codiceCorsa = generaCodCorsa();
     }
 
     //Metodi
