@@ -29,9 +29,9 @@ public class Tratta {
     public Boolean inserisciCorsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, Time oraArrivo, Time oraPartenza, float costoBase) {
 
         Corsa c = new Corsa(tipoMezzo,data,luogoPartenza,luogoArrivo,oraPartenza,oraArrivo,costoBase);
-        if(c!=null)
+        if(this.elencoCorse.put(c.getCodCorsa(), c) != null) {
             return true;
-        else
+        } else
             return false;
     }
 
@@ -50,12 +50,8 @@ public class Tratta {
     }
 
     public Corsa selezionaCorsa(String codCorsa) {
+
         return elencoCorse.get(codCorsa);
     }
-
-    /*public Boolean aggiornaInformazioni(String codCorsa){
-        Corsa c = selezionaCorsa(codCorsa);
-        return c.decrementaPosti();
-    }*/
 
 }

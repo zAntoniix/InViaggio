@@ -17,4 +17,8 @@ public class Biglietto {
     public String getCodice(){
         return this.codice;
     }
+
+    public Corsa getCorsaPrenotata(){
+        return this.corsaPrenotata;
+    }
 }

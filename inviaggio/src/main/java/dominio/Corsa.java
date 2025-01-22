@@ -11,7 +11,7 @@ public class Corsa {
     private int numPosti;
     private String luogoPartenza;
     private String luogoArrivo;
-    private String codiceCorsa;
+    private String codCorsa;
     private float costoBase;
     private Time oraPartenza;
     private Time oraArrivo;
@@ -27,7 +27,7 @@ public class Corsa {
         this.oraArrivo = oraArrivo;
         this.numPosti = setPosti(tipoMezzo);
         this.costoBase = costoBase;
-        this.codiceCorsa = generaCodCorsa();
+        this.codCorsa = generaCodCorsa();
     }
 
     //Metodi
@@ -54,6 +54,10 @@ public class Corsa {
 
     public float getCostoBase() {
         return costoBase;
+    }
+
+    public String getCodCorsa() {
+        return this.codCorsa;
     }
 
     public Boolean isDisponibileData(Date data_ricercata){
