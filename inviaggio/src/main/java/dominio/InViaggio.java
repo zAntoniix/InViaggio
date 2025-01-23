@@ -31,6 +31,10 @@ public class InViaggio {
         return inviaggio;
     }
 
+    public void setClienteLoggato(Cliente cliente) {
+        clienteLoggato = cliente;
+    }
+
     public String generaCodTratta() {
         String caratteri = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         int Lunghezza_Stringa = 6;

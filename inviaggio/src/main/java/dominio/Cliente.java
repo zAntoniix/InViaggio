@@ -11,12 +11,12 @@ public class Cliente {
     private HashMap<String,Biglietto> elencoBiglietti;
 
     //Costruttore
-    public Cliente(String nome, String cognome, String CF, String codPersonale, HashMap<String, Biglietto> elencoBiglietti) {
+    public Cliente(String nome, String cognome, String CF, String codPersonale) {
         this.nome = nome;
         this.cognome = cognome;
         this.CF = CF;
         this.codPersonale = codPersonale;
-        this.elencoBiglietti = elencoBiglietti;
+        this.elencoBiglietti = new HashMap<String,Biglietto>();
     }
 
     //Metodi

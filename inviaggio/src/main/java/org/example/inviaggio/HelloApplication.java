@@ -1,5 +1,6 @@
 package org.example.inviaggio;
 
+import dominio.Cliente;
 import dominio.InViaggio;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,11 +21,8 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         InViaggio inviaggio = InViaggio.getInstance();
-
-
-
-
-
+        Cliente c= new Cliente("Antonio","Zarbo","ZAIEWJ2032","Fallito");
+        inviaggio.setClienteLoggato(c);
         launch();
     }
 
