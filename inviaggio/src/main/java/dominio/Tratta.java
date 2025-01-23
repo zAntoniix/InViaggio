@@ -50,8 +50,15 @@ public class Tratta {
     }
 
     public Corsa selezionaCorsa(String codCorsa) {
-
         return elencoCorse.get(codCorsa);
+    }
+
+    public String getCittaPartenza(){
+        return cittaPartenza;
+    }
+
+    public String getCittaArrivo(){
+        return cittaArrivo;
     }
 
 }

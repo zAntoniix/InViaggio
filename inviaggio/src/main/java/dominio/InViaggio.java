@@ -118,4 +118,20 @@ public class InViaggio {
         bigliettoCorrente.getCorsaPrenotata().decrementaPosti();
         return clienteLoggato.confermaBiglietto(bigliettoCorrente);
     }
+
+    public Cliente getClienteLoggato(){
+        return clienteLoggato;
+    }
+
+    public void addTratta(Tratta t){
+        this.elencoTratte.put(t.getCodTratta(),t);
+    }
+
+    public void setBigliettoCorrente(Biglietto b) {
+        this.bigliettoCorrente = b;
+    }
+
+    public Biglietto getBigliettoCorrente() {
+        return bigliettoCorrente;
+    }
 }

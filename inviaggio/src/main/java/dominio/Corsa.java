@@ -52,14 +52,6 @@ public class Corsa {
         return stringaCasuale.toString();
     }
 
-    public float getCostoBase() {
-        return costoBase;
-    }
-
-    public String getCodCorsa() {
-        return this.codCorsa;
-    }
-
     public Boolean isDisponibileData(Date data_ricercata){
         if(this.data.equals(data_ricercata))
             return true;
@@ -75,5 +67,23 @@ public class Corsa {
         else
             return false;
     }
+
+    public float getCostoBase() {
+        return costoBase;
+    }
+
+    public String getCodCorsa() {
+        return this.codCorsa;
+    }
+
+    public String getLuogoPartenza() { return luogoPartenza; }
+
+    public String getLuogoArrivo() { return luogoArrivo; }
+
+    public Time getOraPartenza() { return oraPartenza; }
+
+    public Time getOraArrivo() { return oraArrivo; }
+
+    public Date getData() { return data; }
 
 }

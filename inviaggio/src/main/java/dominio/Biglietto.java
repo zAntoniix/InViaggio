@@ -18,6 +18,10 @@ public class Biglietto {
         return this.codice;
     }
 
+    public float getCostoFinale(){
+        return this.costoFinale;
+    }
+
     public Corsa getCorsaPrenotata(){
         return this.corsaPrenotata;
     }

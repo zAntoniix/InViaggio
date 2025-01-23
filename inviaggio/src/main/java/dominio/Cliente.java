@@ -26,4 +26,12 @@ public class Cliente {
         else
             return false;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Map<String,Biglietto> getElencoBiglietti() {
+        return elencoBiglietti;
+    }
 }
