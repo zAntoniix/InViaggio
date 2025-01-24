@@ -34,9 +34,8 @@ public class Corsa {
     public int setPosti(int tipoMezzo){ //Controllo del tipoEffettuato precedentemente
         if(tipoMezzo == 1)//Autobus
             return 52;
-        else
+        else // tipoMezzo == 2 (Treno)
             return 100;
-
     }
 
     public String generaCodCorsa() {
@@ -68,13 +67,9 @@ public class Corsa {
             return false;
     }
 
-    public float getCostoBase() {
-        return costoBase;
-    }
+    public float getCostoBase() { return costoBase; }
 
-    public String getCodCorsa() {
-        return this.codCorsa;
-    }
+    public String getCodCorsa() { return codCorsa; }
 
     public String getLuogoPartenza() { return luogoPartenza; }
 
@@ -85,5 +80,7 @@ public class Corsa {
     public Time getOraArrivo() { return oraArrivo; }
 
     public Date getData() { return data; }
+
+    public void setNumPosti(int numPosti) { this.numPosti = numPosti; }
 
 }

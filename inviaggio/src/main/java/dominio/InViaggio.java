@@ -115,8 +115,9 @@ public class InViaggio {
     }
 
     public boolean confermaBiglietto() {
-        bigliettoCorrente.getCorsaPrenotata().decrementaPosti();
-        return clienteLoggato.confermaBiglietto(bigliettoCorrente);
+        if (bigliettoCorrente.getCorsaPrenotata().decrementaPosti()) {
+            return clienteLoggato.confermaBiglietto(bigliettoCorrente);
+        } else return false;
     }
 
     public Cliente getClienteLoggato(){

@@ -24,6 +24,7 @@ public class Cliente {
         if(elencoBiglietti.put(b.getCodice(),b)!=null)
             return true;
         else
+            //b.getCorsaPrenotata().incrementaPosti(); futura estensione in caso di crash del sistema
             return false;
     }
 
