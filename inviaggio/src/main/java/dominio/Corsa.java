@@ -83,4 +83,7 @@ public class Corsa {
 
     public void setNumPosti(int numPosti) { this.numPosti = numPosti; }
 
+    public int getNumPosti() {
+        return numPosti;
+    }
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CorsaTest {
-    static Corsa cp;
+    static Corsa cp, cp2, cp3;
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     static Date data;
     static {
@@ -25,13 +25,15 @@ class CorsaTest {
     @BeforeAll
     public static void setUp() {
         cp = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2);
-
+        cp2 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2);
+        cp3 = new Corsa(2, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2);
     }
 
     @Test
     void setPosti() {
-        assertEquals(52, cp.setPosti(1));
-        assertEquals(100, cp.setPosti(2));
+        assertEquals(52, cp.getNumPosti());
+
+        assertEquals(100, cp3.getNumPosti());
     }
 
     @Test
@@ -50,10 +52,10 @@ class CorsaTest {
 
     @Test
     void decrementaPosti() {
-        assertTrue(cp.decrementaPosti());
+        assertTrue(cp.decrementaPosti()); // cp.numPosti = 52, quindi >= 1
 
         Corsa cp2 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2);
         cp2.setNumPosti(0);
-        assertFalse(cp2.decrementaPosti()); // cp.numPosti = 52, quindi >= 1
+        assertFalse(cp2.decrementaPosti());
     }
 }
