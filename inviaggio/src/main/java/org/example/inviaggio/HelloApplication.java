@@ -49,9 +49,12 @@ public class HelloApplication extends Application {
             Time oraArrivo = Time.valueOf("23:10:00");
             Date data = formatter.parse("24/04/2024");
             Tratta temp = inviaggio.selezionaTratta("20010");
-            temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,2);
+            //temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,2);
+
             //Dall'interfaccia e dal print che ho tolto funziona anche la generazione casuale del codice
+
         }catch (ParseException e) {
+
         e.printStackTrace();
     }
 

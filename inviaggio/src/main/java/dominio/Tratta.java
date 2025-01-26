@@ -26,9 +26,14 @@ public class Tratta {
         return codTratta;
     }
 
-    public Boolean inserisciCorsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, Time oraArrivo, Time oraPartenza, float costoBase) {
+    public String generaCodiceCorsa() {
+        String codCorsa = "C"+ (elencoCorse.size()+1);
+        return codCorsa;
+    }
 
-        Corsa c = new Corsa(tipoMezzo,data,luogoPartenza,luogoArrivo,oraPartenza,oraArrivo,costoBase);
+    public Boolean inserisciCorsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, Time oraPartenza, Time oraArrivo, float costoBase) {
+        String codiceCorsa = generaCodiceCorsa();
+        Corsa c = new Corsa(tipoMezzo,data,luogoPartenza,luogoArrivo,oraPartenza,oraArrivo,costoBase,codiceCorsa);
         if(this.elencoCorse.put(c.getCodCorsa(), c) != null) {
             return true;
         } else
@@ -61,4 +66,5 @@ public class Tratta {
         return cittaArrivo;
     }
 
+    public HashMap<String, Corsa> getElencoCorse() {return elencoCorse;}
 }

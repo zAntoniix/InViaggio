@@ -18,7 +18,7 @@ public class Corsa {
 
     //Costruttore
 
-    public Corsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo,Time oraPartenza, Time oraArrivo, float costoBase) {
+    public Corsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo,Time oraPartenza, Time oraArrivo, float costoBase, String codice) {
         this.tipoMezzo = tipoMezzo;
         this.data = data;
         this.luogoPartenza = luogoPartenza;
@@ -27,7 +27,7 @@ public class Corsa {
         this.oraArrivo = oraArrivo;
         this.numPosti = setPosti(tipoMezzo);
         this.costoBase = costoBase;
-        this.codCorsa = generaCodCorsa();
+        this.codCorsa = codice;
     }
 
     //Metodi
@@ -38,18 +38,6 @@ public class Corsa {
             return 100;
     }
 
-    public String generaCodCorsa() {
-        String caratteri = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        int Lunghezza_Stringa = 5;
-        Random rand = new Random();
-        StringBuilder stringaCasuale =  new StringBuilder(Lunghezza_Stringa);
-
-        for (int i = 0; i < Lunghezza_Stringa; i++) {
-            int index = rand.nextInt(caratteri.length());
-            stringaCasuale.append(caratteri.charAt(index));
-        }
-        return stringaCasuale.toString();
-    }
 
     public Boolean isDisponibileData(Date data_ricercata){
         if(this.data.equals(data_ricercata))
@@ -86,4 +74,6 @@ public class Corsa {
     public int getNumPosti() {
         return numPosti;
     }
+
+    public int getTipoMezzo() {return tipoMezzo;}
 }

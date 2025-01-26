@@ -5,19 +5,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.PaginaClienteController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0">
+      <Pane layoutY="1.0" prefHeight="434.0" prefWidth="600.0">
          <children>
             <Label fx:id="nomeUtente" layoutX="28.0" layoutY="17.0" text="Nome utente" />
-            <Label fx:id="nomeView" layoutX="90.0" layoutY="86.0" text="Tratte Disponibili" />
-            <ListView fx:id="menuTratte" layoutX="35.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="bottoneScelta" layoutX="259.0" layoutY="173.0" mnemonicParsing="false" onAction="#onConfermaBottone" text="Conferma" />
-            <Label fx:id="trattaScelta" layoutX="277.0" layoutY="139.0" text="xxxx" />
-            <TextField fx:id="dataScelta" layoutX="410.0" layoutY="135.0" />
-            <Label fx:id="oggettoSelezionato" layoutX="247.0" layoutY="113.0" text="Tratta selezionata" />
-            <Label layoutX="471.0" layoutY="113.0" text="Data" />
-            <Label fx:id="erroreData" layoutX="445.0" layoutY="168.0" />
-            <Button fx:id="bottoneSceltaCorsa" layoutX="260.0" layoutY="173.0" mnemonicParsing="false" onAction="#onConfermaBottoneCorsa" prefHeight="25.0" prefWidth="68.0" text="Conferma" visible="false" />
-            <Button fx:id="bottoneSceltaBiglietto" onAction="#onConfermaBottoneBiglietto" visible="false" layoutX="260.0" layoutY="173.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Conferma" />
+            <Label fx:id="nomeView" layoutX="118.0" layoutY="88.0" text="Tratte Disponibili" />
+            <ListView fx:id="menuTratte" layoutX="22.0" layoutY="113.0" prefHeight="200.0" prefWidth="272.0" />
+            <Button fx:id="bottoneScelta" layoutX="226.0" layoutY="352.0" mnemonicParsing="false" onAction="#onConfermaBottone" text="Conferma" />
+            <TextField fx:id="dataScelta" layoutX="35.0" layoutY="352.0" prefHeight="25.0" prefWidth="176.0" />
+            <Label fx:id="data" layoutX="114.0" layoutY="335.0" text="Data" />
+            <Label fx:id="erroreData" layoutX="33.0" layoutY="386.0" prefHeight="17.0" prefWidth="130.0" />
+            <ListView fx:id="corseDisponibili" layoutX="312.0" layoutY="113.0" prefHeight="200.0" prefWidth="264.0" />
+            <Label fx:id="nomeCorse" layoutX="401.0" layoutY="88.0" prefHeight="17.0" prefWidth="101.0" text="Corse disponibili" />
+            <Button fx:id="bottoneSceltaCorsa" layoutX="417.0" layoutY="331.0" mnemonicParsing="false" onAction="#onConfermaBottoneCorsa" text="Conferma" />
+            <Button fx:id="bottoneSceltaBiglietto" layoutX="111.0" layoutY="325.0" mnemonicParsing="false" onAction="#onConfermaBottoneBiglietto" text="Conferma" />
          </children>
       </Pane>
    </children>

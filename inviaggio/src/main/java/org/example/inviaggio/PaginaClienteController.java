@@ -27,15 +27,18 @@ public class PaginaClienteController {
     ObservableList<String> tr = FXCollections.observableArrayList();
     Tratta t;
     String codCorsa;
+    String codice;
 
     @FXML
     private Label nomeUtente;
     @FXML
+    private Label data;
+    @FXML
+    private Label nomeCorse;
+    @FXML
+    private ListView<String> corseDisponibili;
+    @FXML
     private ListView<String> menuTratte;
-    @FXML
-    private Label trattaScelta;
-    @FXML
-    private Label oggettoSelezionato;
     @FXML
     private Label nomeView;
     @FXML
@@ -65,6 +68,10 @@ public class PaginaClienteController {
         menuTratte.getItems().addAll(tr); //Riempio la ListView
         menuTratte.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //Abilito la scelta multipla della lista
         menuTratte.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista); //Abilito la funzione che deve eseguire ogni volta che cambia elemento
+        bottoneSceltaBiglietto.setVisible(false);
+        corseDisponibili.setVisible(false);
+        bottoneSceltaCorsa.setVisible(false);
+        nomeCorse.setVisible(false);
 
     }
 
@@ -73,8 +80,8 @@ public class PaginaClienteController {
         ObservableList<String> elencoSelezionato = menuTratte.getSelectionModel().getSelectedItems();
         String getElementoSelezionato= (elencoSelezionato.isEmpty())?"Nessun elemento selezionato":elencoSelezionato.toString();
         String[] parte = getElementoSelezionato.split(" "); //Serve per spezzettare la stringa in un array di stringhe, crea una stringa ogni spazio
-        String codice = parte[1]; //Prendo il secondo elemento perchè il primo contiene [
-        trattaScelta.setText(codice);
+        codice = parte[1]; //Prendo il secondo elemento perchè il primo contiene [
+        //trattaScelta.setText(codice);
     }
 
     //Funzione del bottone Conferma
@@ -82,9 +89,7 @@ public class PaginaClienteController {
         if(!dataScelta.getText().equals("")) { //Controllo se il campo della data non è vuoto se no da errore
             ObservableList<String> cr = FXCollections.observableArrayList();
             List<Corsa> listaCorse = new ArrayList<Corsa>();
-            //Seleziono la tratta con il metodo creato appositamente rispettando l'SD
-            t = inviaggio.selezionaTratta(trattaScelta.getText());
-            menuTratte.getItems().clear(); //Pulisco la listView
+            t = inviaggio.selezionaTratta(codice);
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //Permette di dare il patter alla data
             try {
                 //Prendo la data dal textbox e la converto in un tipo Date
@@ -94,16 +99,20 @@ public class PaginaClienteController {
                 //Uso il metodo richiediCorsePerData per farmi ritornare la lista delle corse per quella data rispettando l'SD
                 listaCorse = inviaggio.richiediCorsePerData(date);
                 for (Corsa c : listaCorse) { //Scorro la lista di corse
-                    String s = new String(" " + c.getCodCorsa() + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " + c.getCostoBase());
+                    String s = new String(" " + c.getCodCorsa() + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " + c.getCostoBase()+"€");
                     cr.add(s);
                 }
-                menuTratte.getItems().addAll(cr);
-                menuTratte.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-                menuTratte.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista);
+                corseDisponibili.setVisible(true);
+                corseDisponibili.getItems().addAll(cr);
+                corseDisponibili.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                corseDisponibili.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista);
                 nomeView.setText("Corse Disponibili");
+                erroreData.setVisible(false);
                 bottoneScelta.setVisible(false);//Nascondo il bottone che cerca la tratta per evitare errori
+                dataScelta.setVisible(false);
+                data.setVisible(false);
                 bottoneSceltaCorsa.setVisible(true); //Visualizzo il bottone del conferma corse
-                oggettoSelezionato.setText("Corsa Selezionata"); //Cambio il nome da Tratta selezionata a Corsa selezionata
+                nomeCorse.setVisible(true);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -115,14 +124,21 @@ public class PaginaClienteController {
 
     public void onConfermaBottoneCorsa(ActionEvent event) throws IOException {
         ObservableList<String> cr = FXCollections.observableArrayList();
-        Corsa c = t.selezionaCorsa(trattaScelta.getText()); //Prendo il codice della corsa, adesso trattaScelta non contiene più il codice della tratta ma quella della corsa
-        String codice = inviaggio.generaCodBiglietto();
+        ObservableList<String> elencoSelezionato = corseDisponibili.getSelectionModel().getSelectedItems();
+        String getElementoSelezionato= (elencoSelezionato.isEmpty())?"Nessun elemento selezionato":elencoSelezionato.toString();
+        String[] parte = getElementoSelezionato.split(" "); //Serve per spezzettare la stringa in un array di stringhe, crea una stringa ogni spazio
+        codice = parte[1];
+        Corsa c = t.selezionaCorsa(codice);
+        String codiceBiglietto = inviaggio.generaCodBiglietto();
         float costoBase = c.getCostoBase();
-        Biglietto b = new Biglietto(codice,costoBase,c);
+        Biglietto b = new Biglietto(codiceBiglietto,costoBase,c);
         inviaggio.setBigliettoCorrente(b);
-        System.out.println(inviaggio.getBigliettoCorrente());
-        nomeView.setText("Riepilogo Biglietto");
-        oggettoSelezionato.setText("Codice biglietto"); //Cambio il nome da Corsa selezionata a Codice biglietto
+        //System.out.println(inviaggio.getBigliettoCorrente());
+        //nomeView.setText("Riepilogo Biglietto");
+        nomeView.setText("Biglietto");
+        bottoneSceltaCorsa.setVisible(false); //Visualizzo il bottone del conferma corse
+        nomeCorse.setVisible(false);
+        corseDisponibili.setVisible(false);
         // Inizio creazione Stringa
         String s = new String(" " + b.getCodice() + " " + c.getLuogoPartenza() + " " +
                 c.getLuogoArrivo() + " " + c.getData() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " +
@@ -133,7 +149,6 @@ public class PaginaClienteController {
         menuTratte.getItems().addAll(cr);
         menuTratte.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         menuTratte.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista);
-        bottoneSceltaCorsa.setVisible(false);//Nascondo il bottone che cerca la corsa per evitare errori
         bottoneSceltaBiglietto.setVisible(true); //Visualizzo il bottone del conferma biglietto
     }
 

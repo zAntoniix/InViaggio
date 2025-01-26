@@ -36,16 +36,8 @@ public class InViaggio {
     }
 
     public String generaCodTratta() {
-        String caratteri = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        int Lunghezza_Stringa = 6;
-        Random rand = new Random();
-        StringBuilder stringaCasuale =  new StringBuilder(Lunghezza_Stringa);
-
-        for (int i = 0; i < Lunghezza_Stringa; i++) {
-            int index = rand.nextInt(caratteri.length());
-            stringaCasuale.append(caratteri.charAt(index));
-        }
-        return stringaCasuale.toString();
+        String cod = "T"+elencoTratte.size()+1;
+        return cod;
     }
 
     public boolean inserisciNuovaTratta(int tipoTratta, String cittaPartenza, String cittaArrivo) {
@@ -91,16 +83,8 @@ public class InViaggio {
     }
 
     public String generaCodBiglietto() {
-        String caratteri = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        int Lunghezza_Stringa = 4;
-        Random rand = new Random();
-        StringBuilder stringaCasuale =  new StringBuilder(Lunghezza_Stringa);
-
-        for (int i = 0; i < Lunghezza_Stringa; i++) {
-            int index = rand.nextInt(caratteri.length());
-            stringaCasuale.append(caratteri.charAt(index));
-        }
-        return stringaCasuale.toString();
+        String codBiglietto = "B" + clienteLoggato.getElencoBiglietti().size() +1;
+        return codBiglietto;
     }
 
     public Biglietto selezionaCorsa(String codCorsa) {
