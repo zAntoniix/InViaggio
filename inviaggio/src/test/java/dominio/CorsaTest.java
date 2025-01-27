@@ -1,7 +1,6 @@
 package dominio;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.sql.Time;
 import java.text.ParseException;
@@ -10,6 +9,7 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CorsaTest {
     static Corsa cp, cp2, cp3;
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -30,12 +30,14 @@ class CorsaTest {
     }
 
     @Test
+    @Order(1)
     void setPosti() {
         assertEquals(52, cp.getNumPosti());
         assertEquals(100, cp3.getNumPosti());
     }
 
     @Test
+    @Order(2)
     void isDisponibileData() throws ParseException {
         assertTrue(cp.isDisponibileData(data));
         Date data2 = formatter.parse("24/05/2024");
@@ -43,6 +45,7 @@ class CorsaTest {
     }
 
     @Test
+    @Order(3)
     void decrementaPosti() {
         assertTrue(cp.decrementaPosti()); // cp.numPosti = 52, quindi >= 1
         cp2.setNumPosti(0); // controllo nel caso in cui il numero di posti è 0

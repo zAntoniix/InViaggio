@@ -8,7 +8,7 @@ public class Cliente {
     private String cognome;
     private String CF;
     private String codPersonale;
-    private HashMap<String,Biglietto> elencoBiglietti;
+    private LinkedHashMap<String,Biglietto> elencoBiglietti;
 
     //Costruttore
     public Cliente(String nome, String cognome, String CF, String codPersonale) {
@@ -16,7 +16,7 @@ public class Cliente {
         this.cognome = cognome;
         this.CF = CF;
         this.codPersonale = codPersonale;
-        this.elencoBiglietti = new HashMap<String,Biglietto>();
+        this.elencoBiglietti = new LinkedHashMap<String,Biglietto>();
     }
 
     //Metodi
@@ -32,7 +32,7 @@ public class Cliente {
         return nome;
     }
 
-    public Map<String,Biglietto> getElencoBiglietti() {
+    public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
         return elencoBiglietti;
     }
 }

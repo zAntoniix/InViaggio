@@ -10,7 +10,7 @@ public class Tratta {
     private String cittaPartenza;
     private String cittaArrivo;
     private String codTratta;
-    private HashMap<String,Corsa> elencoCorse;
+    private LinkedHashMap<String,Corsa> elencoCorse;
 
     //Costruttore
     public Tratta(int tipoTratta, String cittaPartenza, String cittaArrivo, String codTratta) {
@@ -18,7 +18,7 @@ public class Tratta {
         this.cittaPartenza = cittaPartenza;
         this.cittaArrivo = cittaArrivo;
         this.codTratta = codTratta;
-        this.elencoCorse = new HashMap<>();
+        this.elencoCorse = new LinkedHashMap<>();
     }
 
     //Metodi
@@ -27,21 +27,22 @@ public class Tratta {
     }
 
     public String generaCodiceCorsa() {
-        String codCorsa = "C"+ (elencoCorse.size()+1);
+        String codCorsa = "C" + (elencoCorse.size()+1);
         return codCorsa;
     }
 
     public Boolean inserisciCorsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, Time oraPartenza, Time oraArrivo, float costoBase) {
         String codiceCorsa = generaCodiceCorsa();
         Corsa c = new Corsa(tipoMezzo,data,luogoPartenza,luogoArrivo,oraPartenza,oraArrivo,costoBase,codiceCorsa);
-        if(this.elencoCorse.put(c.getCodCorsa(), c) != null) {
+        if (this.elencoCorse.put(c.getCodCorsa(), c) == null) {
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 
-    public List<Corsa> getCorsePerData(Date data){
-        List<Corsa> corseDisponibili = new ArrayList<>();
+    public LinkedList<Corsa> getCorsePerData(Date data){
+        LinkedList<Corsa> corseDisponibili = new LinkedList<>();
         Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,Corsa> entry=iterator.next();
@@ -67,4 +68,15 @@ public class Tratta {
     }
 
     public HashMap<String, Corsa> getElencoCorse() {return elencoCorse;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Tratta tratta = (Tratta) o;
+        return tipoTratta == tratta.tipoTratta &&
+                Objects.equals(cittaPartenza, tratta.cittaPartenza) &&
+                Objects.equals(cittaArrivo, tratta.cittaArrivo) &&
+                Objects.equals(codTratta, tratta.codTratta) &&
+                Objects.equals(elencoCorse, tratta.elencoCorse);
+    }
 }

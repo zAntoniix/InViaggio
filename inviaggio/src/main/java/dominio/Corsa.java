@@ -71,9 +71,23 @@ public class Corsa {
 
     public void setNumPosti(int numPosti) { this.numPosti = numPosti; }
 
-    public int getNumPosti() {
-        return numPosti;
+    public int getNumPosti() { return numPosti; }
+
+    public int getTipoMezzo() { return tipoMezzo;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Corsa corsa = (Corsa) o;
+        return tipoMezzo == corsa.tipoMezzo &&
+                numPosti == corsa.numPosti &&
+                Float.compare(costoBase, corsa.costoBase) == 0 &&
+                Objects.equals(data, corsa.data) &&
+                Objects.equals(luogoPartenza, corsa.luogoPartenza) &&
+                Objects.equals(luogoArrivo, corsa.luogoArrivo) &&
+                Objects.equals(codCorsa, corsa.codCorsa) &&
+                Objects.equals(oraPartenza, corsa.oraPartenza) &&
+                Objects.equals(oraArrivo, corsa.oraArrivo);
     }
 
-    public int getTipoMezzo() {return tipoMezzo;}
 }

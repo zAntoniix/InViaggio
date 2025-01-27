@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.Objects;
+
 public class Biglietto {
     //Attributi
     private String codice;
@@ -24,5 +26,14 @@ public class Biglietto {
 
     public Corsa getCorsaPrenotata(){
         return this.corsaPrenotata;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Biglietto biglietto = (Biglietto) o;
+        return Float.compare(costoFinale, biglietto.costoFinale) == 0 &&
+                Objects.equals(codice, biglietto.codice) &&
+                Objects.equals(corsaPrenotata, biglietto.corsaPrenotata);
     }
 }

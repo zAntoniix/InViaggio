@@ -7,21 +7,18 @@ public class InViaggio {
 
     //Attributi
     private static InViaggio inviaggio;
-    private HashMap<String,Tratta> elencoTratte;
-    private List<Cliente> elencoClienti;
+    private LinkedHashMap<String,Tratta> elencoTratte;
+    private LinkedList<Cliente> elencoClienti;
 
     private Biglietto bigliettoCorrente;
     private Tratta trattaCorrente;
     private Tratta trattaSelezionata;
     private Cliente clienteLoggato;
 
-
-
-
     //Costruttore
     public InViaggio() {
-        elencoTratte = new HashMap<>();
-        elencoClienti = new ArrayList<>();
+        elencoTratte = new LinkedHashMap<>();
+        elencoClienti = new LinkedList<>();
     }
 
     //Metodi
@@ -36,7 +33,7 @@ public class InViaggio {
     }
 
     public String generaCodTratta() {
-        String cod = "T"+elencoTratte.size()+1;
+        String cod = "T" + (elencoTratte.size()+1);
         return cod;
     }
 
@@ -51,16 +48,12 @@ public class InViaggio {
     }
 
     public boolean inserisciCorsa (int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, Time oraPartenza, Time oraArrivo, float costoBase) {
-        if(trattaCorrente.inserisciCorsa(tipoMezzo, data, luogoPartenza, luogoArrivo, oraPartenza, oraArrivo, costoBase)) {
-            return true;
-        } else {
-            return false;
-        }
+        return trattaCorrente.inserisciCorsa(tipoMezzo, data, luogoPartenza, luogoArrivo, oraPartenza, oraArrivo, costoBase);
     }
 
     public boolean confermaInserimento() {
         String codTratta = trattaCorrente.getCodTratta();
-        if(elencoTratte.put(codTratta, trattaCorrente) != null) {
+        if(elencoTratte.put(codTratta, trattaCorrente) == null) {
             trattaCorrente = null;
             return true;
         } else {
@@ -68,7 +61,7 @@ public class InViaggio {
         }
     }
 
-    public HashMap<String, Tratta> prenotaBiglietto() {
+    public LinkedHashMap<String, Tratta> prenotaBiglietto() {
         trattaSelezionata = null;
         return elencoTratte;
     }
@@ -83,7 +76,7 @@ public class InViaggio {
     }
 
     public String generaCodBiglietto() {
-        String codBiglietto = "B" + clienteLoggato.getElencoBiglietti().size() +1;
+        String codBiglietto = "B" + (clienteLoggato.getElencoBiglietti().size()+1);
         return codBiglietto;
     }
 
@@ -104,19 +97,32 @@ public class InViaggio {
         } else return false;
     }
 
-    public Cliente getClienteLoggato(){
-        return clienteLoggato;
+    public void addTratta(Tratta t){
+
+        this.elencoTratte.put(t.getCodTratta(),t);
     }
 
-    public void addTratta(Tratta t){
-        this.elencoTratte.put(t.getCodTratta(),t);
+    public Cliente getClienteLoggato(){
+        return clienteLoggato;
     }
 
     public void setBigliettoCorrente(Biglietto b) {
         this.bigliettoCorrente = b;
     }
 
-    public Biglietto getBigliettoCorrente() {
-        return bigliettoCorrente;
+    public Biglietto getBigliettoCorrente() { return bigliettoCorrente; }
+
+    public LinkedHashMap<String, Tratta> getElencoTratte() { return elencoTratte; }
+
+    public LinkedList<Cliente> getElencoClienti() {
+        return elencoClienti;
+    }
+
+    public Tratta getTrattaCorrente() {
+        return trattaCorrente;
+    }
+
+    public Tratta getTrattaSelezionata() {
+        return trattaSelezionata;
     }
 }
