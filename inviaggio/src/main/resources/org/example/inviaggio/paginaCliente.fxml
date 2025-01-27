@@ -7,17 +7,20 @@
    <children>
       <Pane layoutY="1.0" prefHeight="434.0" prefWidth="600.0">
          <children>
-            <Label fx:id="nomeUtente" layoutX="28.0" layoutY="17.0" text="Nome utente" />
+            <Label fx:id="nomeUtente" layoutX="28.0" layoutY="17.0" text="Nome utente" textFill="#11f201" />
+            <Label fx:id="viewBiglietto" layoutX="263.0" layoutY="88.0" text="Riepilogo biglietto" />
             <Label fx:id="nomeView" layoutX="118.0" layoutY="88.0" text="Tratte Disponibili" />
             <ListView fx:id="menuTratte" layoutX="22.0" layoutY="113.0" prefHeight="200.0" prefWidth="272.0" />
-            <Button fx:id="bottoneScelta" layoutX="226.0" layoutY="352.0" mnemonicParsing="false" onAction="#onConfermaBottone" text="Conferma" />
-            <TextField fx:id="dataScelta" layoutX="35.0" layoutY="352.0" prefHeight="25.0" prefWidth="176.0" />
-            <Label fx:id="data" layoutX="114.0" layoutY="335.0" text="Data" />
-            <Label fx:id="erroreData" layoutX="33.0" layoutY="386.0" prefHeight="17.0" prefWidth="130.0" />
+            <Button fx:id="bottoneScelta" layoutX="226.0" layoutY="340.0" mnemonicParsing="false" onAction="#onConfermaBottone" text="Conferma" />
+            <TextField fx:id="dataScelta" layoutX="35.0" layoutY="340.0" prefHeight="25.0" prefWidth="176.0" />
+            <Label fx:id="data" layoutX="111.0" layoutY="323.0" text="Data" />
+            <Label fx:id="erroreData" layoutX="33.0" layoutY="369.0" prefHeight="17.0" prefWidth="253.0" textFill="#ff0202" />
             <ListView fx:id="corseDisponibili" layoutX="312.0" layoutY="113.0" prefHeight="200.0" prefWidth="264.0" />
             <Label fx:id="nomeCorse" layoutX="401.0" layoutY="88.0" prefHeight="17.0" prefWidth="101.0" text="Corse disponibili" />
-            <Button fx:id="bottoneSceltaCorsa" layoutX="417.0" layoutY="331.0" mnemonicParsing="false" onAction="#onConfermaBottoneCorsa" text="Conferma" />
-            <Button fx:id="bottoneSceltaBiglietto" layoutX="111.0" layoutY="325.0" mnemonicParsing="false" onAction="#onConfermaBottoneBiglietto" text="Conferma" />
+            <Button fx:id="bottoneSceltaCorsa" layoutX="418.0" layoutY="352.0" mnemonicParsing="false" onAction="#onConfermaBottoneCorsa" text="Conferma" />
+            <Label fx:id="erroreCorsa" layoutX="312.0" layoutY="323.0" prefHeight="17.0" prefWidth="167.0" textFill="RED" />
+            <Button fx:id="bottoneSceltaBiglietto" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#onConfermaBottoneBiglietto" text="Conferma" />
+            <TextArea fx:id="biglietto" layoutX="181.0" layoutY="113.0" prefHeight="200.0" prefWidth="253.0" />
          </children>
       </Pane>
    </children>

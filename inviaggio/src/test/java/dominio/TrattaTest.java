@@ -42,7 +42,7 @@ class TrattaTest {
     @Test
     @Order (2)
     void testGeneraCodiceCorsa(){
-        assertEquals("C2",t.generaCodiceCorsa());
+        assertEquals("C"+(t.getElencoCorse().size()+1),t.generaCodiceCorsa());
     }
 
     @Test

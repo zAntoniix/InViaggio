@@ -45,13 +45,17 @@ public class HelloApplication extends Application {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-            Time oraPartenza = Time.valueOf("12:30:00");
-            Time oraArrivo = Time.valueOf("23:10:00");
+            Time oraPartenza = Time.valueOf("08:30:00");
+            Time oraArrivo = Time.valueOf("15:10:00");
             Date data = formatter.parse("24/04/2024");
             Tratta temp = inviaggio.selezionaTratta("20010");
-            //temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,2);
+            temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,25);
+            oraPartenza = Time.valueOf("11:30:00");
+            oraArrivo = Time.valueOf("23:10:00");
+            temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,39);
+            temp = inviaggio.selezionaTratta("78562");
+            temp.inserisciCorsa(1,data, "Catania", "Palermo", oraPartenza, oraArrivo,12);
 
-            //Dall'interfaccia e dal print che ho tolto funziona anche la generazione casuale del codice
 
         }catch (ParseException e) {
 
