@@ -21,7 +21,7 @@ public class Cliente {
 
     //Metodi
     public Boolean confermaBiglietto(Biglietto b){
-        if(elencoBiglietti.put(b.getCodice(),b)!=null)
+        if(elencoBiglietti.put(b.getCodice(),b)==null)
             return true;
         else
             //b.getCorsaPrenotata().incrementaPosti(); futura estensione in caso di crash del sistema
@@ -35,5 +35,6 @@ public class Cliente {
     public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
         return elencoBiglietti;
     }
+
 }
 

@@ -127,8 +127,8 @@ public class PaginaClienteController {
                         for (Corsa c : listaCorse) { //Scorro la lista di corse
                             String s = new String(" " + c.getCodCorsa() + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " + c.getCostoBase() + "€");
                             cr.add(s);
-                            corseDisponibili.getItems().addAll(cr);
                         }
+                        corseDisponibili.getItems().addAll(cr);
                     }
                 } catch (ParseException e) {
                     erroreData.setText("Inserire Data nel fotmato gg/mm/aaaa");

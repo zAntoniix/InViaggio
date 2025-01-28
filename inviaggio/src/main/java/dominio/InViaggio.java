@@ -71,7 +71,7 @@ public class InViaggio {
         return trattaSelezionata;
     }
 
-    public List<Corsa> richiediCorsePerData(Date data) {
+    public LinkedList<Corsa> richiediCorsePerData(Date data) {
         return trattaSelezionata.getCorsePerData(data);
     }
 
@@ -94,7 +94,8 @@ public class InViaggio {
     public boolean confermaBiglietto() {
         if (bigliettoCorrente.getCorsaPrenotata().decrementaPosti()) {
             return clienteLoggato.confermaBiglietto(bigliettoCorrente);
-        } else return false;
+        } else
+            return false;
     }
 
     public void addTratta(Tratta t){
@@ -104,10 +105,6 @@ public class InViaggio {
 
     public Cliente getClienteLoggato(){
         return clienteLoggato;
-    }
-
-    public void setBigliettoCorrente(Biglietto b) {
-        this.bigliettoCorrente = b;
     }
 
     public Biglietto getBigliettoCorrente() { return bigliettoCorrente; }
@@ -125,4 +122,13 @@ public class InViaggio {
     public Tratta getTrattaSelezionata() {
         return trattaSelezionata;
     }
+
+    public void setBigliettoCorrente(Biglietto b) {
+        this.bigliettoCorrente = b;
+    }
+
+    public void setTrattaCorrente(Tratta trattaCorrente) {this.trattaCorrente = trattaCorrente; }
+
+    public void setTrattaSelezionata(Tratta trattaSelezionata) {this.trattaSelezionata = trattaSelezionata; }
+
 }

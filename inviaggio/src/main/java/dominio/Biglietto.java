@@ -36,4 +36,5 @@ public class Biglietto {
                 Objects.equals(codice, biglietto.codice) &&
                 Objects.equals(corsaPrenotata, biglietto.corsaPrenotata);
     }
+
 }
