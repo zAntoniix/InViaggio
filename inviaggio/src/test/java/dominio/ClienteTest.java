@@ -38,8 +38,9 @@ class ClienteTest {
     void testConfermaBiglietto() {
         int dim = cl.getElencoBiglietti().size();
         b = new Biglietto("B2", 25, c);
-        cl.confermaBiglietto(b);
-        assertEquals(dim+1, cl.getElencoBiglietti().size());
+        assertTrue(cl.confermaBiglietto(b));
+        assertEquals(dim+1, cl.getElencoBiglietti().size()); //ulteriore controllo
+
     }
 
     @Test
