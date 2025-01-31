@@ -40,7 +40,7 @@ public class Corsa {
 
 
     public Boolean isDisponibileData(Date data_ricercata){
-        if(this.data.equals(data_ricercata))
+        if(this.data.equals(data_ricercata) && numPosti>0)
             return true;
         else
             return false;

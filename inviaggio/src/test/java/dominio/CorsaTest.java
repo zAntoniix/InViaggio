@@ -39,6 +39,8 @@ class CorsaTest {
         assertTrue(cp.isDisponibileData(data));
         Date data2 = formatter.parse("24/05/2024");
         assertFalse(cp.isDisponibileData(data2));
+        cp2.setNumPosti(0);
+        assertFalse(cp2.isDisponibileData(data));
     }
 
     @Test
