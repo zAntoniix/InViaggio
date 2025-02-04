@@ -39,14 +39,14 @@ public class Corsa {
     }
 
 
-    public Boolean isDisponibileData(Date data_ricercata){
+    public boolean isDisponibileData(Date data_ricercata){
         if(this.data.equals(data_ricercata) && numPosti>0)
             return true;
         else
             return false;
     }
 
-    public Boolean decrementaPosti(){
+    public boolean decrementaPosti(){
         if(this.numPosti>=1){
             this.numPosti--;
             return true;

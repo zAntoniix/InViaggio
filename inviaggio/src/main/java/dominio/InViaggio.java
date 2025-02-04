@@ -39,6 +39,14 @@ public class InViaggio {
 
     public boolean inserisciNuovaTratta(int tipoTratta, String cittaPartenza, String cittaArrivo) {
         String codTratta = generaCodTratta();
+        Iterator<Map.Entry<String,Tratta>>iterator=elencoTratte.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Tratta> entry=iterator.next();
+            Tratta t = entry.getValue();
+            if(t.getCittaPartenza().equals(cittaPartenza) && t.getCittaArrivo().equals(cittaArrivo)){
+                return false;
+            }
+        }
         trattaCorrente = new Tratta(tipoTratta, cittaPartenza, cittaArrivo, codTratta);
         if(trattaCorrente != null) {
             return true;
@@ -98,8 +106,87 @@ public class InViaggio {
             return false;
     }
 
-    public void addTratta(Tratta t){
+    public boolean inserisciNuovaCorsa(String codTratta){
+        trattaCorrente=null;
+        trattaCorrente=elencoTratte.get(codTratta);
 
+        if(trattaCorrente!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
+    public boolean registrati(String nome, String cognome, String CF, String codicePersonale) {
+        Cliente cl = new Cliente(nome,cognome,CF,codicePersonale);
+        if(inviaggio.elencoClienti.add(cl)){
+            setClienteLoggato(cl);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Cliente verificaCliente(String CF, String codPersonale){
+        Cliente cl = null;
+        for(Cliente c : inviaggio.elencoClienti){
+            if(c.getCodPersonale().equals(codPersonale) && c.getCF().equals(CF)){
+                cl = c;
+            }
+        }
+        return cl;
+    }
+
+    public boolean accedi(String CF, String codPersonale) {
+        Cliente cl;
+        cl = verificaCliente(CF, codPersonale);
+        if(cl!=null){
+            setClienteLoggato(cl);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean rimuovi(String CF, String codPersonale) {
+        Cliente cl;
+        cl = verificaCliente(CF, codPersonale);
+        if(cl!=null){
+            if(cl.rimuoviAccount()){
+                elencoClienti.remove(cl);
+                setClienteLoggato(null);
+                cl=null;
+                return true;
+            } else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void logout(){
+        setClienteLoggato(null);
+    }
+
+    public List<Biglietto> annullaPrenotazione(){
+        return clienteLoggato.annullaPrenotazione();
+    }
+
+    public boolean selezionaBigliettoDaAnnullare(String codice){
+        if(clienteLoggato.annullaBiglietto(codice)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void addTratta(Tratta t){
         this.elencoTratte.put(t.getCodTratta(),t);
     }
 

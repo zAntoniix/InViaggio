@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.LoginAmministratoreController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="bottoneConferma" layoutX="371.0" layoutY="333.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="107.0" text="Conferma" />
+            <Button fx:id="bottoneAnnulla" layoutX="123.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="107.0" text="Annulla" />
+            <Label layoutX="176.0" layoutY="33.0" text="Login Amministratore">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

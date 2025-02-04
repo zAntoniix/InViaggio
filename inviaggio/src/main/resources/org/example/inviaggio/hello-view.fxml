@@ -10,13 +10,14 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="bottoneCliente" layoutX="51.0" layoutY="88.0" mnemonicParsing="false" onAction="#onBottoneCliente" prefHeight="25.0" prefWidth="98.0" text="Utente" />
-                  <Button layoutX="51.0" layoutY="137.0" mnemonicParsing="false" text="Amministratore" />
+                  <Button fx:id="bottoneCliente" layoutX="51.0" layoutY="117.0" mnemonicParsing="false" onAction="#onBottoneCliente" prefHeight="25.0" prefWidth="98.0" text="Utente" />
+                  <Button fx:id="bottoneAmministratore" onAction="#onBottoneAmministratore" layoutX="51.0" layoutY="75.0" mnemonicParsing="false" text="Amministratore" />
                   <Label layoutX="-38.0" layoutY="24.0" text="Come preferisci accedere?">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Hyperlink fx:id="link" onAction="#onHyperlinkClick" layoutX="26.0" layoutY="150.0" text="Non sei ancora un utente?" />
                </children></Pane>
          </children>
       </VBox>

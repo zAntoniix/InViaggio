@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -55,13 +56,9 @@ public class HelloApplication extends Application {
             temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,39);
             temp = inviaggio.selezionaTratta("78562");
             temp.inserisciCorsa(1,data, "Catania", "Palermo", oraPartenza, oraArrivo,12);
-
-
         }catch (ParseException e) {
-
-        e.printStackTrace();
-    }
-
+            e.printStackTrace();
+        }
         launch();
     }
 

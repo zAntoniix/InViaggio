@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.RegistrazioneClienteController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" layoutX="187.0" layoutY="28.0" text="Registrazione">
+               <font>
+                  <Font size="38.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nome" layoutX="69.0" layoutY="135.0" prefHeight="25.0" prefWidth="185.0" />
+            <TextField fx:id="cognome" layoutX="321.0" layoutY="135.0" prefHeight="25.0" prefWidth="185.0" />
+            <TextField fx:id="CF" layoutX="69.0" layoutY="234.0" prefHeight="25.0" prefWidth="185.0" />
+            <TextField fx:id="codicePersonale" layoutX="321.0" layoutY="234.0" prefHeight="25.0" prefWidth="185.0" />
+            <Label layoutX="134.0" layoutY="105.0" text="Nome">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="370.0" layoutY="105.0" text="Cognome">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="200.0" text="Codice fiscale">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="336.0" layoutY="200.0" text="Codice personale">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="bottoneAnnulla" layoutX="147.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="107.0" text="Annulla" />
+            <Button fx:id="bottoneConferma" layoutX="343.0" layoutY="324.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="107.0" text="Conferma" />
+            <Label fx:id="erroreNome" layoutX="120.0" layoutY="168.0" text="Inserire il nome" textFill="RED" />
+            <Label fx:id="erroreCognome" layoutX="363.0" layoutY="168.0" text="Inserire il cognome" textFill="RED" />
+            <Label fx:id="erroreCF" layoutX="101.0" layoutY="265.0" text="Inserire il codice fiscale" textFill="RED" />
+            <Label fx:id="erroreCodPersonale" layoutX="342.0" layoutY="265.0" text="Inserire il codice personale" textFill="RED" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
