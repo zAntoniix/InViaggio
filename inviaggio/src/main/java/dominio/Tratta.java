@@ -33,12 +33,30 @@ public class Tratta {
 
     public Boolean inserisciCorsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo, Time oraPartenza, Time oraArrivo, float costoBase) {
         String codiceCorsa = generaCodiceCorsa();
-        Corsa c = new Corsa(tipoMezzo,data,luogoPartenza,luogoArrivo,oraPartenza,oraArrivo,costoBase,codiceCorsa);
-        if (this.elencoCorse.put(c.getCodCorsa(), c) == null) {
-            return true;
-        } else {
+        if(verificaEsistenzaCorsa(data,oraPartenza,oraArrivo,luogoPartenza,luogoArrivo)) {
+            Corsa c = new Corsa(tipoMezzo, data, luogoPartenza, luogoArrivo, oraPartenza, oraArrivo, costoBase, codiceCorsa);
+            if (this.elencoCorse.put(c.getCodCorsa(), c) == null) {
+                return true;
+            } else {
+                return false;
+            }
+        } else{
             return false;
         }
+    }
+
+    public boolean verificaEsistenzaCorsa(Date data,Time oraPartenza,Time oraArrivo,String luogoPartenza,String luogoArrivo) {
+
+        LinkedList<Corsa> corseDisponibili = new LinkedList<>();
+        Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Corsa> entry=iterator.next();
+            Corsa c=entry.getValue();
+            if(c.getData().equals(data) && c.getOraPartenza().equals(oraPartenza) && c.getOraArrivo().equals(oraArrivo) && c.getLuogoPartenza().equals(luogoPartenza) && c.getLuogoArrivo().equals(luogoArrivo) ){
+                return false;
+            }
+        }
+        return true;
     }
 
     public LinkedList<Corsa> getCorsePerData(Date data){

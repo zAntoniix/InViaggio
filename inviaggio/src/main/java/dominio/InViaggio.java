@@ -1,6 +1,11 @@
 package dominio;
 
+import dominio.scontistica.LastMinute;
+import dominio.scontistica.PrezzoDomenica;
+import dominio.scontistica.PrezzoFinale;
+
 import java.sql.Time;
+import java.time.*;
 import java.util.*;
 
 public class InViaggio {
@@ -14,6 +19,7 @@ public class InViaggio {
     private Tratta trattaCorrente;
     private Tratta trattaSelezionata;
     private Cliente clienteLoggato;
+    private PrezzoFinale prezzoFinale;
 
     //Costruttore
     public InViaggio() {
@@ -59,6 +65,7 @@ public class InViaggio {
         return trattaCorrente.inserisciCorsa(tipoMezzo, data, luogoPartenza, luogoArrivo, oraPartenza, oraArrivo, costoBase);
     }
 
+
     public boolean confermaInserimento() {
         String codTratta = trattaCorrente.getCodTratta();
         if(elencoTratte.put(codTratta, trattaCorrente) == null) {
@@ -90,12 +97,26 @@ public class InViaggio {
 
     public Biglietto selezionaCorsa(String codCorsa) {
         Corsa c;
-        float cb;
+        float cb,cf;
         String cod;
         c = trattaSelezionata.selezionaCorsa(codCorsa);
-        cb = c.getCostoBase();
         cod = generaCodBiglietto();
-        bigliettoCorrente = new Biglietto(cod, cb, c);
+        LocalDateTime dataPrenotazione = c.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalTime oraCorrente = LocalTime.now();
+        LocalTime oraPartenza = c.getOraPartenza().toLocalTime();
+        Duration differenzaTempo = Duration.between(oraCorrente, oraPartenza);
+        cb=c.getCostoBase();
+        cf=cb;
+
+        if(differenzaTempo.toHours()==12){
+            prezzoFinale=new LastMinute();
+            cf= cf-prezzoFinale.calcolaPrezzo(c);
+        }
+        if(dataPrenotazione.getDayOfWeek().getValue() == 7) {
+            prezzoFinale = new PrezzoDomenica();
+            cf= cf+prezzoFinale.calcolaPrezzo(c);
+        }
+        bigliettoCorrente = new Biglietto(cod, cf, c);
         return bigliettoCorrente;
     }
 
@@ -119,10 +140,14 @@ public class InViaggio {
 
     }
 
-
     public boolean registrati(String nome, String cognome, String CF, String codicePersonale) {
+        for(Cliente c : elencoClienti){
+            if(c.getCF().equals(CF)){
+                return false;
+            }
+        }
         Cliente cl = new Cliente(nome,cognome,CF,codicePersonale);
-        if(inviaggio.elencoClienti.add(cl)){
+        if(elencoClienti.add(cl)){
             setClienteLoggato(cl);
             return true;
         }else{
@@ -132,7 +157,7 @@ public class InViaggio {
 
     public Cliente verificaCliente(String CF, String codPersonale){
         Cliente cl = null;
-        for(Cliente c : inviaggio.elencoClienti){
+        for(Cliente c : elencoClienti){
             if(c.getCodPersonale().equals(codPersonale) && c.getCF().equals(CF)){
                 cl = c;
             }
