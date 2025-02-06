@@ -107,17 +107,20 @@ public class InViaggio {
         String cod;
         c = trattaSelezionata.selezionaCorsa(codCorsa);
         cod = generaCodBiglietto();
+        LocalDateTime dataAttuale = LocalDateTime.now();
         LocalDateTime dataPrenotazione = c.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalTime oraCorrente = LocalTime.now();
         LocalTime oraPartenza = c.getOraPartenza().toLocalTime();
         Duration differenzaTempo = Duration.between(oraCorrente, oraPartenza);
         cb=c.getCostoBase();
         cf=cb;
-
-        if(differenzaTempo.toHours()==12){
-            prezzoFinale=new LastMinute();
-            cf= cf-prezzoFinale.calcolaPrezzo(c);
+        if (dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 1 || dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 0) {
+                if (differenzaTempo.toHours() <= 12) {
+                    prezzoFinale = new LastMinute();
+                    cf = cf - prezzoFinale.calcolaPrezzo(c);
+                }
         }
+
         if(dataPrenotazione.getDayOfWeek().getValue() == 7) {
             prezzoFinale = new PrezzoDomenica();
             cf= cf+prezzoFinale.calcolaPrezzo(c);

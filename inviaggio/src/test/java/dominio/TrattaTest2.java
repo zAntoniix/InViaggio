@@ -10,7 +10,8 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TrattaTest2 {
+class
+ìTrattaTest2 {
     static Tratta t;
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     static Date data1;

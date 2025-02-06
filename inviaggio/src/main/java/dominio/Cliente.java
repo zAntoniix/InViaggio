@@ -76,6 +76,7 @@ public class Cliente {
         }
     }
 
+
     public String getNome() {
         return nome;
     }
@@ -94,6 +95,13 @@ public class Cliente {
 
     public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
         return elencoBiglietti;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(nome, cliente.nome) && Objects.equals(cognome, cliente.cognome) && Objects.equals(CF, cliente.CF) && Objects.equals(codPersonale, cliente.codPersonale) && Objects.equals(elencoBiglietti, cliente.elencoBiglietti);
     }
 
 }
