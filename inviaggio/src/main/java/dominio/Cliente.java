@@ -30,13 +30,12 @@ public class Cliente {
     }
 
     public boolean rimuoviAccount(){
-        LinkedList<Biglietto> bigliettoPrenotato = new LinkedList<>();
         Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,Biglietto> entry=iterator.next();
             Biglietto b = entry.getValue();
             if(b.incrementaPosto()){
-                elencoBiglietti.remove(b.getCodice());
+                iterator.remove();
                 b=null;// Elimina il riferimento all'istanza del biglietto
             }else{
                 return false;

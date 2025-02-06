@@ -46,8 +46,6 @@ public class Tratta {
     }
 
     public boolean verificaEsistenzaCorsa(Date data,Time oraPartenza,Time oraArrivo,String luogoPartenza,String luogoArrivo) {
-
-        LinkedList<Corsa> corseDisponibili = new LinkedList<>();
         Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,Corsa> entry=iterator.next();
@@ -85,7 +83,9 @@ public class Tratta {
         return cittaArrivo;
     }
 
-    public HashMap<String, Corsa> getElencoCorse() {return elencoCorse;}
+    public LinkedHashMap<String, Corsa> getElencoCorse() {return elencoCorse;}
+
+    public int getTipoTratta() { return tipoTratta; }
 
     @Override
     public boolean equals(Object o) {

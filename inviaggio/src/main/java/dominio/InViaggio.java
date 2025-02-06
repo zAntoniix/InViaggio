@@ -53,6 +53,12 @@ public class InViaggio {
                 return false;
             }
         }
+        if(tipoTratta == 2 && cittaPartenza.equals(cittaArrivo)){
+            return false;
+        }
+        if(tipoTratta == 1 && !cittaPartenza.equals(cittaArrivo)) {
+            return false;
+        }
         trattaCorrente = new Tratta(tipoTratta, cittaPartenza, cittaArrivo, codTratta);
         if(trattaCorrente != null) {
             return true;
