@@ -81,6 +81,7 @@ class InViaggioTest2 {
     @Test
     void verificaCliente() {
         assertTrue(inviaggio.verificaCliente("ZAIEWJ2032","Fallito").equals(cl));
+        assertNull(inviaggio.verificaCliente("ZAI","Fallito"));
     }
 
     @Test
@@ -117,6 +118,6 @@ class InViaggioTest2 {
     void selezionaBigliettoDaAnnullare() {
         inviaggio.setClienteLoggato(cl);
         assertTrue(inviaggio.selezionaBigliettoDaAnnullare("B1"));
-
     }
+
 }

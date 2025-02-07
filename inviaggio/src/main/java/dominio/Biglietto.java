@@ -1,6 +1,7 @@
 package dominio;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -37,16 +38,18 @@ public class Biglietto {
         LocalDateTime dataAttuale = LocalDateTime.now();
         LocalDateTime dataCorsa = corsaPrenotata.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalTime oraCorsa = corsaPrenotata.getOraPartenza().toLocalTime();
+        LocalDate giornoSuccessivo = dataAttuale.toLocalDate().plusDays(1);
+    if(dataAttuale.getYear() == dataCorsa.getYear() || giornoSuccessivo.getYear() == dataCorsa.getYear()){
         //Controllo Mese
-        if (dataAttuale.getMonth() == dataCorsa.getMonth()) {
+        if (dataAttuale.getMonth() == dataCorsa.getMonth() || giornoSuccessivo.getMonth() == dataCorsa.getMonth()) {
             //Controllo giorno
-            if (dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() == 1) {
+            if (dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() >= 1 || dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() < -26) {
                 //Conrtrollo Ora nel caso giorno prima
                 if (dataAttuale.toLocalTime().compareTo(oraCorsa) < 0) {
                     //Controllo minuti
-                    if(dataAttuale.toLocalTime().getMinute() <= oraCorsa.getMinute()){
+                    if (dataAttuale.toLocalTime().getMinute() <= oraCorsa.getMinute()) {
                         return true;
-                    }else{
+                    } else {
                         return false;
                     }
                     //Fine controllo minuti
@@ -61,13 +64,18 @@ public class Biglietto {
                 return false;
             }
         }
-        if(dataAttuale.getMonth().getValue() < dataCorsa.getMonth().getValue()){
+        if (dataAttuale.getMonth().getValue() < dataCorsa.getMonth().getValue()) {
             return true;
+        } else {
+            return false;
+        }
+
+        } if(dataAttuale.getYear() < dataCorsa.getYear()){
+        return true;
         }
         else{
             return false;
         }
-
     }
 
     public String getCodice(){
