@@ -55,6 +55,16 @@ public class Corsa {
             return false;
     }
 
+    public boolean getCorsePerPeriodo(Date dataPeriodoInizio, Date dataPeriodoFine){
+        if((data.before(dataPeriodoFine) || data.equals(dataPeriodoFine)) && (data.after(dataPeriodoInizio) || data.equals(dataPeriodoInizio))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
     public float getCostoBase() { return costoBase; }
 
     public String getCodCorsa() { return codCorsa; }

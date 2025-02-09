@@ -20,11 +20,13 @@ public class InViaggio {
     private Tratta trattaSelezionata;
     private Cliente clienteLoggato;
     private PrezzoFinale prezzoFinale;
+    private int pinAmministratore;
 
     //Costruttore
     public InViaggio() {
         elencoTratte = new LinkedHashMap<>();
         elencoClienti = new LinkedList<>();
+        this.pinAmministratore = 1234;
     }
 
     //Metodi
@@ -220,6 +222,54 @@ public class InViaggio {
         }
     }
 
+    public boolean accediAmministratore(int pin){
+        if(verificaAmministatore(pin)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean verificaAmministatore(int pin){
+        if(pin == getPinAmministratore()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean sospendiTratta(String codTratta){
+        trattaCorrente=elencoTratte.get(codTratta);
+        if(elencoTratte.get(codTratta)!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public LinkedList<Corsa> selezionaPeriodoSospensione(Date dataInizio,Date dataFine){
+        LinkedList<Corsa> corseDaAnnullare = new LinkedList<>();
+        Cliente clienteAttuale;
+        corseDaAnnullare=trattaCorrente.sospensioneCorse(dataInizio,dataFine);
+        if(trattaCorrente.eliminaCorsePerSospensione(corseDaAnnullare)){
+            for(Cliente cl : elencoClienti) {
+                clienteAttuale = cl;
+                if(!clienteAttuale.annullaBigliettoPerSospensione(corseDaAnnullare)){
+                   // riaggiungere i biglietti
+                }
+            }
+        }//else{
+          //In caso di false
+          //corseDaAnnullare=null;
+         // Reinserire le corse annullate
+        //}
+        return corseDaAnnullare;
+    }
+
+
     public void addTratta(Tratta t){
         this.elencoTratte.put(t.getCodTratta(),t);
     }
@@ -229,6 +279,10 @@ public class InViaggio {
     }
 
     public Biglietto getBigliettoCorrente() { return bigliettoCorrente; }
+
+    public int getPinAmministratore(){
+        return pinAmministratore;
+    }
 
     public LinkedHashMap<String, Tratta> getElencoTratte() { return elencoTratte; }
 

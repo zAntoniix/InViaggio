@@ -76,6 +76,22 @@ public class Cliente {
         }
     }
 
+    public boolean annullaBigliettoPerSospensione(List<Corsa> listaCorsa){
+        boolean checkBiglietto;
+        for(Corsa c : listaCorsa) {
+            Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+            while(iterator.hasNext()){
+                Map.Entry<String,Biglietto> entry=iterator.next();
+                Biglietto b = entry.getValue();
+                checkBiglietto=b.verificaBigliettoPerCorsa(c);
+                if(checkBiglietto){
+                    iterator.remove();
+                    b=null;
+                }
+            }
+        }
+        return true;
+    }
 
     public String getNome() {
         return nome;

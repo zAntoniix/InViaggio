@@ -71,6 +71,29 @@ public class Tratta {
         return corseDisponibili;
     }
 
+
+    public LinkedList<Corsa> sospensioneCorse(Date dataInizio,Date dataFine){
+        LinkedList<Corsa> elencoCorseDaSospendere = new LinkedList<>();
+        Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Corsa> entry=iterator.next();
+            Corsa c=entry.getValue();
+            if(c.getCorsePerPeriodo(dataInizio,dataFine)) {
+                elencoCorseDaSospendere.add(c);
+            }
+        }
+        return elencoCorseDaSospendere;
+    }
+
+    public boolean eliminaCorsePerSospensione(List<Corsa> elencoCorseDaSospendere){
+        for(Corsa c : elencoCorseDaSospendere){
+            if(elencoCorse.remove(c.getCodCorsa())!=null){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public Corsa selezionaCorsa(String codCorsa) {
         return elencoCorse.get(codCorsa);
     }

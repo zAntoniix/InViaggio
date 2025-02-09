@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class Biglietto {
@@ -77,6 +78,16 @@ public class Biglietto {
             return false;
         }
     }
+
+    public boolean verificaBigliettoPerCorsa(Corsa c){
+        if(getCorsaPrenotata().getCodCorsa().equals(c.getCodCorsa())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
     public String getCodice(){
         return this.codice;

@@ -1,5 +1,6 @@
 package org.example.inviaggio;
 
+import dominio.InViaggio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ public class LoginAmministratoreController {
     private Button bottoneAnnulla;
     @FXML
     private Button bottoneConferma;
+
+    InViaggio inviaggio = InViaggio.getInstance();
 
 
     public void onAnnullaClick(ActionEvent event) throws IOException {
