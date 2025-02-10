@@ -7,21 +7,17 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ClienteTest3 {
-    static InViaggio inviaggio;
-    static Biglietto b, b2;
-    static Cliente cl;
+class BigliettoTest2 {
     static Corsa c1, c2;
-    static LinkedList<Corsa> listaCorse;
+    static Biglietto b1, b2;
     static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     static Date data, data2;
     static {
         try {
-            data = formatter.parse("24/01/2025");
+            data = formatter.parse("06/02/2025");
             data2 = formatter.parse("06/06/2025");
         } catch (ParseException e) {
             throw new RuntimeException(e);
@@ -30,22 +26,20 @@ class ClienteTest3 {
 
     @BeforeAll
     static void setUp() throws Exception {
-        cl = new Cliente("Antonio","Zarbo","ZAIEWJ2032","Fallito");
         c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1");
-        b = new Biglietto("B1", 25, c1);
-        cl.confermaBiglietto(b);
+        b1 = new Biglietto("B1", 2, c1);
+        c1.setNumPosti(50);
 
         c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),200,"C2");
         b2 = new Biglietto("B2", 200, c2);
-        cl.confermaBiglietto(b2);
-        listaCorse = new LinkedList<>();
-        listaCorse.add(c1);
-        listaCorse.add(c2);
     }
 
     @Test
-    void testAnnullaBigliettoPerSospensione() {
-        assertTrue(cl.annullaBigliettoPerSospensione(listaCorse));
-        assertTrue(cl.getElencoBiglietti().isEmpty());
+    void testGetBigliettiAnnullabili() {
+        // mi aspetto false in quanto mancano meno di 12 ore alla partenza (oggi 6/2/25 alle 10:10)
+        assertFalse(b1.getBigliettiAnnullabili());
+        //mi aspetto true in quanto il biglietto è riferito a una corsa di giugno (oggi 6/2/25 alle 10:10)
+        assertTrue(b2.getBigliettiAnnullabili());
     }
+
 }

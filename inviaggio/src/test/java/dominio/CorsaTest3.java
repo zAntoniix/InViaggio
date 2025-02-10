@@ -35,7 +35,7 @@ class CorsaTest3 {
     }
 
     @Test
-    void getCorsePerPeriodo() {
+    void testGetCorsePerPeriodo() {
         assertTrue(cp.getCorsePerPeriodo(periodoInizio, periodoFine));
         assertTrue(cp2.getCorsePerPeriodo(periodoInizio, periodoFine));
         assertFalse(cp3.getCorsePerPeriodo(periodoInizio, periodoFine));
