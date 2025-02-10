@@ -76,8 +76,8 @@ class InViaggioTest {
     @Test
     void testPrenotaBiglietto() {
         LinkedHashMap<String,Tratta> l;
-        l = inviaggio.prenotaBiglietto();
-        assertEquals(l,inviaggio.prenotaBiglietto());
+        l = inviaggio.visualizzaElencoTratte();
+        assertEquals(l,inviaggio.visualizzaElencoTratte());
     }
 
     @Test

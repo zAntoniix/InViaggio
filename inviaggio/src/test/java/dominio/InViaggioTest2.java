@@ -1,5 +1,6 @@
 package dominio;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import dominio.*;
@@ -20,7 +21,7 @@ class InViaggioTest2 {
     static Corsa c,c2,c3,c4;
     static Date data,data2,data3,data4;
 
-    @BeforeEach
+    @BeforeAll
     void setUp() {
         inviaggio= inviaggio.getInstance();
             try {
@@ -50,8 +51,8 @@ class InViaggioTest2 {
         t.getElencoCorse().put("C2",c2);
         t.getElencoCorse().put("C3",c3);
         t.getElencoCorse().put("C4",c4);
-
     }
+
     @Test
     void selezionaCorsa() {
        /* inviaggio.setTrattaSelezionata(t);

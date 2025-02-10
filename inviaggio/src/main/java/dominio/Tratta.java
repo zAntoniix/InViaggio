@@ -94,6 +94,17 @@ public class Tratta {
         return true;
     }
 
+    public LinkedList<Corsa> getListaCorse(){
+        LinkedList<Corsa> corseList = new LinkedList<>();
+        Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Corsa> entry=iterator.next();
+            Corsa c=entry.getValue();
+            corseList.add(c);
+        }
+        return corseList;
+    }
+
     public Corsa selezionaCorsa(String codCorsa) {
         return elencoCorse.get(codCorsa);
     }

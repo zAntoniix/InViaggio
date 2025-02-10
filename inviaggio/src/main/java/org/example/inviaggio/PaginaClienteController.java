@@ -4,18 +4,12 @@ import dominio.Biglietto;
 import dominio.Corsa;
 import dominio.InViaggio;
 import dominio.Tratta;
-import javafx.beans.Observable;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -61,9 +55,9 @@ public class PaginaClienteController {
 // mostro tutte le tratte ed indico cosa deve accadere ogni volta che clicco una tratta
     public void initialize(){
         nomeUtente.setText(inviaggio.getClienteLoggato().getNome());
-        //Utilizzo il metodo prenotaBiglietto per rispettare l'SD. Utilizzo l'iteretor per andare a scorrere la mappa
+        //Utilizzo il metodo visualizzaElencoTratte per rispettare l'SD. Utilizzo l'iteretor per andare a scorrere la mappa
         ObservableList<String> tr = FXCollections.observableArrayList();
-        Iterator<Map.Entry<String,Tratta>>iterator=inviaggio.prenotaBiglietto().entrySet().iterator();
+        Iterator<Map.Entry<String,Tratta>>iterator=inviaggio.visualizzaElencoTratte().entrySet().iterator();
         while(iterator.hasNext()){ //Scorro la mappa delle Tratte
             Map.Entry<String,Tratta> entry=iterator.next();
             Tratta t=entry.getValue();

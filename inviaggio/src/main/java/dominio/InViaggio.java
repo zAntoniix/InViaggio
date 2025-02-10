@@ -84,7 +84,7 @@ public class InViaggio {
         }
     }
 
-    public LinkedHashMap<String, Tratta> prenotaBiglietto() {
+    public LinkedHashMap<String, Tratta> visualizzaElencoTratte() {
         trattaSelezionata = null;
         return elencoTratte;
     }
@@ -251,7 +251,7 @@ public class InViaggio {
     }
 
     public LinkedList<Corsa> selezionaPeriodoSospensione(Date dataInizio,Date dataFine){
-        LinkedList<Corsa> corseDaAnnullare = new LinkedList<>();
+        LinkedList<Corsa> corseDaAnnullare;
         Cliente clienteAttuale;
         corseDaAnnullare=trattaCorrente.sospensioneCorse(dataInizio,dataFine);
         if(trattaCorrente.eliminaCorsePerSospensione(corseDaAnnullare)){
@@ -269,6 +269,23 @@ public class InViaggio {
         return corseDaAnnullare;
     }
 
+    public LinkedList<Corsa> mostraCorse() {
+        return trattaSelezionata.getListaCorse();
+    }
+
+    public boolean rimuoviCorsa(String codCorsa) {
+        LinkedList<Corsa> corsaDaEliminare = new LinkedList<>();
+        corsaDaEliminare.add(trattaSelezionata.selezionaCorsa(codCorsa));
+        Cliente clienteAttuale;
+
+        for(Cliente cl : elencoClienti) {
+            clienteAttuale = cl;
+            if(!clienteAttuale.annullaBigliettoPerSospensione(corsaDaEliminare)){
+                // riaggiungere i biglietti
+            }
+        }
+        return true;
+    }
 
     public void addTratta(Tratta t){
         this.elencoTratte.put(t.getCodTratta(),t);
