@@ -3,11 +3,14 @@ package dominio;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Observable {
     protected List<Observer> observers = new ArrayList<>();
 
     public void addObserver(Observer observer) {
-        this.observers.add(observer);
+        if(!this.observers.contains(observer)){
+            this.observers.add(observer);
+        }
     }
 
     public void deleteObserver(Observer observer) {
@@ -19,4 +22,6 @@ public class Observable {
             observer.update(this);
         }
     }
+
+
 }

@@ -133,7 +133,13 @@ public class InViaggio {
 
     public boolean confermaBiglietto() {
         if (bigliettoCorrente.getCorsaPrenotata().decrementaPosti()) {
-            return clienteLoggato.confermaBiglietto(bigliettoCorrente);
+            if(clienteLoggato.confermaBiglietto(bigliettoCorrente)){
+                clienteLoggato.iscrizioneNotifiche(trattaSelezionata);
+                return true;
+            }
+            else{
+                return false;
+            }
         } else
             return false;
     }

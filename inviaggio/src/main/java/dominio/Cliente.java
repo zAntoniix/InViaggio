@@ -1,7 +1,7 @@
 package dominio;
 import java.util.*;
 
-public class Cliente {
+public class Cliente implements Observer{
 
     //Attributi
     private String nome;
@@ -9,6 +9,7 @@ public class Cliente {
     private String CF;
     private String codPersonale;
     private LinkedHashMap<String,Biglietto> elencoBiglietti;
+    private LinkedList<Tratta> elencoTratte;
 
     //Costruttore
     public Cliente(String nome, String cognome, String CF, String codPersonale) {
@@ -17,6 +18,7 @@ public class Cliente {
         this.CF = CF;
         this.codPersonale = codPersonale;
         this.elencoBiglietti = new LinkedHashMap<String,Biglietto>();
+        this.elencoTratte = new LinkedList<>();
     }
 
     //Metodi
@@ -79,18 +81,22 @@ public class Cliente {
     public boolean annullaBigliettoPerSospensione(List<Corsa> listaCorsa){
         boolean checkBiglietto;
         for(Corsa c : listaCorsa) {
-            Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
-            while(iterator.hasNext()){
-                Map.Entry<String,Biglietto> entry=iterator.next();
+            Iterator<Map.Entry<String, Biglietto>> iterator = elencoBiglietti.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, Biglietto> entry = iterator.next();
                 Biglietto b = entry.getValue();
-                checkBiglietto=b.verificaBigliettoPerCorsa(c);
-                if(checkBiglietto){
+                checkBiglietto = b.verificaBigliettoPerCorsa(c);
+                if (checkBiglietto) {
                     iterator.remove();
-                    b=null;
+                    b = null;
                 }
             }
         }
         return true;
+    }
+
+    public void iscrizioneNotifiche(Tratta trattaDaOsservare){
+        trattaDaOsservare.addObserver(this);
     }
 
     public String getNome() {
@@ -113,12 +119,44 @@ public class Cliente {
         return elencoBiglietti;
     }
 
+    public LinkedList<Biglietto> getListaBiglietti(){
+        LinkedList<Biglietto> listaBiglietto = new LinkedList<>();
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Biglietto> entry=iterator.next();
+            Biglietto b=entry.getValue();
+            listaBiglietto.add(b);
+        }
+        return listaBiglietto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
         return Objects.equals(nome, cliente.nome) && Objects.equals(cognome, cliente.cognome) && Objects.equals(CF, cliente.CF) && Objects.equals(codPersonale, cliente.codPersonale) && Objects.equals(elencoBiglietti, cliente.elencoBiglietti);
     }
+
+
+    @Override
+    public void update(Observable o) {
+        Tratta trattaDaOsservare = (Tratta) o;
+        LinkedList<Corsa> listaCorse = trattaDaOsservare.getListaCorse();
+        LinkedList<Biglietto> listaBiglietti= this.getListaBiglietti();
+        int contatore = 0;
+        for(Corsa c : listaCorse){
+            for(Biglietto b : listaBiglietti){
+                if(c.getCodCorsa().equals(b.getCorsaPrenotata().getCodCorsa())){
+                       contatore++;
+                }
+            }
+        }
+        if(contatore==0){
+            trattaDaOsservare.deleteObserver(this);
+        }
+
+    }
+
 
 }
 

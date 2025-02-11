@@ -4,7 +4,7 @@ import java.util.*;
 import java.sql.*;
 
 
-public class Tratta {
+public class Tratta extends Observable{
     //Attributi
     private int tipoTratta;
     private String cittaPartenza;
@@ -91,6 +91,7 @@ public class Tratta {
                 return false;
             }
         }
+        notifyObservers();
         return true;
     }
 
@@ -104,6 +105,7 @@ public class Tratta {
         }
         return corseList;
     }
+
 
     public Corsa selezionaCorsa(String codCorsa) {
         return elencoCorse.get(codCorsa);
