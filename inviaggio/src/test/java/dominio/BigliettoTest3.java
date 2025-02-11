@@ -35,7 +35,7 @@ class BigliettoTest3 {
     }
 
     @Test
-    void verificaBigliettoPerCorsa() {
+    void testVerificaBigliettoPerCorsa() {
         assertTrue(b1.verificaBigliettoPerCorsa(c1));
         assertFalse(b1.verificaBigliettoPerCorsa(c2));
 

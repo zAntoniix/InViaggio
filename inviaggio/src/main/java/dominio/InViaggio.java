@@ -246,9 +246,9 @@ public class InViaggio {
         }
     }
 
-    public boolean sospendiTratta(String codTratta){
+    public boolean sospendiTratta(String codTratta) {
         trattaCorrente=elencoTratte.get(codTratta);
-        if(elencoTratte.get(codTratta)!=null){
+        if(elencoTratte.get(codTratta) != null){
             return true;
         }
         else{
@@ -283,11 +283,12 @@ public class InViaggio {
         LinkedList<Corsa> corsaDaEliminare = new LinkedList<>();
         corsaDaEliminare.add(trattaSelezionata.selezionaCorsa(codCorsa));
         Cliente clienteAttuale;
-
-        for(Cliente cl : elencoClienti) {
-            clienteAttuale = cl;
-            if(!clienteAttuale.annullaBigliettoPerSospensione(corsaDaEliminare)){
-                // riaggiungere i biglietti
+        if(trattaSelezionata.getElencoCorse().remove(codCorsa) != null) {
+            for(Cliente cl : elencoClienti) {
+                clienteAttuale = cl;
+                if(!clienteAttuale.annullaBigliettoPerSospensione(corsaDaEliminare)){
+                    // riaggiungere i biglietti
+                }
             }
         }
         return true;

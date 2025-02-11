@@ -87,7 +87,7 @@ public class Tratta extends Observable{
 
     public boolean eliminaCorsePerSospensione(List<Corsa> elencoCorseDaSospendere){
         for(Corsa c : elencoCorseDaSospendere){
-            if(elencoCorse.remove(c.getCodCorsa())!=null){
+            if(elencoCorse.remove(c.getCodCorsa()) == null){
                 return false;
             }
         }
