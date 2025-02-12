@@ -263,15 +263,13 @@ public class InViaggio {
         if(trattaCorrente.eliminaCorsePerSospensione(corseDaAnnullare)){
             for(Cliente cl : elencoClienti) {
                 clienteAttuale = cl;
-                if(!clienteAttuale.annullaBigliettoPerSospensione(corseDaAnnullare)){
-                   // riaggiungere i biglietti
-                }
+                clienteAttuale.annullaBigliettoPerSospensione(corseDaAnnullare);
             }
-        }//else{
-          //In caso di false
-          //corseDaAnnullare=null;
-         // Reinserire le corse annullate
-        //}
+        }else{
+            for(Corsa c : corseDaAnnullare){
+                trattaCorrente.getElencoCorse().putIfAbsent(c.getCodCorsa(),c); //Aggiunge la corsa se non è presente
+            }
+        }
         return corseDaAnnullare;
     }
 

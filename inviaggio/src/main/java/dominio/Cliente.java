@@ -154,7 +154,6 @@ public class Cliente implements Observer{
         if(contatore==0){
             trattaDaOsservare.deleteObserver(this);
         }
-
     }
 
 
