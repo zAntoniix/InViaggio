@@ -30,7 +30,7 @@ public class HelloController {
         Stage stage = (Stage) bottoneCliente.getScene().getWindow();
         stage.close();
         Stage newStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("paginaCliente.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loginCliente.fxml"));
         newStage.setTitle("Login Cliente");
         newStage.setScene(new Scene(root, 1080,720));
         newStage.show();

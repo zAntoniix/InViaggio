@@ -8,15 +8,19 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class PaginaClienteController {
+public class PrenotaBigliettoController {
     InViaggio inviaggio = InViaggio.getInstance();
     Tratta t;
     String codice;
@@ -49,6 +53,8 @@ public class PaginaClienteController {
     private TextArea biglietto;
     @FXML
     private Label viewBiglietto;
+    @FXML
+    private Button bottoneBack;
 
 
 
@@ -183,6 +189,16 @@ public class PaginaClienteController {
         bottoneSceltaBiglietto.setVisible(false);//Nascondo il bottone che conferma il biglietto per evitare errori
         biglietto.setVisible(false);
         viewBiglietto.setVisible(false);
+    }
+
+    public void onBackClick(ActionEvent event) throws IOException {
+        Stage stage = (Stage) bottoneBack.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("homeCliente.fxml"));
+        newStage.setTitle("Home Page");
+        newStage.setScene(new Scene(root, 1080,720));
+        newStage.show();
     }
 
 }

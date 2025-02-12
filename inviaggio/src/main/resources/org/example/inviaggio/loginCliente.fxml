@@ -2,15 +2,37 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="382.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.LoginClienteController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" prefHeight="298.0" prefWidth="305.0">
          <children>
-            <Pane prefHeight="403.0" prefWidth="600.0">
+            <Label text="Login Cliente">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="259.0" prefWidth="324.0">
                <children>
-                  <Label layoutX="28.0" layoutY="14.0" text="Nome Utente: " />
-               </children></Pane>
+                  <Label layoutX="173.0" layoutY="42.0" text="Codice Fiscale">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cf" layoutX="142.0" layoutY="63.0" />
+                  <Label fx:id="cfErrato" layoutX="134.0" layoutY="89.0" text="Inserire un codice fiscale valido" textFill="RED" />
+                  <Label layoutX="187.0" layoutY="112.0" text="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="password" layoutX="142.0" layoutY="135.0" />
+                  <Label fx:id="passErrata" layoutX="148.0" layoutY="161.0" text="Inserire password corretta" textFill="RED" />
+                  <Button fx:id="bottoneConferma" layoutX="303.0" layoutY="209.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="107.0" text="Conferma" />
+                  <Button fx:id="bottoneAnnulla" layoutX="29.0" layoutY="209.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="107.0" text="Annulla" />
+               </children>
+            </Pane>
          </children>
       </VBox>
    </children>
