@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class InViaggioTest2 {
     static InViaggio inviaggio;
     static Cliente cl,cl2;
-    static Tratta t;
+    static Tratta t,t2;
     static Biglietto b,b2,b3,b4;
     static Corsa c,c2,c3,c4;
     static Date data,data2,data3,data4;
 
     @BeforeAll
-    void setUp() {
+    static void setUp() {
         inviaggio= inviaggio.getInstance();
             try {
                 data = formatter.parse("06/06/2025");
@@ -51,6 +51,16 @@ class InViaggioTest2 {
         t.getElencoCorse().put("C2",c2);
         t.getElencoCorse().put("C3",c3);
         t.getElencoCorse().put("C4",c4);
+    }
+
+    @Test
+    void testInserisciNuovaTratta() {
+        assertTrue(inviaggio.inserisciNuovaTratta( 2,"Catania","Milano"));
+        t2 = inviaggio.getTrattaCorrente();
+        assertInstanceOf(Tratta.class, inviaggio.getTrattaCorrente());
+        assertTrue(t2.equals(inviaggio.getTrattaCorrente()));
+        assertFalse(inviaggio.inserisciNuovaTratta( 2,"Catania","Catania"));
+        assertFalse(inviaggio.inserisciNuovaTratta( 1,"Catania","Palermo"));
     }
 
     @Test
@@ -110,6 +120,7 @@ class InViaggioTest2 {
 
     @Test
     void annullaPrenotazione() {
+        inviaggio.setClienteLoggato(cl);
         LinkedList<Biglietto> bigliettiAnnullabili = new LinkedList<>();
         bigliettiAnnullabili.add(b);
         assertTrue(bigliettiAnnullabili.equals(inviaggio.annullaPrenotazione()));

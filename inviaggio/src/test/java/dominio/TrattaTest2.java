@@ -38,7 +38,7 @@ TrattaTest2 {
     void testInserisciCorsa() {
         int dimensioneIniziale= t.getElencoCorse().size();
         assertTrue(t.inserisciCorsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25));
-        assertFalse(t.inserisciCorsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25));
+        assertFalse(t.inserisciCorsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),28));
         assertEquals(dimensioneIniziale+1,t.getElencoCorse().size());
     }
 

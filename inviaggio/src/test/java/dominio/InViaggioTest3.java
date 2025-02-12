@@ -85,5 +85,6 @@ class InViaggioTest3 {
     @Test
     void testRimuoviCorsa() {
         assertTrue(inviaggio.rimuoviCorsa("C4"));
+
     }
 }
