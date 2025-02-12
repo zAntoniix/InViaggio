@@ -14,8 +14,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AggiungiCorsaAmministratoreController {
     @FXML
@@ -58,7 +61,12 @@ public class AggiungiCorsaAmministratoreController {
     private Label labelTratta;
 
     InViaggio inviaggio = InViaggio.getInstance();
-
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+    String datePattern = "^\\d{2}/\\d{2}/\\d{4}$";
+    Pattern patternData = Pattern.compile(datePattern);
+    String timePattern = "^\\d{2}:\\d{2}:\\d{2}$";
+    Pattern patternTime = Pattern.compile(timePattern);
 
     public void initialize() {
         erroreTipo.setVisible(false);
@@ -85,7 +93,7 @@ public class AggiungiCorsaAmministratoreController {
             erroreTipo.setVisible(false);
         }
 
-        if(data.getText().isEmpty()){
+        if(data.getText().isEmpty() || !patternData.matcher(data.getText()).matches()){
             erroreData.setVisible(true);
         }else{
             erroreData.setVisible(false);
@@ -109,48 +117,59 @@ public class AggiungiCorsaAmministratoreController {
             erroreCosto.setVisible(false);
         }
 
-        if(oraPartenza.getText().isEmpty()){
+        if(oraPartenza.getText().isEmpty() || !patternTime.matcher(oraPartenza.getText()).matches()){
             erroreOraPartenza.setVisible(true);
         }else{
             erroreOraPartenza.setVisible(false);
         }
 
-        if(oraArrivo.getText().isEmpty()){
+        if(oraArrivo.getText().isEmpty() || !patternTime.matcher(oraArrivo.getText()).matches()){
             erroreOraArrivo.setVisible(true);
         }else{
             erroreOraArrivo.setVisible(false);
         }
 
-        /*if(!tipoMezzo.getText().isEmpty() && !data.getText().isEmpty() && !luogoPartenza.getText().isEmpty() && !luogoArrivo.getText().isEmpty()
+        if(!tipoMezzo.getText().isEmpty() && !data.getText().isEmpty() && !luogoPartenza.getText().isEmpty() && !luogoArrivo.getText().isEmpty()
         && !costoBase.getText().isEmpty() && !oraPartenza.getText().isEmpty() && !oraArrivo.getText().isEmpty()) {
             try {
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                Time timePartenza = new Time(Long.valueOf(oraPartenza.getText()).longValue());
-                Time timeArrivo = new Time(Long.valueOf(oraArrivo.getText()).longValue());
+                LocalTime localTimePartenza = LocalTime.parse(oraPartenza.getText(), formatterTime);
+                LocalTime localTimeArrivo = LocalTime.parse(oraArrivo.getText(), formatterTime);
+                Time timePartenza = Time.valueOf(localTimePartenza);
+                Time timeArrivo = Time.valueOf(localTimeArrivo);
                 Date dataCorsa = formatter.parse(data.getText());
-                if(!inviaggio.getTrattaCorrente().equals(null)){
+                if(inviaggio.getTrattaCorrente()!=null){
                     inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()),dataCorsa,luogoPartenza.getText(),luogoArrivo.getText(),timePartenza ,timeArrivo ,Float.valueOf(costoBase.getText()).floatValue());
+                    Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+                    stage.close();
+                    Stage newStage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
+                    newStage.setTitle("Bentornato Amministratore");
+                    newStage.setScene(new Scene(root, 1080,720));
+                    newStage.show();
                 }
                 else{
                     if(!codiceTratta.getText().isEmpty()){
-                        inviaggio.inserisciNuovaCorsa(codiceTratta.getText());
-                        inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()),dataCorsa,luogoPartenza.getText(),luogoArrivo.getText(),timePartenza ,timeArrivo ,Float.valueOf(costoBase.getText()).floatValue());
+                        if(inviaggio.inserisciNuovaCorsa(codiceTratta.getText())){
+                            inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()),dataCorsa,luogoPartenza.getText(),luogoArrivo.getText(),timePartenza ,timeArrivo ,Float.parseFloat(costoBase.getText()));
+                            Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+                            stage.close();
+                            Stage newStage = new Stage();
+                            Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
+                            newStage.setTitle("Bentornato Amministratore");
+                            newStage.setScene(new Scene(root, 1080,720));
+                            newStage.show();
+                        }
+                        else{
+                            erroreTratta.setVisible(true);
+                        }
                     }else{
                         erroreTratta.setVisible(true);
                     }
                 }
-                Stage stage = (Stage) bottoneConferma.getScene().getWindow();
-                stage.close();
-                Stage newStage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
-                newStage.setTitle("Bentornato Amministratore");
-                newStage.setScene(new Scene(root, 1080,720));
-                newStage.show();
-
             }catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 
     public void onAnnullaClick(ActionEvent event) throws IOException {

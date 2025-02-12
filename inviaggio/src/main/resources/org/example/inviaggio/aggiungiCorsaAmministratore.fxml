@@ -28,11 +28,11 @@
       <Label layoutX="99.0" layoutY="209.0" text="Ora partenza" />
       <Label layoutX="442.0" layoutY="209.0" text="Ora arrivo" />
       <Label fx:id="erroreTipo" layoutX="83.0" layoutY="108.0" text="inserire tipo mezzo" textFill="RED" />
-      <Label fx:id="erroreData" layoutX="443.0" layoutY="108.0" text="inserire data" textFill="RED" />
+      <Label fx:id="erroreData" layoutX="388.0" layoutY="108.0" text="inserire data valida gg/mm/aaaa" textFill="RED" />
       <Label fx:id="errorePartenza" layoutX="73.0" layoutY="183.0" text="inserire luogo partenza" textFill="RED" />
       <Label fx:id="erroreArrivo" layoutX="420.0" layoutY="183.0" text="inserire luogo arrivo" textFill="RED" />
-      <Label fx:id="erroreOraPartenza" layoutX="80.0" layoutY="255.0" text="inserire ora partenza" textFill="RED" />
-      <Label fx:id="erroreOraArrivo" layoutX="422.0" layoutY="255.0" text="inserire ora arrivo" textFill="RED" />
+      <Label fx:id="erroreOraPartenza" layoutX="33.0" layoutY="255.0" text="inserire ora partenza valida hh/mm/ss" textFill="RED" />
+      <Label fx:id="erroreOraArrivo" layoutX="377.0" layoutY="255.0" text="inserire ora arrivo valida hh/mm/ss" textFill="RED" />
       <Label fx:id="erroreCosto" layoutX="83.0" layoutY="318.0" text="inserire costo base" textFill="#eb0000" />
       <Label fx:id="labelTratta" layoutX="453.0" layoutY="276.0" text="Tratta" />
       <TextField fx:id="codiceTratta" layoutX="394.0" layoutY="293.0" />
