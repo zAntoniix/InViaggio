@@ -4,18 +4,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.LoginAmministratoreController">
+<StackPane prefHeight="382.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.LoginAmministratoreController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0">
+      <VBox alignment="CENTER" prefHeight="298.0" prefWidth="305.0">
          <children>
-            <Button fx:id="bottoneConferma" layoutX="371.0" layoutY="333.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="107.0" text="Conferma" />
-            <Button fx:id="bottoneAnnulla" layoutX="123.0" layoutY="333.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="107.0" text="Annulla" />
-            <Label layoutX="176.0" layoutY="33.0" text="Login Amministratore">
+            <Label text="Login Amministratore">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
+            <Pane prefHeight="259.0" prefWidth="324.0">
+               <children>
+                  <Label layoutX="173.0" layoutY="62.0" text="Codice Admin">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="codiceAmministratore" layoutX="142.0" layoutY="89.0" />
+                  <Label fx:id="pinErrato" layoutX="170.0" layoutY="121.0" text="Inserire pin valido" textFill="RED" />
+                  <Button fx:id="bottoneConferma" layoutX="303.0" layoutY="209.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="107.0" text="Conferma" />
+                  <Button fx:id="bottoneAnnulla" layoutX="29.0" layoutY="209.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="107.0" text="Annulla" />
+               </children>
+            </Pane>
          </children>
-      </Pane>
+      </VBox>
    </children>
-</AnchorPane>
+</StackPane>

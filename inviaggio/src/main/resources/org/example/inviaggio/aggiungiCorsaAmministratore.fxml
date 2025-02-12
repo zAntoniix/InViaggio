@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.AggiungiCorsaAmministratoreController">
+   <children>
+      <Label layoutX="205.0" layoutY="26.0" text="Aggiungi Corsa">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tipoMezzo" layoutX="58.0" layoutY="83.0" />
+      <TextField fx:id="data" layoutX="394.0" layoutY="83.0" />
+      <TextField fx:id="luogoPartenza" layoutX="58.0" layoutY="153.0" />
+      <TextField fx:id="luogoArrivo" layoutX="394.0" layoutY="153.0" />
+      <TextField fx:id="oraPartenza" layoutX="58.0" layoutY="226.0" />
+      <TextField fx:id="oraArrivo" layoutX="394.0" layoutY="226.0" />
+      <TextField fx:id="costoBase" layoutX="58.0" layoutY="293.0" />
+      <Button fx:id="bottoneAnnulla" layoutX="49.0" layoutY="350.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="68.0" text="Annulla" />
+      <Button fx:id="bottoneConferma" layoutX="493.0" layoutY="350.0" mnemonicParsing="false" onAction="#onBottoneConferma" text="Conferma" />
+      <Label layoutX="102.0" layoutY="66.0" text="Tipo mezzo" />
+      <Label layoutX="456.0" layoutY="66.0" text="Data" />
+      <Label layoutX="92.0" layoutY="136.0" text="Luogo partenza" />
+      <Label layoutX="442.0" layoutY="136.0" text="Luogo arrivo" />
+      <Label layoutX="103.0" layoutY="276.0" text="Costo base" />
+      <Label layoutX="99.0" layoutY="209.0" text="Ora partenza" />
+      <Label layoutX="442.0" layoutY="209.0" text="Ora arrivo" />
+      <Label fx:id="erroreTipo" layoutX="83.0" layoutY="108.0" text="inserire tipo mezzo" textFill="RED" />
+      <Label fx:id="erroreData" layoutX="443.0" layoutY="108.0" text="inserire data" textFill="RED" />
+      <Label fx:id="errorePartenza" layoutX="73.0" layoutY="183.0" text="inserire luogo partenza" textFill="RED" />
+      <Label fx:id="erroreArrivo" layoutX="420.0" layoutY="183.0" text="inserire luogo arrivo" textFill="RED" />
+      <Label fx:id="erroreOraPartenza" layoutX="80.0" layoutY="255.0" text="inserire ora partenza" textFill="RED" />
+      <Label fx:id="erroreOraArrivo" layoutX="422.0" layoutY="255.0" text="inserire ora arrivo" textFill="RED" />
+      <Label fx:id="erroreCosto" layoutX="83.0" layoutY="318.0" text="inserire costo base" textFill="#eb0000" />
+      <Label fx:id="labelTratta" layoutX="453.0" layoutY="276.0" text="Tratta" />
+      <TextField fx:id="codiceTratta" layoutX="394.0" layoutY="293.0" />
+      <Label fx:id="erroreTratta" layoutX="427.0" layoutY="318.0" text="inserire una tratta" textFill="RED" />
+   </children>
+</AnchorPane>

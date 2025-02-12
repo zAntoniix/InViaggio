@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,9 +19,16 @@ public class LoginAmministratoreController {
     private Button bottoneAnnulla;
     @FXML
     private Button bottoneConferma;
+    @FXML
+    private TextField codiceAmministratore;
+    @FXML
+    private Label pinErrato;
 
     InViaggio inviaggio = InViaggio.getInstance();
 
+    public void initialize(){
+        pinErrato.setVisible(false);
+    }
 
     public void onAnnullaClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) bottoneAnnulla.getScene().getWindow();
@@ -32,13 +41,22 @@ public class LoginAmministratoreController {
     }
 
     public void onConfermaClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) bottoneConferma.getScene().getWindow();
-        stage.close();
-        Stage newStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
-        newStage.setTitle("Bentornato Amministratore");
-        newStage.setScene(new Scene(root, 1080,720));
-        newStage.show();
+        if(!codiceAmministratore.getText().isEmpty()){
+            if(inviaggio.accediAmministratore(Integer.parseInt(codiceAmministratore.getText()))){
+                Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+                stage.close();
+                Stage newStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
+                newStage.setTitle("Bentornato Amministratore");
+                newStage.setScene(new Scene(root, 1080,720));
+                newStage.show();
+            }
+            else{
+                pinErrato.setVisible(true);
+            }
+        }else{
+            pinErrato.setVisible(true);
+        }
     }
 
 }
