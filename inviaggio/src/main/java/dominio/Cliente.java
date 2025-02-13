@@ -100,6 +100,7 @@ public class Cliente implements Observer{
 
     public void setNotifica(boolean val) { notifica = val; }
 
+
     public void iscrizioneNotifiche(Tratta trattaDaOsservare){
         trattaDaOsservare.addObserver(this);
     }
@@ -121,6 +122,11 @@ public class Cliente implements Observer{
     }
 
     public String getMessaggio() { return messaggio; }
+
+    public void resetNotifica() {
+        messaggio = " ";
+        notifica = false;
+    }
 
     public boolean getNotifica() {return notifica;}
 

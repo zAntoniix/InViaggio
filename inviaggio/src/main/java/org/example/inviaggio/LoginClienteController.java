@@ -53,7 +53,7 @@ public class LoginClienteController {
                 Stage newStage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("homeCliente.fxml"));
                 newStage.setTitle("Home Page");
-                newStage.setScene(new Scene(root, 1080,720));
+                newStage.setScene(new Scene(root));
                 newStage.show();
             } else {
                 cfErrato.setVisible(true);

@@ -259,15 +259,15 @@ public class InViaggio {
     public LinkedList<Corsa> selezionaPeriodoSospensione(Date dataInizio,Date dataFine){
         LinkedList<Corsa> corseDaAnnullare;
         Cliente clienteAttuale;
-        corseDaAnnullare=trattaCorrente.sospensioneCorse(dataInizio,dataFine);
-        if(trattaCorrente.eliminaCorsePerSospensione(corseDaAnnullare)){
+        corseDaAnnullare=trattaSelezionata.sospensioneCorse(dataInizio,dataFine);
+        if(trattaSelezionata.eliminaCorsePerSospensione(corseDaAnnullare)){
             for(Cliente cl : elencoClienti) {
                 clienteAttuale = cl;
                 clienteAttuale.annullaBigliettoPerSospensione(corseDaAnnullare);
             }
         }else{
             for(Corsa c : corseDaAnnullare){
-                trattaCorrente.getElencoCorse().putIfAbsent(c.getCodCorsa(),c); //Aggiunge la corsa se non è presente
+                trattaSelezionata.getElencoCorse().putIfAbsent(c.getCodCorsa(),c); //Aggiunge la corsa se non è presente
             }
         }
         return corseDaAnnullare;
@@ -291,6 +291,10 @@ public class InViaggio {
             }
         }
         return true;
+    }
+
+    public void resetNotifiche(){
+        clienteLoggato.resetNotifica();
     }
 
     public void addTratta(Tratta t){

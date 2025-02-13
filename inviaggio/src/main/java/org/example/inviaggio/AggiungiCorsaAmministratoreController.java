@@ -156,7 +156,7 @@ public class AggiungiCorsaAmministratoreController {
                             Stage newStage = new Stage();
                             Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
                             newStage.setTitle("Bentornato Amministratore");
-                            newStage.setScene(new Scene(root, 1080,720));
+                            newStage.setScene(new Scene(root));
                             newStage.show();
                         }
                         else{
@@ -178,7 +178,7 @@ public class AggiungiCorsaAmministratoreController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
         newStage.setTitle("Bentornato Amministratore");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 }

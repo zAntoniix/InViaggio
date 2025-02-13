@@ -29,7 +29,7 @@ public class Tratta extends Observable{
     }
 
     public String generaCodiceCorsa() {
-        String codCorsa = "C" + (elencoCorse.size()+1);
+        String codCorsa = "C" + (elencoCorse.size()+1) + codTratta;
         return codCorsa;
     }
 

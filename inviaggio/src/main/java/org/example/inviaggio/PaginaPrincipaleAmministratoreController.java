@@ -34,7 +34,7 @@ public class PaginaPrincipaleAmministratoreController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("aggiungiTrattaAmministratore.fxml"));
         newStage.setTitle("Nuova Tratta");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 
@@ -44,7 +44,7 @@ public class PaginaPrincipaleAmministratoreController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("aggiungiCorsaAmministratore.fxml"));
         newStage.setTitle("Nuova corsa");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 }

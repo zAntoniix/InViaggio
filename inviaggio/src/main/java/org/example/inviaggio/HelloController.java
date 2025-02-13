@@ -32,7 +32,7 @@ public class HelloController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("loginCliente.fxml"));
         newStage.setTitle("Login Cliente");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 
@@ -42,7 +42,7 @@ public class HelloController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("loginAmministratore.fxml"));
         newStage.setTitle("Login Amministratore");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 
@@ -52,7 +52,7 @@ public class HelloController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("registrazioneCliente.fxml"));
         newStage.setTitle("Registrazione Cliente");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 }

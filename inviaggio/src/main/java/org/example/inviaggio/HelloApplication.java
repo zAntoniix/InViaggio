@@ -49,18 +49,29 @@ public class HelloApplication extends Application {
             Time oraPartenza = Time.valueOf("08:30:00");
             Time oraArrivo = Time.valueOf("15:10:00");
             Date data = formatter.parse("24/04/2024");
+            Date data1 = formatter.parse("24/05/2025");
+            Date data2 = formatter.parse("06/04/2025");
             Tratta temp = inviaggio.selezionaTratta("T2");
             temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,25);
             oraPartenza = Time.valueOf("11:30:00");
             oraArrivo = Time.valueOf("23:10:00");
             temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,39);
             temp = inviaggio.selezionaTratta("T3");
-            temp.inserisciCorsa(1,data, "Catania", "Palermo", oraPartenza, oraArrivo,12);
+            temp.inserisciCorsa(1,data1, "Catania", "Palermo", oraPartenza, oraArrivo,12);
+            temp.inserisciCorsa(1,data2, "Bari", "Messina", oraPartenza, oraArrivo,12);
 
+            Biglietto b= new Biglietto("B1",34,inviaggio.selezionaTratta("T2").selezionaCorsa("C1T2"));
+            Biglietto b1= new Biglietto("B2",34,inviaggio.selezionaTratta("T3").selezionaCorsa("C1T3"));
+            Biglietto b2= new Biglietto("B3",34,inviaggio.selezionaTratta("T3").selezionaCorsa("C2T3"));
 
-            Biglietto b= new Biglietto("B1",34,inviaggio.selezionaTratta("T2").selezionaCorsa("C1"));
+            inviaggio.setTrattaSelezionata(inviaggio.selezionaTratta("T2"));
             inviaggio.setBigliettoCorrente(b);
             inviaggio.confermaBiglietto();
+            inviaggio.setBigliettoCorrente(b1);
+            inviaggio.confermaBiglietto();
+            inviaggio.setBigliettoCorrente(b2);
+            inviaggio.confermaBiglietto();
+
             inviaggio.logout();
 
         }catch (ParseException e) {

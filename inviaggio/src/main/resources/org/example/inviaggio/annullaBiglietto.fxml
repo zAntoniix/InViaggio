@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.AnnullaBigliettoController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="annullaBottone" layoutX="52.0" layoutY="343.0" mnemonicParsing="false" onAction="#onAnnullaBottone" prefHeight="25.0" prefWidth="68.0" text="Annulla" />
+            <Label layoutX="187.0" layoutY="39.0" text="Annulla prenotazione">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ListView fx:id="listaBiglietti" layoutX="174.0" layoutY="100.0" prefHeight="200.0" prefWidth="243.0" />
+            <Button fx:id="confermaBottone" layoutX="503.0" layoutY="343.0" mnemonicParsing="false" onAction="#onConfermaBottone" text="Conferma" />
+            <Label fx:id="errore" layoutX="238.0" layoutY="307.0" text="selezionare un biglietto" textFill="#fc0000" />
+            <Label fx:id="verifica" layoutX="215.0" layoutY="307.0" text="biglietto annullato con successo" />
+         </children>
+      </Pane>
+   </children>
+</StackPane>

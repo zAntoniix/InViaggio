@@ -58,6 +58,12 @@ public class HomeClienteController {
 
     public void onAnnullaClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) bottoneAnnulla.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("annullaBiglietto.fxml"));
+        newStage.setTitle("Annulla Biglietto");
+        newStage.setScene(new Scene(root));
+        newStage.show();
     }
 
     public void onStoricoClick(ActionEvent event) throws IOException {
@@ -71,14 +77,16 @@ public class HomeClienteController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("loginCliente.fxml"));
         newStage.setTitle("Login Cliente");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 
     public void onBottoneNotifica(ActionEvent event) throws IOException {
         if(messaggioNotifica.isVisible()){
-            messaggioNotifica.setText("");
+            inviaggio.resetNotifiche();
             messaggioNotifica.setVisible(false);
+            flagNotifica.visibleProperty().unbind();
+            flagNotifica.setVisible(false);
         }else{
             messaggioNotifica.setVisible(true);
             messaggioNotifica.setText(inviaggio.getClienteLoggato().getMessaggio());
