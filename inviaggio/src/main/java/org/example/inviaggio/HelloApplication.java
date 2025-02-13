@@ -1,9 +1,6 @@
 package org.example.inviaggio;
 
-import dominio.Cliente;
-import dominio.Corsa;
-import dominio.InViaggio;
-import dominio.Tratta;
+import dominio.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,7 +31,7 @@ public class HelloApplication extends Application {
         InViaggio inviaggio = InViaggio.getInstance();
 
         inviaggio.registrati("Antonio","Zarbo","ZRBNTN99","Fallito");
-        inviaggio.logout();
+
 
         //Creo delle tratte per la creazione dell'interfaccia
         Tratta t= new Tratta(0,"Palermo","Catania","T1");
@@ -59,9 +56,17 @@ public class HelloApplication extends Application {
             temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,39);
             temp = inviaggio.selezionaTratta("T3");
             temp.inserisciCorsa(1,data, "Catania", "Palermo", oraPartenza, oraArrivo,12);
+
+
+            Biglietto b= new Biglietto("B1",34,inviaggio.selezionaTratta("T2").selezionaCorsa("C1"));
+            inviaggio.setBigliettoCorrente(b);
+            inviaggio.confermaBiglietto();
+            inviaggio.logout();
+
         }catch (ParseException e) {
             e.printStackTrace();
         }
         launch();
     }
+
 }

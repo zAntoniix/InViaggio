@@ -282,6 +282,7 @@ public class InViaggio {
         corsaDaEliminare.add(trattaSelezionata.selezionaCorsa(codCorsa));
         Cliente clienteAttuale;
         if(trattaSelezionata.getElencoCorse().remove(codCorsa) != null) {
+            trattaSelezionata.notifyObservers();
             for(Cliente cl : elencoClienti) {
                 clienteAttuale = cl;
                 if(!clienteAttuale.annullaBigliettoPerSospensione(corsaDaEliminare)){

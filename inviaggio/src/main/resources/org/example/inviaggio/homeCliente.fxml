@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.HomeClienteController">
@@ -15,8 +16,10 @@
             <Button fx:id="bottonePrenota" layoutX="200.0" layoutY="134.0" mnemonicParsing="false" onAction="#onPrenotaClick" prefHeight="25.0" prefWidth="201.0" text="Prenota Biglietto" />
             <Button fx:id="bottoneAnnulla" layoutX="199.0" layoutY="209.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="201.0" text="Annulla Prenotazione" />
             <Button fx:id="bottoneStorico" layoutX="200.0" layoutY="287.0" mnemonicParsing="false" onAction="#onStoricoClick" prefHeight="25.0" prefWidth="201.0" text="Storico Biglietti" />
-            <Button fx:id="bottoneNotifiche" layoutX="38.0" layoutY="346.0" mnemonicParsing="false" text="Notifiche" />
+            <Button fx:id="bottoneNotifiche" layoutX="38.0" layoutY="346.0" mnemonicParsing="false" onAction="#onBottoneNotifica" text="Notifiche" />
             <Button fx:id="bottoneLogout" layoutX="497.0" layoutY="346.0" mnemonicParsing="false" onAction="#onLogoutClick" text="Logout" />
+            <Circle fx:id="flagNotifica" fill="#ff1f1f" layoutX="102.0" layoutY="346.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+            <TextArea fx:id="messaggioNotifica" layoutX="101.0" layoutY="119.0" prefHeight="206.0" prefWidth="400.0" />
          </children></Pane>
    </children>
 </StackPane>

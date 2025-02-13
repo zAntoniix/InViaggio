@@ -41,7 +41,7 @@ public class LoginClienteController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
         newStage.setTitle("Benvenuto");
-        newStage.setScene(new Scene(root, 1080,720));
+        newStage.setScene(new Scene(root));
         newStage.show();
     }
 

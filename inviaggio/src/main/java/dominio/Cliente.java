@@ -10,6 +10,8 @@ public class Cliente implements Observer{
     private String codPersonale;
     private LinkedHashMap<String,Biglietto> elencoBiglietti;
     private LinkedList<Tratta> elencoTratte;
+    private boolean notifica;
+    private String messaggio;
 
     //Costruttore
     public Cliente(String nome, String cognome, String CF, String codPersonale) {
@@ -19,6 +21,7 @@ public class Cliente implements Observer{
         this.codPersonale = codPersonale;
         this.elencoBiglietti = new LinkedHashMap<String,Biglietto>();
         this.elencoTratte = new LinkedList<>();
+        this.notifica = false;
     }
 
     //Metodi
@@ -95,6 +98,8 @@ public class Cliente implements Observer{
         return true;
     }
 
+    public void setNotifica(boolean val) { notifica = val; }
+
     public void iscrizioneNotifiche(Tratta trattaDaOsservare){
         trattaDaOsservare.addObserver(this);
     }
@@ -114,6 +119,10 @@ public class Cliente implements Observer{
     public String getCodPersonale() {
         return codPersonale;
     }
+
+    public String getMessaggio() { return messaggio; }
+
+    public boolean getNotifica() {return notifica;}
 
     public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
         return elencoBiglietti;
@@ -140,8 +149,10 @@ public class Cliente implements Observer{
 
     @Override
     public void update(Observable o) {
+        System.out.println("Entrato");
         Tratta trattaDaOsservare = (Tratta) o;
         LinkedList<Corsa> listaCorse = trattaDaOsservare.getListaCorse();
+        LinkedList<Corsa> listaCorseEliminate = trattaDaOsservare.getElencoCorseDaSospendere();
         LinkedList<Biglietto> listaBiglietti= this.getListaBiglietti();
         int contatore = 0;
         for(Corsa c : listaCorse){
@@ -151,11 +162,19 @@ public class Cliente implements Observer{
                 }
             }
         }
-        if(contatore==0){
-            trattaDaOsservare.deleteObserver(this);
+        System.out.println("creazione messaggio");
+        messaggio=("Per la tratta "+ trattaDaOsservare.getCittaPartenza() + " " + trattaDaOsservare.getCittaArrivo() + " sono state eliminate le seguenti corse: " );
+        for(Corsa c : listaCorseEliminate){
+            messaggio += c.getData();
+            messaggio +=" ";
+            messaggio +=" ora partenza ";
+            messaggio += c.getOraPartenza();
+            messaggio +=" ora arrivo ";
+            messaggio += c.getOraArrivo();
+            messaggio += "\n";
         }
+        System.out.println(messaggio);
+        setNotifica(true);
     }
-
-
 }
 

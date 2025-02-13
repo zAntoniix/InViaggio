@@ -11,6 +11,7 @@ public class Tratta extends Observable{
     private String cittaArrivo;
     private String codTratta;
     private LinkedHashMap<String,Corsa> elencoCorse;
+    private LinkedList<Corsa> elencoCorseDaSospendere;
 
     //Costruttore
     public Tratta(int tipoTratta, String cittaPartenza, String cittaArrivo, String codTratta) {
@@ -19,6 +20,7 @@ public class Tratta extends Observable{
         this.cittaArrivo = cittaArrivo;
         this.codTratta = codTratta;
         this.elencoCorse = new LinkedHashMap<>();
+        this.elencoCorseDaSospendere = new LinkedList<>();
     }
 
     //Metodi
@@ -73,7 +75,6 @@ public class Tratta extends Observable{
 
 
     public LinkedList<Corsa> sospensioneCorse(Date dataInizio,Date dataFine){
-        LinkedList<Corsa> elencoCorseDaSospendere = new LinkedList<>();
         Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,Corsa> entry=iterator.next();
@@ -106,6 +107,7 @@ public class Tratta extends Observable{
         return corseList;
     }
 
+    public LinkedList<Corsa> getElencoCorseDaSospendere() { return elencoCorseDaSospendere; }
 
     public Corsa selezionaCorsa(String codCorsa) {
         return elencoCorse.get(codCorsa);

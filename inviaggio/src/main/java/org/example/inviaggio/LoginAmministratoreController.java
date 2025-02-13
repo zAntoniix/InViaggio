@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class LoginAmministratoreController {
 
@@ -27,7 +30,18 @@ public class LoginAmministratoreController {
     InViaggio inviaggio = InViaggio.getInstance();
 
     public void initialize(){
+        inviaggio.setTrattaCorrente(inviaggio.selezionaTratta("T2"));
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dataInizio = formatter.parse("23/04/2024");
+            Date dataFine = formatter.parse("29/04/2024");
+            inviaggio.selezionaPeriodoSospensione(dataInizio, dataFine);
+
+        }catch (ParseException e) {
+            e.printStackTrace();
+        }
         pinErrato.setVisible(false);
+
     }
 
     public void onAnnullaClick(ActionEvent event) throws IOException {
