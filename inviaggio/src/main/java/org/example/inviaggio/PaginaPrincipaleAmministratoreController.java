@@ -17,6 +17,10 @@ public class PaginaPrincipaleAmministratoreController {
     private Button bottoneAggiungiTratta;
     @FXML
     private Button bottoneAggiungiCorsa;
+    @FXML
+    private Button bottoneSospendiTratta;
+    @FXML
+    private Button bottoneRimuoviCorsa;
 
     public void onBottoneEsci() throws IOException {
         Stage stage = (Stage) bottoneEsci.getScene().getWindow();
@@ -44,6 +48,26 @@ public class PaginaPrincipaleAmministratoreController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("aggiungiCorsaAmministratore.fxml"));
         newStage.setTitle("Nuova corsa");
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
+
+    public void onBottoneSospendiTratta() throws IOException {
+        Stage stage = (Stage) bottoneSospendiTratta.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("sospendiTratta.fxml"));
+        newStage.setTitle("Sospendi Tratta");
+        newStage.setScene(new Scene(root));
+        newStage.show();
+
+    }
+    public void onBottoneRimuoviCorsa() throws IOException {
+        Stage stage = (Stage) bottoneSospendiTratta.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("rimuoviCorsa.fxml"));
+        newStage.setTitle("Rimuovi Corsa");
         newStage.setScene(new Scene(root));
         newStage.show();
     }

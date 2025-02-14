@@ -9,19 +9,28 @@
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="212.0" layoutY="68.0" prefHeight="211.0" prefWidth="177.0">
+            <VBox alignment="TOP_CENTER" layoutX="212.0" layoutY="68.0" prefHeight="265.0" prefWidth="185.0">
                <children>
                   <Label alignment="TOP_CENTER" text="Benvenuto">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Button fx:id="bottoneAggiungiTratta" onAction="#onBottoneTratta" mnemonicParsing="false" text="Aggiungi Tratta">
+                  <Button fx:id="bottoneAggiungiTratta" mnemonicParsing="false" onAction="#onBottoneTratta" text="Aggiungi Tratta">
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="25.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="bottoneAggiungiCorsa" onAction="#onBottoneCorsa" mnemonicParsing="false" text="Aggiungi Corsa">
+                  <Button fx:id="bottoneAggiungiCorsa" mnemonicParsing="false" onAction="#onBottoneCorsa" text="Aggiungi Corsa">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="bottoneSospendiTratta" mnemonicParsing="false" onAction="#onBottoneSospendiTratta" text="Sospendi Tratta">
+                     <VBox.margin>
+                        <Insets top="25.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="bottoneRimuoviCorsa" mnemonicParsing="false" onAction="#onBottoneSospendiTratta" text="Rimuovi Corsa">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>

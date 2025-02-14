@@ -42,14 +42,14 @@ class TrattaTest {
 
     @Test
     void testGeneraCodiceCorsa(){
-        assertEquals("C"+(t.getElencoCorse().size()+1),t.generaCodiceCorsa());
+        assertEquals("C"+(t.getElencoCorse().size()+1)+t.getCodTratta(),t.generaCodiceCorsa());
     }
 
     @Test
     void testGetCorsePerData(){
         LinkedList<Corsa> c = new LinkedList<>();
-        Corsa c1 = new Corsa(1,data2,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25, "C1");
-        Corsa c2 = new Corsa(1,data2,"Aereoporto","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("23:20:00"),25, "C2");
+        Corsa c1 = new Corsa(1,data2,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25, "C1T1");
+        Corsa c2 = new Corsa(1,data2,"Aereoporto","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("23:20:00"),25, "C2T1");
         c.add(c1);
         c.add(c2);
         LinkedList<Corsa> l2 = t.getCorsePerData(data2);
@@ -58,8 +58,8 @@ class TrattaTest {
 
     @Test
     void testSelezionaCorsa() {
-        assertInstanceOf(Corsa.class, t.selezionaCorsa("C1"));
-        Corsa c= t.selezionaCorsa("C1");
-        assertEquals("C1",c.getCodCorsa());
+        assertInstanceOf(Corsa.class, t.selezionaCorsa("C1T1"));
+        Corsa c= t.selezionaCorsa("C1T1");
+        assertEquals("C1T1",c.getCodCorsa());
     }
 }
