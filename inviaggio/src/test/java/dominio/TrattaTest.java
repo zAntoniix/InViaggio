@@ -35,7 +35,7 @@ class TrattaTest {
     @Test
     void testInserisciCorsa() {
         int dimensioneIniziale= t.getElencoCorse().size();
-        assertTrue(t.inserisciCorsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25)); //avrà codice C1
+        assertTrue(t.inserisciCorsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25)); //avrà codice C1T1
         //ci aspettiamo che la dimensione della mappa elencoCorse sia aumentata di 1
         assertEquals(dimensioneIniziale+1,t.getElencoCorse().size()); // ulteriore controllo per garantire che effettivamente è stato inserito
     }

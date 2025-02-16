@@ -36,10 +36,10 @@ class InViaggioTest2 {
         cl=new Cliente("Antonio","Zarbo","ZAIEWJ2032","Fallito");
         inviaggio.getElencoClienti().add(cl);
         inviaggio.setClienteLoggato(cl);
-        c = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1");
-        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C2");
-        c3 = new Corsa(1, data3 , "Milano", "Messina", Time.valueOf("15:27:00"), Time.valueOf("23:10:00"),2,"C3");
-        c4 = new Corsa(1, data4 , "Milano", "Messina", Time.valueOf("00:12:00"), Time.valueOf("23:10:00"),2,"C4");
+        c = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
+        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C2T1");
+        c3 = new Corsa(1, data3 , "Milano", "Messina", Time.valueOf("15:27:00"), Time.valueOf("23:10:00"),2,"C3T1");
+        c4 = new Corsa(1, data4 , "Milano", "Messina", Time.valueOf("00:12:00"), Time.valueOf("23:10:00"),2,"C4T1");
         b=new Biglietto("B1", 2, c);
         b2=new Biglietto("B2", 2, c2);
         b3=new Biglietto("B3", 2, c3);
@@ -66,10 +66,10 @@ class InViaggioTest2 {
     @Test
     void selezionaCorsa() {
        /* inviaggio.setTrattaSelezionata(t);
-        assertEquals(2,inviaggio.selezionaCorsa("C1").getCostoFinale()); //nessuna regola di dominio
-        assertEquals(2.66,inviaggio.selezionaCorsa("C2").getCostoFinale(),0.01); //regola della domenica
-        assertEquals(1.8,inviaggio.selezionaCorsa("C3").getCostoFinale(),0.01); //regola delle 12h
-        assertEquals(2.46,inviaggio.selezionaCorsa("C4").getCostoFinale(),0.01);*/
+        assertEquals(2,inviaggio.selezionaCorsa("C1T1").getCostoFinale()); //nessuna regola di dominio
+        assertEquals(2.66,inviaggio.selezionaCorsa("C2T1").getCostoFinale(),0.01); //regola della domenica
+        assertEquals(1.8,inviaggio.selezionaCorsa("C3T1").getCostoFinale(),0.01); //regola delle 12h
+        assertEquals(2.46,inviaggio.selezionaCorsa("C4T1").getCostoFinale(),0.01);*/
     }
 
     @Test

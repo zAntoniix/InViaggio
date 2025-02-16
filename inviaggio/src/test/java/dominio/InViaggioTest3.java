@@ -36,10 +36,10 @@ class InViaggioTest3 {
         cl=new Cliente("Antonio","Zarbo","ZAIEWJ2032","Fallito");
         inviaggio.getElencoClienti().add(cl);
         inviaggio.setClienteLoggato(cl);
-        c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1");
-        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C2");
-        c3 = new Corsa(1, data3 , "Milano", "Messina", Time.valueOf("15:27:00"), Time.valueOf("23:10:00"),2,"C3");
-        c4 = new Corsa(1, data4 , "Milano", "Messina", Time.valueOf("00:12:00"), Time.valueOf("23:10:00"),2,"C4");
+        c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
+        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C2T1");
+        c3 = new Corsa(1, data3 , "Milano", "Messina", Time.valueOf("15:27:00"), Time.valueOf("23:10:00"),2,"C3T1");
+        c4 = new Corsa(1, data4 , "Milano", "Messina", Time.valueOf("00:12:00"), Time.valueOf("23:10:00"),2,"C4T1");
         b=new Biglietto("B1", 2, c1);
         b2=new Biglietto("B2", 2, c2);
         b3=new Biglietto("B3", 2, c3);
@@ -47,10 +47,10 @@ class InViaggioTest3 {
         cl.getElencoBiglietti().put("B1",b);
         t = new Tratta( 1,"Catania","Napoli", "T1");
         inviaggio.getElencoTratte().put("T1",t);
-        t.getElencoCorse().put("C1",c1);
-        t.getElencoCorse().put("C2",c2);
-        t.getElencoCorse().put("C3",c3);
-        t.getElencoCorse().put("C4",c4);
+        t.getElencoCorse().put("C1T1",c1);
+        t.getElencoCorse().put("C2T1",c2);
+        t.getElencoCorse().put("C3T1",c3);
+        t.getElencoCorse().put("C4T1",c4);
         inviaggio.setTrattaSelezionata(t);
     }
 
@@ -83,7 +83,7 @@ class InViaggioTest3 {
 
     @Test
     void testRimuoviCorsa() {
-        assertTrue(inviaggio.rimuoviCorsa("C4"));
+        assertTrue(inviaggio.rimuoviCorsa("C4T1"));
 
     }
 }

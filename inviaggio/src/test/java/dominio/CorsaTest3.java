@@ -29,9 +29,9 @@ class CorsaTest3 {
 
     @BeforeAll
     public static void setUp() {
-        cp = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1");
-        cp2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C2");
-        cp3 = new Corsa(2, data3 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2, "C3");
+        cp = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
+        cp2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C2T1");
+        cp3 = new Corsa(2, data3 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2, "C3T1");
     }
 
     @Test

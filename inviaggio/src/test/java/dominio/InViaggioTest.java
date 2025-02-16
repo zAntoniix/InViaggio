@@ -38,7 +38,7 @@ class InViaggioTest {
         inviaggio.setTrattaCorrente(tr);
         inviaggio.setTrattaSelezionata(tr);
         inviaggio.inserisciCorsa(1,data,"stazione","aereoporto",Time.valueOf("12:20:00"),Time.valueOf("22:20:00"),23);
-        inviaggio.setBigliettoCorrente(inviaggio.selezionaCorsa("C1"));
+        inviaggio.setBigliettoCorrente(inviaggio.selezionaCorsa("C1T1"));
     }
 
     @Test
@@ -48,7 +48,7 @@ class InViaggioTest {
 
     @Test
     void testInserisciNuovaTratta() {
-        assertTrue(inviaggio.inserisciNuovaTratta( 1,"Catania","Milano"));
+        assertTrue(inviaggio.inserisciNuovaTratta( 0,"Catania","Milano"));
         tr2 = inviaggio.getTrattaCorrente();
         assertInstanceOf(Tratta.class, inviaggio.getTrattaCorrente());
         assertTrue(tr2.equals(inviaggio.getTrattaCorrente()));
@@ -103,11 +103,12 @@ class InViaggioTest {
     @Test
     void testSelezionaCorsa() {
         inviaggio.setTrattaSelezionata(tr);
-        assertInstanceOf(Biglietto.class, inviaggio.selezionaCorsa("C1"));
+        assertInstanceOf(Biglietto.class, inviaggio.selezionaCorsa("C1T1"));
     }
 
     @Test
     void testConfermaBiglietto() {
+        inviaggio.setTrattaSelezionata(tr);
         assertTrue(inviaggio.confermaBiglietto());
     }
 

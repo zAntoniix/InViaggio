@@ -31,11 +31,11 @@ class ClienteTest3 {
     @BeforeAll
     static void setUp() throws Exception {
         cl = new Cliente("Antonio","Zarbo","ZAIEWJ2032","Fallito");
-        c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1");
+        c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
         b = new Biglietto("B1", 25, c1);
         cl.confermaBiglietto(b);
 
-        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),200,"C2");
+        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),200,"C2T1");
         b2 = new Biglietto("B2", 200, c2);
         cl.confermaBiglietto(b2);
         listaCorse = new LinkedList<>();

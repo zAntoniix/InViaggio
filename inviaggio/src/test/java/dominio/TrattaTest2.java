@@ -17,6 +17,7 @@ TrattaTest2 {
     static Date data1;
     static Date data2;
 
+
     static {
         try {
             data1 = formatter.parse("24/04/2024");

@@ -38,8 +38,8 @@ class TrattaTest3 {
         t.inserisciCorsa(1, data3, "Aereoporto","Librino", Time.valueOf("12:30:00"),Time.valueOf("13:00:00"),12);
 
         listaExpected = new LinkedList<>();
-        listaExpected.add(new Corsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25, "C1"));
-        listaExpected.add(new Corsa(1,data2,"Aereoporto","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("23:20:00"),25, "C2"));
+        listaExpected.add(new Corsa(1,data1,"stazione Centrale","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("22:20:00"),25, "C1T1"));
+        listaExpected.add(new Corsa(1,data2,"Aereoporto","Stazione Gar", Time.valueOf("12:30:00"),Time.valueOf("23:20:00"),25, "C2T1"));
     }
 
     @Test
