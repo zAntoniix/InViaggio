@@ -45,7 +45,7 @@ public class Biglietto {
         if (dataAttuale.getMonth() == dataCorsa.getMonth() || giornoSuccessivo.getMonth() == dataCorsa.getMonth()) {
             //Controllo giorno
             if (dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() >= 1 || dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() < -26) {
-                //Conrtrollo Ora nel caso giorno prima
+                //Controllo Ora nel caso giorno prima
                 if (dataAttuale.toLocalTime().compareTo(oraCorsa) < 0) {
                     //Controllo minuti
                     if (dataAttuale.toLocalTime().getMinute() <= oraCorsa.getMinute()) {

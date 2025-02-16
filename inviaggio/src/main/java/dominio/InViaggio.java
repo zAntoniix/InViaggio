@@ -23,7 +23,7 @@ public class InViaggio {
     private int pinAmministratore;
 
     //Costruttore
-    public InViaggio() {
+    private InViaggio() {
         elencoTratte = new LinkedHashMap<>();
         elencoClienti = new LinkedList<>();
         this.pinAmministratore = 1234;
@@ -229,7 +229,7 @@ public class InViaggio {
     }
 
     public boolean accediAmministratore(int pin){
-        if(verificaAmministatore(pin)){
+        if(verificaAmministratore(pin)){
             return true;
         }
         else{
@@ -237,7 +237,7 @@ public class InViaggio {
         }
     }
 
-    public boolean verificaAmministatore(int pin){
+    public boolean verificaAmministratore(int pin){
         if(pin == getPinAmministratore()){
             return true;
         }

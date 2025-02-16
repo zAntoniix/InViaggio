@@ -1,7 +1,6 @@
 package dominio;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Time;
@@ -56,9 +55,9 @@ class InViaggioTest3 {
     }
 
     @Test
-    void testVerificaAmministatore() {
-        assertTrue(inviaggio.verificaAmministatore(1234));
-        assertFalse(inviaggio.verificaAmministatore(02345));
+    void testVerificaAmministratore() {
+        assertTrue(inviaggio.verificaAmministratore(1234));
+        assertFalse(inviaggio.verificaAmministratore(02345));
     }
 
     @Test
