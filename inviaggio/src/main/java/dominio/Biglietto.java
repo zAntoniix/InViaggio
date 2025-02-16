@@ -1,11 +1,6 @@
 package dominio;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.Date;
+import java.time.*;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -14,12 +9,14 @@ public class Biglietto {
     private String codice;
     private float costoFinale;
     private Corsa corsaPrenotata;
+    private String stato;
 
     //Costruttore
     public Biglietto(String codice, float costoFinale, Corsa corsaPrenotata) {
         this.codice = codice;
         this.costoFinale = costoFinale;
         this.corsaPrenotata = corsaPrenotata;
+        this.stato = "Valido";
     }
 
     //Metodi
@@ -88,6 +85,20 @@ public class Biglietto {
         }
     }
 
+    public boolean isModificabile() {
+        LocalTime oraModifica = LocalTime.now();
+        LocalTime oraPartenza = corsaPrenotata.getOraPartenza().toLocalTime();
+        Duration duration = Duration.between(oraModifica, oraPartenza);
+        if(duration.abs().toHours() > 12) {
+            return true;
+        } else
+            return false;
+    }
+
+    public void aggiornaBiglietto(float cf, Corsa c) {
+        this.costoFinale = cf;
+        this.corsaPrenotata = c;
+    }
 
     public String getCodice(){
         return this.codice;
@@ -95,6 +106,14 @@ public class Biglietto {
 
     public float getCostoFinale(){
         return this.costoFinale;
+    }
+
+    public void setCostoFinale(float costoFinale) {
+        this.costoFinale = costoFinale;
+    }
+
+    public void setCorsaPrenotata(Corsa corsaPrenotata) {
+        this.corsaPrenotata = corsaPrenotata;
     }
 
     public Corsa getCorsaPrenotata(){

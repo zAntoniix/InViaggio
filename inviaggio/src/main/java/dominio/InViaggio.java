@@ -117,7 +117,7 @@ public class InViaggio {
         cb=c.getCostoBase();
         cf=cb;
         if (dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 1 || dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 0) {
-                if (differenzaTempo.toHours() <= 12) {
+                if (differenzaTempo.abs().toHours() <= 12) {
                     prezzoFinale = new LastMinute();
                     cf = cf - prezzoFinale.calcolaPrezzo(c);
                 }
@@ -297,6 +297,44 @@ public class InViaggio {
         clienteLoggato.resetNotifica();
     }
 
+    public LinkedList<Biglietto> mostraBigliettiModificabili() {
+        return clienteLoggato.getBigliettiModificabili();
+    }
+
+    public void selezioneBigliettoDaModificare(String codBiglietto) {
+        bigliettoCorrente = clienteLoggato.selezionaBiglietto(codBiglietto);
+    }
+
+    public boolean confermaCorsaSostitutiva(String codCorsa) {
+        Corsa c = trattaSelezionata.selezionaCorsa(codCorsa);
+        float cb,cf;
+        LocalDateTime dataAttuale = LocalDateTime.now();
+        LocalDateTime dataPrenotazione = c.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalTime oraCorrente = LocalTime.now();
+        LocalTime oraPartenza = c.getOraPartenza().toLocalTime();
+        Duration differenzaTempo = Duration.between(oraCorrente, oraPartenza);
+        cb=c.getCostoBase();
+        cf=cb;
+        if (dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 1 || dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 0) {
+            if (differenzaTempo.abs().toHours() <= 12) {
+                prezzoFinale = new LastMinute();
+                cf = cf - prezzoFinale.calcolaPrezzo(c);
+            }
+        }
+
+        if(dataPrenotazione.getDayOfWeek().getValue() == 7) {
+            prezzoFinale = new PrezzoDomenica();
+            cf= cf+prezzoFinale.calcolaPrezzo(c);
+        }
+
+        bigliettoCorrente.aggiornaBiglietto(cf,c);
+        return true;
+    }
+
+    public LinkedList<Biglietto> visualizzaStorico() {
+        return clienteLoggato.storico();
+    }
+
     public void addTratta(Tratta t){
         this.elencoTratte.put(t.getCodTratta(),t);
     }
@@ -329,8 +367,8 @@ public class InViaggio {
         this.bigliettoCorrente = b;
     }
 
-    public void setTrattaCorrente(Tratta trattaCorrente) {this.trattaCorrente = trattaCorrente; }
+    public void setTrattaCorrente(Tratta trattaCorrente) { this.trattaCorrente = trattaCorrente; }
 
-    public void setTrattaSelezionata(Tratta trattaSelezionata) {this.trattaSelezionata = trattaSelezionata; }
+    public void setTrattaSelezionata(Tratta trattaSelezionata) { this.trattaSelezionata = trattaSelezionata; }
 
 }

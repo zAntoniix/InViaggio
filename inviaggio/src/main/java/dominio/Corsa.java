@@ -32,7 +32,7 @@ public class Corsa {
 
     //Metodi
     public int setPosti(int tipoMezzo){ //Controllo del tipoEffettuato precedentemente
-        if(tipoMezzo == 1)//Autobus
+        if(tipoMezzo == 1)// Autobus
             return 52;
         else // tipoMezzo == 2 (Treno)
             return 100;

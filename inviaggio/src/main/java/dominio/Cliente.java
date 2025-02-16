@@ -98,11 +98,52 @@ public class Cliente implements Observer{
         return true;
     }
 
-    public void setNotifica(boolean val) { notifica = val; }
-
-
     public void iscrizioneNotifiche(Tratta trattaDaOsservare){
         trattaDaOsservare.addObserver(this);
+    }
+
+    public void resetNotifica() {
+        messaggio = " ";
+        notifica = false;
+    }
+
+    public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
+        return elencoBiglietti;
+    }
+
+    public LinkedList<Biglietto> getListaBiglietti(){
+        LinkedList<Biglietto> listaBiglietto = new LinkedList<>();
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Biglietto> entry=iterator.next();
+            Biglietto b=entry.getValue();
+            listaBiglietto.add(b);
+        }
+        return listaBiglietto;
+    }
+
+    public LinkedList<Biglietto> getBigliettiModificabili() {
+        LinkedList<Biglietto> bigliettiModificabili = new LinkedList<>();
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,Biglietto> entry=iterator.next();
+            //String codice=entry.getKey();
+            Biglietto b = entry.getValue();
+            if(b.isModificabile()) {
+                bigliettiModificabili.add(b);
+            }
+        }
+        return bigliettiModificabili;
+    }
+
+    public Biglietto selezionaBiglietto(String codBiglietto) {
+        return elencoBiglietti.get(codBiglietto);
+    }
+
+    public LinkedList<Biglietto> storico() {
+        LinkedList<Biglietto> elenco = new LinkedList<>();
+
+        return elenco;
     }
 
     public String getNome() {
@@ -121,29 +162,11 @@ public class Cliente implements Observer{
         return codPersonale;
     }
 
+    public boolean getNotifica() { return notifica; }
+
+    public void setNotifica(boolean val) { notifica = val; }
+
     public String getMessaggio() { return messaggio; }
-
-    public void resetNotifica() {
-        messaggio = " ";
-        notifica = false;
-    }
-
-    public boolean getNotifica() {return notifica;}
-
-    public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
-        return elencoBiglietti;
-    }
-
-    public LinkedList<Biglietto> getListaBiglietti(){
-        LinkedList<Biglietto> listaBiglietto = new LinkedList<>();
-        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
-        while(iterator.hasNext()){
-            Map.Entry<String,Biglietto> entry=iterator.next();
-            Biglietto b=entry.getValue();
-            listaBiglietto.add(b);
-        }
-        return listaBiglietto;
-    }
 
     @Override
     public boolean equals(Object o) {
