@@ -107,6 +107,7 @@ public class Tratta extends Observable{
         return corseList;
     }
 
+
     public LinkedList<Corsa> getElencoCorseDaSospendere() { return elencoCorseDaSospendere; }
 
     public Corsa selezionaCorsa(String codCorsa) {

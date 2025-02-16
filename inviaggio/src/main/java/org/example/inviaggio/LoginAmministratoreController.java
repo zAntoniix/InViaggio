@@ -31,16 +31,6 @@ public class LoginAmministratoreController {
     InViaggio inviaggio = InViaggio.getInstance();
 
     public void initialize(){
-
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            inviaggio.setTrattaSelezionata(inviaggio.selezionaTratta("T2"));
-            Date dataInizio = formatter.parse("23/04/2024");
-            Date dataFine = formatter.parse("29/04/2024");
-            inviaggio.selezionaPeriodoSospensione(dataInizio, dataFine);
-        }catch (ParseException e) {
-            e.printStackTrace();
-        }
         pinErrato.setVisible(false);
 
     }

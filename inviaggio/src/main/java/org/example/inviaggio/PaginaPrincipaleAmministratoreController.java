@@ -1,5 +1,6 @@
 package org.example.inviaggio;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ public class PaginaPrincipaleAmministratoreController {
     @FXML
     private Button bottoneRimuoviCorsa;
 
-    public void onBottoneEsci() throws IOException {
+    public void onBottoneEsci(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) bottoneEsci.getScene().getWindow();
         stage.close();
         Stage newStage = new Stage();
@@ -32,7 +33,7 @@ public class PaginaPrincipaleAmministratoreController {
         newStage.show();
     }
 
-    public void onBottoneTratta() throws IOException {
+    public void onBottoneTratta(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) bottoneAggiungiTratta.getScene().getWindow();
         stage.close();
         Stage newStage = new Stage();
@@ -42,7 +43,7 @@ public class PaginaPrincipaleAmministratoreController {
         newStage.show();
     }
 
-    public void onBottoneCorsa() throws IOException {
+    public void onBottoneCorsa(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) bottoneAggiungiCorsa.getScene().getWindow();
         stage.close();
         Stage newStage = new Stage();
@@ -52,7 +53,7 @@ public class PaginaPrincipaleAmministratoreController {
         newStage.show();
     }
 
-    public void onBottoneSospendiTratta() throws IOException {
+    public void onBottoneSospendiTratta(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) bottoneSospendiTratta.getScene().getWindow();
         stage.close();
         Stage newStage = new Stage();
@@ -62,13 +63,16 @@ public class PaginaPrincipaleAmministratoreController {
         newStage.show();
 
     }
-    public void onBottoneRimuoviCorsa() throws IOException {
-        Stage stage = (Stage) bottoneSospendiTratta.getScene().getWindow();
+
+
+    public void onBottoneRimuoviCorsa(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) bottoneRimuoviCorsa.getScene().getWindow();
         stage.close();
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("rimuoviCorsa.fxml"));
-        newStage.setTitle("Rimuovi Corsa");
+        newStage.setTitle("Rimuovi corsa");
         newStage.setScene(new Scene(root));
         newStage.show();
     }
+
 }

@@ -30,7 +30,7 @@
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="bottoneRimuoviCorsa" mnemonicParsing="false" onAction="#onBottoneSospendiTratta" text="Rimuovi Corsa">
+                  <Button fx:id="bottoneRimuoviCorsa" mnemonicParsing="false" onAction="#onBottoneRimuoviCorsa" text="Rimuovi Corsa">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>

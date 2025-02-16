@@ -1,4 +1,5 @@
 package dominio;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Cliente implements Observer{
@@ -178,7 +179,6 @@ public class Cliente implements Observer{
 
     @Override
     public void update(Observable o) {
-        System.out.println("Entrato");
         Tratta trattaDaOsservare = (Tratta) o;
         LinkedList<Corsa> listaCorse = trattaDaOsservare.getListaCorse();
         LinkedList<Corsa> listaCorseEliminate = trattaDaOsservare.getElencoCorseDaSospendere();
@@ -191,18 +191,18 @@ public class Cliente implements Observer{
                 }
             }
         }
-        System.out.println("creazione messaggio");
         messaggio=("Per la tratta "+ trattaDaOsservare.getCittaPartenza() + " " + trattaDaOsservare.getCittaArrivo() + " sono state eliminate le seguenti corse: " );
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatoOra = new SimpleDateFormat("HH:mm");
         for(Corsa c : listaCorseEliminate){
-            messaggio += c.getData();
+            messaggio += "\n";
+            messaggio += formatoData.format(c.getData());
             messaggio +=" ";
             messaggio +=" ora partenza ";
-            messaggio += c.getOraPartenza();
+            messaggio += formatoOra.format(c.getOraPartenza());
             messaggio +=" ora arrivo ";
-            messaggio += c.getOraArrivo();
-            messaggio += "\n";
+            messaggio += formatoOra.format(c.getOraArrivo());
         }
-        System.out.println(messaggio);
         setNotifica(true);
     }
 }

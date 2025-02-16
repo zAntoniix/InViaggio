@@ -247,7 +247,7 @@ public class InViaggio {
     }
 
     public boolean sospendiTratta(String codTratta) {
-        trattaCorrente=elencoTratte.get(codTratta);
+        trattaSelezionata=elencoTratte.get(codTratta);
         if(elencoTratte.get(codTratta) != null){
             return true;
         }
@@ -279,7 +279,7 @@ public class InViaggio {
 
     public boolean rimuoviCorsa(String codCorsa) {
         LinkedList<Corsa> corsaDaEliminare = new LinkedList<>();
-        corsaDaEliminare.add(trattaSelezionata.selezionaCorsa(codCorsa));
+        trattaSelezionata.getElencoCorseDaSospendere().add(trattaSelezionata.selezionaCorsa(codCorsa));
         Cliente clienteAttuale;
         if(trattaSelezionata.getElencoCorse().remove(codCorsa) != null) {
             trattaSelezionata.notifyObservers();

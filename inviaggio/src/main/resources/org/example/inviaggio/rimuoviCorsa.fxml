@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.inviaggio.RimuoviCorsaController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.RimuoviCorsaController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <ListView fx:id="elencoTratte" layoutX="79.0" layoutY="95.0" prefHeight="229.0" prefWidth="185.0" />
+                <Label fx:id="labelElencoTratte" layoutX="138.0" layoutY="78.0" text="Elenco tratte" />
+                <ListView fx:id="elencoCorseSospese" layoutX="347.0" layoutY="95.0" prefHeight="229.0" prefWidth="185.0" />
+                <Button fx:id="bottoneAnnulla" layoutX="36.0" layoutY="349.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="68.0" text="Indietro" />
+                <Label fx:id="labelElencoCorse" layoutX="378.0" layoutY="78.0" text="Elenco corse disponibili" />
+                <Label layoutX="229.0" layoutY="34.0" text="Elimina Corsa">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+            <Button fx:id="bottoneConferma" layoutX="499.0" layoutY="349.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="67.0" text="conferma" />
+            </children></Pane>
+    </children>
 </AnchorPane>
