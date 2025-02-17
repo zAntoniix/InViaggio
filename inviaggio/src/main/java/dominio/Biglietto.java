@@ -1,7 +1,6 @@
 package dominio;
 
 import java.time.*;
-import java.util.LinkedList;
 import java.util.Objects;
 
 public class Biglietto {
@@ -10,6 +9,13 @@ public class Biglietto {
     private float costoFinale;
     private Corsa corsaPrenotata;
     private String stato;
+
+    // Stati:
+    // Valido - biglietto non utilizzato per corsa non avvenuta
+    // Annullato - biglietto annullato in seguito a sospensione/rimozione corse
+    // Convalidato - biglietto usufruito
+    // Scaduto - biglietto non utilizzato per corsa già avvenuta
+    // Multato - biglietto scaduto dopo aver pagato la multa (regola di dominio R2)
 
     //Costruttore
     public Biglietto(String codice, float costoFinale, Corsa corsaPrenotata) {
@@ -100,6 +106,12 @@ public class Biglietto {
         this.corsaPrenotata = c;
     }
 
+    public boolean checkBigliettoScaduto() {
+        if(stato.equals("Scaduto")){
+            return true;
+        } else return false;
+    }
+
     public String getCodice(){
         return this.codice;
     }
@@ -119,6 +131,8 @@ public class Biglietto {
     public Corsa getCorsaPrenotata(){
         return this.corsaPrenotata;
     }
+
+    public void setStato(String stato) { this.stato = stato; }
 
     @Override
     public boolean equals(Object o) {

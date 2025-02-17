@@ -1,6 +1,7 @@
 package dominio;
 
 import dominio.scontistica.LastMinute;
+import dominio.scontistica.Multa;
 import dominio.scontistica.PrezzoDomenica;
 import dominio.scontistica.PrezzoFinale;
 
@@ -19,6 +20,7 @@ public class InViaggio {
     private Tratta trattaCorrente;
     private Tratta trattaSelezionata;
     private Cliente clienteLoggato;
+    private Cliente clienteSelezionato;
     private PrezzoFinale prezzoFinale;
     private int pinAmministratore;
 
@@ -331,8 +333,30 @@ public class InViaggio {
         return true;
     }
 
-    public LinkedList<Biglietto> visualizzaStorico() {
-        return clienteLoggato.storico();
+    public LinkedHashMap<String, Biglietto> visualizzaStorico() {
+        clienteLoggato.checkStatoBiglietti();
+        return clienteLoggato.getElencoBiglietti();
+    }
+
+    public void convalidaPrenotazione(String CF, String codBiglietto) {
+        for (Cliente c : elencoClienti) {
+            if(c.getCF().equals(CF)){
+                clienteSelezionato = c;
+            }
+        }
+        bigliettoCorrente = clienteSelezionato.getElencoBiglietti().get(codBiglietto);
+    }
+
+    public float confermaConvalida() {
+        bigliettoCorrente.setStato("Convalidato");
+        float cf = bigliettoCorrente.getCostoFinale();
+        if(clienteSelezionato.controllaBigliettiScaduti()) {
+            prezzoFinale = new Multa();
+            cf = cf + prezzoFinale.calcolaPrezzo(bigliettoCorrente);
+            bigliettoCorrente.setCostoFinale(cf);
+            clienteSelezionato.aggiornaStatoBigliettiScaduti();
+        }
+        return cf;
     }
 
     public void addTratta(Tratta t){
@@ -363,9 +387,7 @@ public class InViaggio {
         return trattaSelezionata;
     }
 
-    public void setBigliettoCorrente(Biglietto b) {
-        this.bigliettoCorrente = b;
-    }
+    public void setBigliettoCorrente(Biglietto b) { this.bigliettoCorrente = b; }
 
     public void setTrattaCorrente(Tratta trattaCorrente) { this.trattaCorrente = trattaCorrente; }
 

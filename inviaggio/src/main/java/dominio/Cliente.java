@@ -1,5 +1,7 @@
 package dominio;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class Cliente implements Observer{
@@ -91,8 +93,7 @@ public class Cliente implements Observer{
                 Biglietto b = entry.getValue();
                 checkBiglietto = b.verificaBigliettoPerCorsa(c);
                 if (checkBiglietto) {
-                    iterator.remove();
-                    b = null;
+                    b.setStato("Annullato");
                 }
             }
         }
@@ -106,10 +107,6 @@ public class Cliente implements Observer{
     public void resetNotifica() {
         messaggio = " ";
         notifica = false;
-    }
-
-    public LinkedHashMap<String,Biglietto> getElencoBiglietti() {
-        return elencoBiglietti;
     }
 
     public LinkedList<Biglietto> getListaBiglietti(){
@@ -141,27 +138,53 @@ public class Cliente implements Observer{
         return elencoBiglietti.get(codBiglietto);
     }
 
-    public LinkedList<Biglietto> storico() {
-        LinkedList<Biglietto> elenco = new LinkedList<>();
-
-        return elenco;
+    public void checkStatoBiglietti() {
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<String, Biglietto> entry = iterator.next();
+            //String codice=entry.getKey();
+            Biglietto b = entry.getValue();
+            LocalDateTime dataCorsa = b.getCorsaPrenotata().getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            LocalDateTime dataOperazione = LocalDateTime.now();
+            if (dataCorsa.isBefore(dataOperazione)) {
+                b.setStato("Scaduto");
+            }
+        }
     }
 
-    public String getNome() {
-        return nome;
+    public boolean controllaBigliettiScaduti() {
+        boolean esito = false;
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<String, Biglietto> entry = iterator.next();
+            //String codice=entry.getKey();
+            Biglietto b = entry.getValue();
+            if(b.checkBigliettoScaduto()) {
+                esito = true;
+            }
+        }
+        return esito;
     }
 
-    public String getCognome() {
-        return cognome;
+    public void aggiornaStatoBigliettiScaduti() {
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<String, Biglietto> entry = iterator.next();
+            //String codice=entry.getKey();
+            Biglietto b = entry.getValue();
+            if(b.checkBigliettoScaduto()) {
+                b.setStato("Multato");
+            }
+        }
     }
 
-    public String getCF() {
-        return CF;
-    }
+    public String getNome() { return nome; }
 
-    public String getCodPersonale() {
-        return codPersonale;
-    }
+    public String getCF() { return CF; }
+
+    public String getCodPersonale() { return codPersonale; }
+
+    public LinkedHashMap<String,Biglietto> getElencoBiglietti() { return elencoBiglietti; }
 
     public boolean getNotifica() { return notifica; }
 
@@ -173,9 +196,12 @@ public class Cliente implements Observer{
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return Objects.equals(nome, cliente.nome) && Objects.equals(cognome, cliente.cognome) && Objects.equals(CF, cliente.CF) && Objects.equals(codPersonale, cliente.codPersonale) && Objects.equals(elencoBiglietti, cliente.elencoBiglietti);
+        return Objects.equals(nome, cliente.nome) &&
+                Objects.equals(cognome, cliente.cognome) &&
+                Objects.equals(CF, cliente.CF) &&
+                Objects.equals(codPersonale, cliente.codPersonale) &&
+                Objects.equals(elencoBiglietti, cliente.elencoBiglietti);
     }
-
 
     @Override
     public void update(Observable o) {
