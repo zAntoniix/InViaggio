@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.CancellaAccountClienteController">
+   <children>
+      <Button fx:id="bottoneConferma" layoutX="139.0" layoutY="286.0" mnemonicParsing="false" onAction="#onConfermaClick" text="Conferma" />
+      <Button fx:id="bottoneAnnulla" layoutX="372.0" layoutY="286.0" mnemonicParsing="false" onAction="#onAnnullaClick" prefHeight="25.0" prefWidth="68.0" text="Annulla" />
+      <Label layoutX="197.0" layoutY="43.0" text="Rimozione Account">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <DialogPane headerText="Stai per eliminare il tuo account da InViaggio. Questa azione è irreversibile e comporterà la perdita di tutti i tuoi dati, incluse impostazioni e le informazioni personali associate al tuo account. Per sicurezza inserire i propri dati di accesso." layoutX="92.0" layoutY="96.0" prefHeight="73.0" prefWidth="427.0" />
+      <TextField fx:id="codiceFiscale" layoutX="99.0" layoutY="201.0" />
+      <TextField fx:id="codicePersonale" layoutX="332.0" layoutY="201.0" />
+      <Label layoutX="137.0" layoutY="183.0" text="Codice fiscale" />
+      <Label layoutX="361.0" layoutY="183.0" text="Codice Personale" />
+      <Label fx:id="erroreCF" layoutX="117.0" layoutY="226.0" text="Inserire codice fiscale" textFill="RED" />
+      <Label fx:id="erroreCodPersonale" layoutX="341.0" layoutY="226.0" text="Inserire codice personale" textFill="RED" />
+      <Label fx:id="erroreCancellazione" layoutX="206.0" layoutY="257.0" text="Operazione non andata a buon fine" textFill="RED" />
+   </children>
+</AnchorPane>

@@ -84,9 +84,9 @@ public class Cliente implements Observer{
         }
     }
 
-    public boolean annullaBigliettoPerSospensione(List<Corsa> listaCorsa){
+    public boolean annullaBigliettoPerSospensione(List<Corsa> listaCorse){
         boolean checkBiglietto;
-        for(Corsa c : listaCorsa) {
+        for(Corsa c : listaCorse) {
             Iterator<Map.Entry<String, Biglietto>> iterator = elencoBiglietti.entrySet().iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, Biglietto> entry = iterator.next();

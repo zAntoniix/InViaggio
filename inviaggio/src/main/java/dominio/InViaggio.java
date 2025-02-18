@@ -303,7 +303,7 @@ public class InViaggio {
         return clienteLoggato.getBigliettiModificabili();
     }
 
-    public void selezioneBigliettoDaModificare(String codBiglietto) {
+    public void selezionaBigliettoDaModificare(String codBiglietto) {
         bigliettoCorrente = clienteLoggato.selezionaBiglietto(codBiglietto);
     }
 

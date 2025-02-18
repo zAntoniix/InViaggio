@@ -34,6 +34,8 @@ public class HomeClienteController {
     private Circle flagNotifica;
     @FXML
     private TextArea messaggioNotifica;
+    @FXML
+    private Button cancellaAccount;
 
     InViaggio inviaggio = InViaggio.getInstance();
 
@@ -93,5 +95,14 @@ public class HomeClienteController {
         }
     }
 
+    public void onCancellaAccount(ActionEvent event) throws IOException {
+        Stage stage = (Stage) cancellaAccount.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("cancellaAccountCliente.fxml"));
+        newStage.setTitle("Cancella Account");
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
 
 }
