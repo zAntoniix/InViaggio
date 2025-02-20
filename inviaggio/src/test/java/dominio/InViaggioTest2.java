@@ -59,6 +59,7 @@ class InViaggioTest2 {
         t2 = inviaggio.getTrattaCorrente();
         assertInstanceOf(Tratta.class, inviaggio.getTrattaCorrente());
         assertTrue(t2.equals(inviaggio.getTrattaCorrente()));
+        assertTrue(inviaggio.inserisciNuovaTratta( 1,"Catania","Catania"));
         assertFalse(inviaggio.inserisciNuovaTratta( 2,"Catania","Catania"));
         assertFalse(inviaggio.inserisciNuovaTratta( 1,"Catania","Palermo"));
     }

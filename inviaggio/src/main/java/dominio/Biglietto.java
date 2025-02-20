@@ -106,8 +106,14 @@ public class Biglietto {
         this.corsaPrenotata = c;
     }
 
-    public boolean checkBigliettoScaduto() {
+    public boolean isScaduto() {
         if(stato.equals("Scaduto")){
+            return true;
+        } else return false;
+    }
+
+    public boolean isValido() {
+        if(stato.equals("Valido")){
             return true;
         } else return false;
     }
@@ -115,6 +121,8 @@ public class Biglietto {
     public String getCodice(){
         return this.codice;
     }
+
+    public void setCodice(String codice) { this.codice = codice; }
 
     public float getCostoFinale(){
         return this.costoFinale;

@@ -338,7 +338,7 @@ public class InViaggio {
         return clienteLoggato.getElencoBiglietti();
     }
 
-    public void convalidaPrenotazione(String CF, String codBiglietto) {
+    public void convalidaBiglietto(String CF, String codBiglietto) {
         for (Cliente c : elencoClienti) {
             if(c.getCF().equals(CF)){
                 clienteSelezionato = c;
@@ -357,6 +357,24 @@ public class InViaggio {
             clienteSelezionato.aggiornaStatoBigliettiScaduti();
         }
         return cf;
+    }
+
+    public LinkedList<Biglietto> trasferisciBiglietto() {
+        clienteLoggato.checkStatoBiglietti();
+        return clienteLoggato.listaBigliettiValidi();
+    }
+
+    public void selezionaBigliettoDaTrasferire(String codBiglietto) {
+        bigliettoCorrente = clienteLoggato.selezionaBiglietto(codBiglietto);
+    }
+
+    public boolean trasferimentoBiglietto(String CF) {
+        clienteSelezionato = elencoClienti.stream().filter(c -> c.getCF().equals(CF)).findFirst().get();
+        String vecchioCodice = bigliettoCorrente.getCodice();
+        bigliettoCorrente.setCodice("B" + (clienteSelezionato.getElencoBiglietti().size()+1));
+        if(clienteSelezionato.aggiungiBigliettoTrasferito(bigliettoCorrente)) {
+            return clienteLoggato.eliminaBigliettoTrasferito(vecchioCodice);
+        } else return false;
     }
 
     public void addTratta(Tratta t){

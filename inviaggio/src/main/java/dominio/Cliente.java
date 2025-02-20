@@ -159,7 +159,7 @@ public class Cliente implements Observer{
             Map.Entry<String, Biglietto> entry = iterator.next();
             //String codice=entry.getKey();
             Biglietto b = entry.getValue();
-            if(b.checkBigliettoScaduto()) {
+            if(b.isScaduto()) {
                 esito = true;
             }
         }
@@ -172,10 +172,36 @@ public class Cliente implements Observer{
             Map.Entry<String, Biglietto> entry = iterator.next();
             //String codice=entry.getKey();
             Biglietto b = entry.getValue();
-            if(b.checkBigliettoScaduto()) {
+            if(b.isScaduto()) {
                 b.setStato("Multato");
             }
         }
+    }
+
+    public LinkedList<Biglietto> listaBigliettiValidi() {
+        LinkedList<Biglietto> listaValidi = new LinkedList<>();
+        Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<String, Biglietto> entry = iterator.next();
+            //String codice=entry.getKey();
+            Biglietto b = entry.getValue();
+            if(b.isValido()) {
+                listaValidi.add(b);
+            }
+        }
+        return listaValidi;
+    }
+
+    public boolean aggiungiBigliettoTrasferito(Biglietto b) {
+        if(elencoBiglietti.put(b.getCodice(), b) == null) {
+            return true;
+        } else return false;
+    }
+
+    public boolean eliminaBigliettoTrasferito(String cod) {
+        if(elencoBiglietti.remove(cod) != null) {
+            return true;
+        } else return false;
     }
 
     public String getNome() { return nome; }
