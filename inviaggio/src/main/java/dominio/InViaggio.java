@@ -338,13 +338,19 @@ public class InViaggio {
         return clienteLoggato.getElencoBiglietti();
     }
 
-    public void convalidaBiglietto(String CF, String codBiglietto) {
+    public boolean convalidaBiglietto(String CF, String codBiglietto) {
         for (Cliente c : elencoClienti) {
             if(c.getCF().equals(CF)){
                 clienteSelezionato = c;
+                bigliettoCorrente = clienteSelezionato.getElencoBiglietti().get(codBiglietto);
+                if(bigliettoCorrente!=null){
+                    return true;
+                }else{
+                    return false;
+                }
             }
         }
-        bigliettoCorrente = clienteSelezionato.getElencoBiglietti().get(codBiglietto);
+       return false;
     }
 
     public float confermaConvalida() {

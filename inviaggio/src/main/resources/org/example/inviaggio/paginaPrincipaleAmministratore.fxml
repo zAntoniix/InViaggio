@@ -9,7 +9,7 @@
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="212.0" layoutY="68.0" prefHeight="265.0" prefWidth="185.0">
+            <VBox alignment="TOP_CENTER" layoutX="195.0" layoutY="68.0" prefHeight="265.0" prefWidth="210.0">
                <children>
                   <Label alignment="TOP_CENTER" text="Benvenuto">
                      <font>
@@ -30,14 +30,15 @@
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="bottoneRimuoviCorsa" mnemonicParsing="false" onAction="#onBottoneRimuoviCorsa" text="Rimuovi Corsa">
+                  <Button fx:id="bottoneRimuoviCorsa" mnemonicParsing="false" onAction="#onBottoneRimuoviCorsa" prefHeight="25.0" prefWidth="100.0" text="Rimuovi Corsa">
                      <VBox.margin>
                         <Insets top="25.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
-            <Button fx:id="bottoneEsci" layoutX="36.0" layoutY="341.0" mnemonicParsing="false" onAction="#onBottoneEsci" prefHeight="25.0" prefWidth="66.0" text="Esci" />
+            <Button fx:id="bottoneEsci" layoutX="51.0" layoutY="346.0" mnemonicParsing="false" onAction="#onBottoneEsci" prefHeight="25.0" prefWidth="68.0" text="Esci" />
+            <Button fx:id="bottoneConvalida" onAction="#onBottoneConvalida" layoutX="486.0" layoutY="346.0" mnemonicParsing="false" text="Convalida" />
          </children>
       </Pane>
    </children>

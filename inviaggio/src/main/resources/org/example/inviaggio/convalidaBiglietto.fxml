@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.ConvalidaBigliettoController">
+   <children>
+      <Button fx:id="bottoneIndietro" layoutX="36.0" layoutY="352.0" mnemonicParsing="false" onAction="#onBottoneIndietro" text="Indietro" />
+      <Button fx:id="bottoneConvalida" onAction="#onBottoneConvalida" layoutX="501.0" layoutY="352.0" mnemonicParsing="false" text="Conferma" />
+      <Label layoutX="200.0" layoutY="37.0" text="Convalida biglietto">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="CF" layoutX="94.0" layoutY="157.0" />
+      <TextField fx:id="Codice" layoutX="340.0" layoutY="157.0" />
+      <Label layoutX="131.0" layoutY="140.0" text="Codice Fiscale" />
+      <Label layoutX="374.0" layoutY="140.0" text="Codice biglietto" />
+      <Label fx:id="erroreCF" layoutX="112.0" layoutY="182.0" text="Inserire codice fiscale" textFill="RED" />
+      <Label fx:id="erroreCodice" layoutX="353.0" layoutY="182.0" text="Inserire codice biglietto" textFill="RED" />
+      <Button fx:id="cercaBottone" layoutX="262.0" layoutY="213.0" mnemonicParsing="false" onAction="#onBottoneCerca" prefHeight="25.0" prefWidth="76.0" text="Cerca" />
+      <TextArea fx:id="testo" layoutX="83.0" layoutY="85.0" prefHeight="200.0" prefWidth="425.0" />
+   </children>
+</AnchorPane>

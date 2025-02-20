@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.StoricoClienteController">
+   <children>
+      <Label layoutX="219.0" layoutY="36.0" text="Storico biglietti">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="bottoneIndietro" onAction="#onAnnullaBottone" layoutX="44.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Indietro" />
+      <TextArea fx:id="testo" layoutX="79.0" layoutY="80.0" prefHeight="234.0" prefWidth="436.0" />
+   </children>
+</AnchorPane>

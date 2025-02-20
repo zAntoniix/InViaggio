@@ -142,6 +142,10 @@ public class Biglietto {
 
     public void setStato(String stato) { this.stato = stato; }
 
+    public String getStato(){
+        return this.stato;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

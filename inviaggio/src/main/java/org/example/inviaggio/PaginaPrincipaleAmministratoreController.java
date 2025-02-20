@@ -22,6 +22,8 @@ public class PaginaPrincipaleAmministratoreController {
     private Button bottoneSospendiTratta;
     @FXML
     private Button bottoneRimuoviCorsa;
+    @FXML
+    private Button bottoneConvalida;
 
     public void onBottoneEsci(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) bottoneEsci.getScene().getWindow();
@@ -29,6 +31,16 @@ public class PaginaPrincipaleAmministratoreController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
         newStage.setTitle("Benvenuto");
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
+
+    public void onBottoneConvalida(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) bottoneConvalida.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("convalidaBiglietto.fxml"));
+        newStage.setTitle("Convalida Biglietto");
         newStage.setScene(new Scene(root));
         newStage.show();
     }

@@ -46,6 +46,7 @@ public class HomeClienteController {
         flagNotifica.visibleProperty().bind(valoreNotifica);
         nomeUtenteWelcome.setText("Benvenuto, " + inviaggio.getClienteLoggato().getNome());
         messaggioNotifica.setVisible(false);
+        messaggioNotifica.setEditable(false);
     }
 
     public void onPrenotaClick(ActionEvent event) throws IOException {
@@ -70,6 +71,13 @@ public class HomeClienteController {
 
     public void onStoricoClick(ActionEvent event) throws IOException {
         Stage stage = (Stage) bottoneStorico.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("storicoCliente.fxml"));
+        newStage.setTitle("Storico cliente");
+        newStage.setScene(new Scene(root));
+        newStage.show();
+
     }
 
     public void onLogoutClick(ActionEvent event) throws IOException {
