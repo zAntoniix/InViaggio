@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.TrasferisciBigliettoController">
+   <children>
+      <Button fx:id="indietroBottone" layoutX="40.0" layoutY="349.0" mnemonicParsing="false" onAction="#onBottoneIndietro" prefHeight="25.0" prefWidth="68.0" text="Indietro" />
+      <ListView layoutX="165.0" layoutY="82.0" prefHeight="189.0" prefWidth="270.0" />
+      <Label layoutX="200.0" layoutY="34.0" text="Trasferisci Biglietto">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="CF" layoutX="277.0" layoutY="287.0" />
+      <Label layoutX="187.0" layoutY="291.0" text="Codice fiscale" />
+      <Button fx:id="bottoneConferma" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" text="Conferma" />
+      <Label fx:id="erroreCF" layoutX="242.0" layoutY="321.0" text="Inserire Codice Fiscale" textFill="RED" />
+      <TextArea fx:id="testo" layoutX="141.0" layoutY="141.0" prefHeight="42.0" prefWidth="319.0" />
+   </children>
+</AnchorPane>
