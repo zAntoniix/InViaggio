@@ -92,13 +92,14 @@ public class Biglietto {
     }
 
     public boolean isModificabile() {
-        LocalTime oraModifica = LocalTime.now();
-        LocalTime oraPartenza = corsaPrenotata.getOraPartenza().toLocalTime();
-        Duration duration = Duration.between(oraModifica, oraPartenza);
-        if(duration.abs().toHours() > 12) {
+        LocalDateTime dataModifica = LocalDateTime.now();
+        LocalDateTime dataCorsa = corsaPrenotata.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalTime orario = corsaPrenotata.getOraPartenza().toLocalTime();
+        LocalDateTime dataCorsaCompleta = dataCorsa.withHour(orario.getHour()).withMinute(orario.getMinute()).withSecond(orario.getSecond());
+        Duration differenza = Duration.between(dataModifica, dataCorsaCompleta);
+        if(differenza.toHours() > 12){
             return true;
-        } else
-            return false;
+        } else return false;
     }
 
     public void aggiornaBiglietto(float cf, Corsa c) {

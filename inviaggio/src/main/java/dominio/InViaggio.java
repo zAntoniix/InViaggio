@@ -119,7 +119,7 @@ public class InViaggio {
         cb=c.getCostoBase();
         cf=cb;
         if (dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 1 || dataPrenotazione.getDayOfMonth() - dataAttuale.getDayOfMonth() == 0) {
-                if (differenzaTempo.abs().toHours() <= 12) {
+                if (differenzaTempo.toHours() <= 12) {
                     prezzoFinale = new LastMinute();
                     cf = cf - prezzoFinale.calcolaPrezzo(c);
                 }

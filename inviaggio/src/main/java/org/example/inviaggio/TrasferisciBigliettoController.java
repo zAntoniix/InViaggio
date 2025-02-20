@@ -44,8 +44,8 @@ public class TrasferisciBigliettoController {
         erroreCF.setVisible(false);
         ObservableList<String> bg = FXCollections.observableArrayList();
         for(Biglietto b : inviaggio.trasferisciBiglietto()){
-            String s = new String(" "+t.getCodTratta()+" "+t.getCittaPartenza()+" "+t.getCittaArrivo() + " "); //Creo la stringa dalle informazioni della singola tratta
-            bg.add(s); //Aggiungo tutto nella lista di stringhe Observable
+            //String s = new String(" "+t.getCodTratta()+" "+t.getCittaPartenza()+" "+t.getCittaArrivo() + " "); //Creo la stringa dalle informazioni della singola tratta
+           // bg.add(s); //Aggiungo tutto nella lista di stringhe Observable
         }
         elencoBiglietti.getItems().addAll(bg); //Riempio la ListView
         elencoBiglietti.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista);
