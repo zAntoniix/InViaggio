@@ -259,7 +259,7 @@ public class InViaggio {
     }
 
     public LinkedList<Corsa> selezionaPeriodoSospensione(Date dataInizio,Date dataFine){
-        LinkedList<Corsa> corseDaAnnullare;
+        LinkedList<Corsa> corseDaAnnullare= new LinkedList<>();
         Cliente clienteAttuale;
         corseDaAnnullare=trattaSelezionata.sospensioneCorse(dataInizio,dataFine);
         if(trattaSelezionata.eliminaCorsePerSospensione(corseDaAnnullare)){
@@ -375,11 +375,20 @@ public class InViaggio {
     }
 
     public boolean trasferimentoBiglietto(String CF) {
-        clienteSelezionato = elencoClienti.stream().filter(c -> c.getCF().equals(CF)).findFirst().get();
-        String vecchioCodice = bigliettoCorrente.getCodice();
-        bigliettoCorrente.setCodice("B" + (clienteSelezionato.getElencoBiglietti().size()+1));
-        if(clienteSelezionato.aggiungiBigliettoTrasferito(bigliettoCorrente)) {
-            return clienteLoggato.eliminaBigliettoTrasferito(vecchioCodice);
+        clienteSelezionato=null;
+        for(Cliente c : elencoClienti){
+            if(c.getCF().equals(CF)){
+                clienteSelezionato = c;
+            }
+        }
+        if(clienteSelezionato!=null){
+            String vecchioCodice = bigliettoCorrente.getCodice();
+            bigliettoCorrente.setCodice("B" + (clienteSelezionato.getElencoBiglietti().size()+1));
+            if(clienteSelezionato.aggiungiBigliettoTrasferito(bigliettoCorrente)) {
+                return clienteLoggato.eliminaBigliettoTrasferito(vecchioCodice);
+            } else
+                return false;
+
         } else return false;
     }
 
@@ -417,4 +426,11 @@ public class InViaggio {
 
     public void setTrattaSelezionata(Tratta trattaSelezionata) { this.trattaSelezionata = trattaSelezionata; }
 
+    public void setClienteSelezionato(Cliente clienteSelezionato) {
+        this.clienteSelezionato = clienteSelezionato;
+    }
+
+    public Cliente getClienteSelezionato() {
+        return clienteSelezionato;
+    }
 }

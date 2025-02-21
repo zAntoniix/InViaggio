@@ -151,9 +151,11 @@ public class Biglietto {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Biglietto biglietto = (Biglietto) o;
-        return Float.compare(costoFinale, biglietto.costoFinale) == 0 &&
-                Objects.equals(codice, biglietto.codice) &&
-                Objects.equals(corsaPrenotata, biglietto.corsaPrenotata);
+        return Float.compare(costoFinale, biglietto.costoFinale) == 0 && Objects.equals(codice, biglietto.codice) && Objects.equals(corsaPrenotata, biglietto.corsaPrenotata) && Objects.equals(stato, biglietto.stato);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(codice, costoFinale, corsaPrenotata, stato);
+    }
 }

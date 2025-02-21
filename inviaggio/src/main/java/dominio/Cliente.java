@@ -125,7 +125,6 @@ public class Cliente implements Observer{
         Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,Biglietto> entry=iterator.next();
-            //String codice=entry.getKey();
             Biglietto b = entry.getValue();
             if(b.isModificabile()) {
                 bigliettiModificabili.add(b);
@@ -142,7 +141,6 @@ public class Cliente implements Observer{
         Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String, Biglietto> entry = iterator.next();
-            //String codice=entry.getKey();
             Biglietto b = entry.getValue();
             LocalDateTime dataCorsa = b.getCorsaPrenotata().getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             LocalDateTime dataOperazione = LocalDateTime.now();
@@ -157,7 +155,6 @@ public class Cliente implements Observer{
         Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String, Biglietto> entry = iterator.next();
-            //String codice=entry.getKey();
             Biglietto b = entry.getValue();
             if(b.isScaduto()) {
                 esito = true;
@@ -170,7 +167,6 @@ public class Cliente implements Observer{
         Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String, Biglietto> entry = iterator.next();
-            //String codice=entry.getKey();
             Biglietto b = entry.getValue();
             if(b.isScaduto()) {
                 b.setStato("Multato");
@@ -183,7 +179,6 @@ public class Cliente implements Observer{
         Iterator<Map.Entry<String,Biglietto>>iterator=elencoBiglietti.entrySet().iterator();
         while(iterator.hasNext()) {
             Map.Entry<String, Biglietto> entry = iterator.next();
-            //String codice=entry.getKey();
             Biglietto b = entry.getValue();
             if(b.isValido()) {
                 listaValidi.add(b);

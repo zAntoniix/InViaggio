@@ -27,11 +27,11 @@ class BigliettoTest4 {
 
     @BeforeAll
     static void setUp() throws Exception {
-        c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
+        c1 = new Corsa(1, data , "Garibaldi", "Stazione Centrale", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
         b1 = new Biglietto("B1", 2, c1);
         c1.setNumPosti(50);
 
-        c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),200,"C2T1");
+        c2 = new Corsa(1, data2 , "Garibaldi", "Stazione Centrale", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),200,"C2T1");
         b2 = new Biglietto("B2", 200, c2);
     }
 
@@ -43,9 +43,17 @@ class BigliettoTest4 {
 
     @Test
     void testIsScaduto() {
+        b2.setStato("Scaduto");
+        assertTrue(b2.isScaduto());
+        b2.setStato("Valido");
+        assertFalse(b2.isScaduto());
     }
 
     @Test
     void testIsValido() {
+        b2.setStato("Valido");
+        assertTrue(b2.isValido());
+        b2.setStato("Scaduto");
+        assertFalse(b2.isValido());
     }
 }

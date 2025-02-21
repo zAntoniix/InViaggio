@@ -34,18 +34,18 @@ class ClienteTest3 {
         c1 = new Corsa(1, data , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),2,"C1T1");
         b = new Biglietto("B1", 25, c1);
         cl.confermaBiglietto(b);
-
         c2 = new Corsa(1, data2 , "Milano", "Messina", Time.valueOf("12:30:00"), Time.valueOf("23:10:00"),200,"C2T1");
         b2 = new Biglietto("B2", 200, c2);
         cl.confermaBiglietto(b2);
         listaCorse = new LinkedList<>();
         listaCorse.add(c1);
-        listaCorse.add(c2);
+
     }
 
     @Test
     void testAnnullaBigliettoPerSospensione() {
         assertTrue(cl.annullaBigliettoPerSospensione(listaCorse));
-        assertTrue(cl.getElencoBiglietti().isEmpty());
+        assertEquals("Annullato",cl.selezionaBiglietto("B1").getStato());
+        assertEquals("Valido",cl.selezionaBiglietto("B2").getStato());
     }
 }
