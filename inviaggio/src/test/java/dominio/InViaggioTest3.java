@@ -1,6 +1,9 @@
 package dominio;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 
 import java.sql.Time;
@@ -9,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
-import static dominio.InViaggioTest.formatter;
-import static org.junit.jupiter.api.Assertions.*;
 class InViaggioTest3 {
     static InViaggio inviaggio;
     static Cliente cl,cl2;

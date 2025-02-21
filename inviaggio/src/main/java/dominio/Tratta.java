@@ -75,7 +75,7 @@ public class Tratta extends Observable{
 
 
     public LinkedList<Corsa> sospensioneCorse(Date dataInizio,Date dataFine){
-
+        elencoCorseDaSospendere.clear();
         Iterator<Map.Entry<String,Corsa>>iterator=elencoCorse.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,Corsa> entry=iterator.next();
