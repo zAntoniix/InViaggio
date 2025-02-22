@@ -21,7 +21,7 @@
             <Circle fx:id="flagNotifica" fill="#ff1f1f" layoutX="102.0" layoutY="346.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
             <Button fx:id="cancellaAccount" layoutX="333.0" layoutY="252.0" mnemonicParsing="false" onAction="#onCancellaAccount" prefHeight="25.0" prefWidth="169.0" text="Cancella account" />
             <Button fx:id="bottoneModifica" layoutX="334.0" layoutY="184.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="163.0" text="Modifica Prenotazione" />
-            <Button fx:id="bottoneTrasferisci" layoutX="96.0" layoutY="252.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Trasferisci biglietto" />
+            <Button fx:id="bottoneTrasferisci"  onAction="#onTrasferisciBiglietto" layoutX="96.0" layoutY="252.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="Trasferisci biglietto" />
             <TextArea fx:id="messaggioNotifica" layoutX="91.0" layoutY="95.0" prefHeight="227.0" prefWidth="419.0" />
          </children></Pane>
    </children>

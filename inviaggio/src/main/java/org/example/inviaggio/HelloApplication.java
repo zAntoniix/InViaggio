@@ -31,6 +31,9 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         InViaggio inviaggio = InViaggio.getInstance();
 
+        inviaggio.registrati("Filippo","Ippo","FLPP23","1234");
+        inviaggio.logout();
+
         inviaggio.registrati("Antonio","Zarbo","ZRBNTN99","Fallito");
 
 

@@ -36,6 +36,8 @@ public class HomeClienteController {
     private TextArea messaggioNotifica;
     @FXML
     private Button cancellaAccount;
+    @FXML
+    private Button bottoneTrasferisci;
 
     InViaggio inviaggio = InViaggio.getInstance();
 
@@ -101,6 +103,16 @@ public class HomeClienteController {
             messaggioNotifica.setVisible(true);
             messaggioNotifica.setText(inviaggio.getClienteLoggato().getMessaggio());
         }
+    }
+
+    public void onTrasferisciBiglietto(ActionEvent event) throws IOException {
+        Stage stage = (Stage) bottoneTrasferisci.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("trasferisciBiglietto.fxml"));
+        newStage.setTitle("Trasferimento biglietto");
+        newStage.setScene(new Scene(root));
+        newStage.show();
     }
 
     public void onCancellaAccount(ActionEvent event) throws IOException {

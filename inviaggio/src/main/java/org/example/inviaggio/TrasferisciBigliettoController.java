@@ -32,7 +32,8 @@ public class TrasferisciBigliettoController {
     private Label erroreCF;
     @FXML
     private ListView<String> elencoBiglietti;
-
+    @FXML
+    private Label testoCF;
 
     InViaggio inviaggio = InViaggio.getInstance();
     String codice;
@@ -42,14 +43,15 @@ public class TrasferisciBigliettoController {
         testo.setText("");
         testo.setEditable(false);
         erroreCF.setVisible(false);
+        testoCF.setVisible(false);
+        CF.setVisible(false);
         ObservableList<String> bg = FXCollections.observableArrayList();
         for(Biglietto b : inviaggio.trasferisciBiglietto()){
-            //String s = new String(" "+t.getCodTratta()+" "+t.getCittaPartenza()+" "+t.getCittaArrivo() + " "); //Creo la stringa dalle informazioni della singola tratta
-           // bg.add(s); //Aggiungo tutto nella lista di stringhe Observable
+            String s = new String(" "+b.getCodice()+" "+b.getCorsaPrenotata().getLuogoPartenza()+" "+b.getCorsaPrenotata().getLuogoArrivo()+ " "+b.getCorsaPrenotata().getOraPartenza());
+            bg.add(s);
         }
         elencoBiglietti.getItems().addAll(bg); //Riempio la ListView
         elencoBiglietti.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista);
-
     }
 
     private void cambiaSceltaLista(ObservableValue<? extends String> Observable, String oldVal, String newVal){
@@ -57,6 +59,24 @@ public class TrasferisciBigliettoController {
         String getElementoSelezionato= (elencoSelezionato.isEmpty())?"Nessun elemento selezionato":elencoSelezionato.toString();
         String[] parte = getElementoSelezionato.split(" "); //Serve per spezzettare la stringa in un array di stringhe, crea una stringa ogni spazio
         codice = parte[1]; //Prendo il secondo elemento perchè il primo contiene [
+        CF.setVisible(true);
+        testoCF.setVisible(true);
+    }
+
+    public void onBottoneConferma(ActionEvent event) throws IOException {
+        if(CF.getText().isEmpty()){
+            erroreCF.setVisible(true);
+        }else{
+            erroreCF.setVisible(false);
+            inviaggio.selezionaBigliettoDaTrasferire(codice);
+            if(inviaggio.trasferimentoBiglietto(CF.getText())){
+                testo.setText("Trasferimento biglietto al cliente " + CF.getText() + " avvenuto con successo");
+                testo.setVisible(true);
+            }else{
+                testo.setText("Errore trasferimento biglietto, ripetere la procedura");
+                testo.setVisible(true);
+            }
+        }
     }
 
     public void onBottoneIndietro(ActionEvent actionEvent) throws IOException {
