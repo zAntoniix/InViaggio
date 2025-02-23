@@ -25,7 +25,7 @@ public class HomeClienteController {
     @FXML
     private Button bottoneStorico;
     @FXML
-    private Button bottoneNotifiche;
+    private Button bottoneModifica;
     @FXML
     private Button bottoneLogout;
     @FXML
@@ -111,6 +111,16 @@ public class HomeClienteController {
         Stage newStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("trasferisciBiglietto.fxml"));
         newStage.setTitle("Trasferimento biglietto");
+        newStage.setScene(new Scene(root));
+        newStage.show();
+    }
+
+    public void onModificaBiglietto(ActionEvent event) throws IOException {
+        Stage stage = (Stage) bottoneModifica.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("modificaBiglietto.fxml"));
+        newStage.setTitle("Modifica biglietto");
         newStage.setScene(new Scene(root));
         newStage.show();
     }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inviaggio.ModificaBigliettoController">
+   <children>
+      <Button fx:id="bottoneIndietro" layoutX="37.0" layoutY="354.0" mnemonicParsing="false" onAction="#onBottoneIndietro" prefHeight="25.0" prefWidth="68.0" text="Indietro" />
+      <Button fx:id="bottoneConferma" layoutX="494.0" layoutY="354.0" mnemonicParsing="false" onAction="#onConfermaBottone" text="Conferma" />
+      <Label layoutX="206.0" layoutY="28.0" text="Modifica biglietto">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listaModificabili" layoutX="36.0" layoutY="106.0" prefHeight="200.0" prefWidth="161.0" />
+      <ListView fx:id="listaTratte" layoutX="220.0" layoutY="106.0" prefHeight="200.0" prefWidth="161.0" />
+      <ListView fx:id="listaCorse" layoutX="403.0" layoutY="106.0" prefHeight="200.0" prefWidth="161.0" />
+      <Label layoutX="64.0" layoutY="89.0" text="Biglietti modificabili" />
+      <Label fx:id="labelTratte" layoutX="256.0" layoutY="89.0" text="Tratte disponibili" />
+      <Label fx:id="labelCorse" layoutX="440.0" layoutY="89.0" text="Corse disponibili" />
+      <TextField fx:id="data" layoutX="272.0" layoutY="314.0" prefHeight="25.0" prefWidth="97.0" />
+      <Label fx:id="labelData" layoutX="235.0" layoutY="318.0" text="Data" />
+      <Label fx:id="erroreData" layoutX="233.0" layoutY="337.0" text="Inserire una data valida" textFill="RED" />
+      <TextArea fx:id="risultato" layoutX="111.0" layoutY="181.0" prefHeight="38.0" prefWidth="429.0" />
+   </children>
+</AnchorPane>

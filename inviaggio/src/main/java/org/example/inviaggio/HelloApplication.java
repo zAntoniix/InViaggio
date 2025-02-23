@@ -63,6 +63,7 @@ public class HelloApplication extends Application {
             temp = inviaggio.selezionaTratta("T3");
             temp.inserisciCorsa(1,data1, "Catania", "Palermo", oraPartenza, oraArrivo,12);
             temp.inserisciCorsa(1,data2, "Bari", "Messina", oraPartenza, oraArrivo,12);
+            temp.inserisciCorsa(1,data1, "Stazione Centrale", "Giovanni XXIII", oraPartenza, oraArrivo,12);
 
             Biglietto b= new Biglietto("B1",34,inviaggio.selezionaTratta("T2").selezionaCorsa("C1T2"));
             Biglietto b1= new Biglietto("B2",34,inviaggio.selezionaTratta("T3").selezionaCorsa("C1T3"));
