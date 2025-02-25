@@ -16,8 +16,11 @@ public class Corsa {
     private Time oraPartenza;
     private Time oraArrivo;
 
-    //Costruttore
+    // Tipo mezzo
+    // 1 = autobus
+    // 2 = treno
 
+    //Costruttore
     public Corsa(int tipoMezzo, Date data, String luogoPartenza, String luogoArrivo,Time oraPartenza, Time oraArrivo, float costoBase, String codice) {
         this.tipoMezzo = tipoMezzo;
         this.data = data;
@@ -32,7 +35,7 @@ public class Corsa {
 
     //Metodi
     public int setPosti(int tipoMezzo){ //Controllo del tipoEffettuato precedentemente
-        if(tipoMezzo == 1)// Autobus
+        if(tipoMezzo == 1) // Autobus
             return 52;
         else // tipoMezzo == 2 (Treno)
             return 100;

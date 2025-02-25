@@ -22,7 +22,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -31,11 +31,13 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         InViaggio inviaggio = InViaggio.getInstance();
 
+        // Simulazione dati persistenti
+
         inviaggio.registrati("Filippo","Ippo","FLPP23","1234");
         inviaggio.logout();
 
-        inviaggio.registrati("Antonio","Zarbo","ZRBNTN99","Fallito");
-
+        inviaggio.registrati("Antonio","Zarbo","ZRBNTN99","Ciao");
+        inviaggio.logout();
 
         //Creo delle tratte per la creazione dell'interfaccia
         Tratta t= new Tratta(0,"Palermo","Catania","T1");
@@ -56,14 +58,16 @@ public class HelloApplication extends Application {
             Date data1 = formatter.parse("24/05/2025");
             Date data2 = formatter.parse("06/04/2025");
             Tratta temp = inviaggio.selezionaTratta("T2");
-            temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,25);
+            temp.inserisciCorsa(1,data, "Staz. Garibaldi", "Villa S.Giovanni", oraPartenza, oraArrivo,25);
             oraPartenza = Time.valueOf("11:30:00");
             oraArrivo = Time.valueOf("23:10:00");
-            temp.inserisciCorsa(1,data, "Milano", "Messina", oraPartenza, oraArrivo,39);
+            temp.inserisciCorsa(1,data, "Lampugnano", "Villa S.Giovanni", oraPartenza, oraArrivo,39);
             temp = inviaggio.selezionaTratta("T3");
-            temp.inserisciCorsa(1,data1, "Catania", "Palermo", oraPartenza, oraArrivo,12);
-            temp.inserisciCorsa(1,data2, "Bari", "Messina", oraPartenza, oraArrivo,12);
+            temp.inserisciCorsa(1,data, "Via Archimede", "Politeama", oraPartenza, oraArrivo,12);
+            temp.inserisciCorsa(1,data2, "Via D'Amico", "Villa S.Giovanni", oraPartenza, oraArrivo,12);
             temp.inserisciCorsa(1,data1, "Stazione Centrale", "Giovanni XXIII", oraPartenza, oraArrivo,12);
+
+            inviaggio.accedi("ZRBNTN99", "Ciao");
 
             Biglietto b= new Biglietto("B1",34,inviaggio.selezionaTratta("T2").selezionaCorsa("C1T2"));
             Biglietto b1= new Biglietto("B2",34,inviaggio.selezionaTratta("T3").selezionaCorsa("C1T3"));
@@ -72,13 +76,13 @@ public class HelloApplication extends Application {
             inviaggio.setTrattaSelezionata(inviaggio.selezionaTratta("T2"));
             inviaggio.setBigliettoCorrente(b);
             inviaggio.confermaBiglietto();
+            inviaggio.setTrattaSelezionata(inviaggio.selezionaTratta("T3"));
             inviaggio.setBigliettoCorrente(b1);
             inviaggio.confermaBiglietto();
             inviaggio.setBigliettoCorrente(b2);
             inviaggio.confermaBiglietto();
 
             inviaggio.logout();
-
         }catch (ParseException e) {
             e.printStackTrace();
         }

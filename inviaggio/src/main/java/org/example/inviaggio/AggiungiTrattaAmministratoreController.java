@@ -60,14 +60,15 @@ public class AggiungiTrattaAmministratoreController {
         }
 
         if(!tipoTratta.getText().equals(" ") && !cittaPartenza.getText().equals(" ") && !cittaArrivo.getText().equals(" ")){
-            inviaggio.inserisciNuovaTratta(Integer.parseInt(tipoTratta.getText()),cittaPartenza.getText(),cittaArrivo.getText());
-            Stage stage = (Stage) bottoneConferma.getScene().getWindow();
-            stage.close();
-            Stage newStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("aggiungiCorsaAmministratore.fxml"));
-            newStage.setTitle("Inserisci Corsa");
-            newStage.setScene(new Scene(root));
-            newStage.show();
+            if(inviaggio.inserisciNuovaTratta(Integer.parseInt(tipoTratta.getText()),cittaPartenza.getText(),cittaArrivo.getText())) {
+                Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+                stage.close();
+                Stage newStage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("aggiungiCorsaAmministratore.fxml"));
+                newStage.setTitle("Inserisci Corsa");
+                newStage.setScene(new Scene(root));
+                newStage.show();
+            }
         }
 
     }

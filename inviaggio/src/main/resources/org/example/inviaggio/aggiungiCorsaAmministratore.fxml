@@ -37,5 +37,6 @@
       <Label fx:id="labelTratta" layoutX="453.0" layoutY="276.0" text="Tratta" />
       <TextField fx:id="codiceTratta" layoutX="394.0" layoutY="293.0" />
       <Label fx:id="erroreTratta" layoutX="427.0" layoutY="318.0" text="inserire una tratta" textFill="RED" />
+      <Button fx:id="bottoneAggiungi" layoutX="268.0" layoutY="350.0" mnemonicParsing="false" onAction="#onBottoneAggiungi" text="Aggiungi" />
    </children>
 </AnchorPane>

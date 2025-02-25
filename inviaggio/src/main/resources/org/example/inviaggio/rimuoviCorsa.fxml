@@ -18,7 +18,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-            <Button fx:id="bottoneConferma" layoutX="499.0" layoutY="349.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="67.0" text="conferma" />
+            <Button fx:id="bottoneConferma" layoutX="492.0" layoutY="349.0" mnemonicParsing="false" onAction="#onConfermaClick" prefHeight="25.0" prefWidth="74.0" text="Conferma" />
             </children></Pane>
     </children>
 </AnchorPane>

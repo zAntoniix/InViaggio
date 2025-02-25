@@ -59,6 +59,8 @@ public class AggiungiCorsaAmministratoreController {
     private Label erroreTratta;
     @FXML
     private Label labelTratta;
+    @FXML
+    private Button bottoneAggiungi;
 
     InViaggio inviaggio = InViaggio.getInstance();
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -79,13 +81,15 @@ public class AggiungiCorsaAmministratoreController {
         erroreTratta.setVisible(false);
         codiceTratta.setVisible(false);
         labelTratta.setVisible(false);
+        bottoneAggiungi.setVisible(true);
         if(inviaggio.getTrattaCorrente()==null){
             codiceTratta.setVisible(true);
             labelTratta.setVisible(true);
+            bottoneAggiungi.setVisible(false);
         }
     }
 
-    public void onBottoneConferma(ActionEvent event) throws IOException {
+    public void onBottoneAggiungi(ActionEvent event) throws IOException {
 
         if(tipoMezzo.getText().isEmpty()){
             erroreTipo.setVisible(true);
@@ -119,18 +123,20 @@ public class AggiungiCorsaAmministratoreController {
 
         if(oraPartenza.getText().isEmpty() || !patternTime.matcher(oraPartenza.getText()).matches()){
             erroreOraPartenza.setVisible(true);
+            oraPartenza.setText("");
         }else{
             erroreOraPartenza.setVisible(false);
         }
 
         if(oraArrivo.getText().isEmpty() || !patternTime.matcher(oraArrivo.getText()).matches()){
             erroreOraArrivo.setVisible(true);
+            oraArrivo.setText("");
         }else{
             erroreOraArrivo.setVisible(false);
         }
 
         if(!tipoMezzo.getText().isEmpty() && !data.getText().isEmpty() && !luogoPartenza.getText().isEmpty() && !luogoArrivo.getText().isEmpty()
-        && !costoBase.getText().isEmpty() && !oraPartenza.getText().isEmpty() && !oraArrivo.getText().isEmpty()) {
+                && !costoBase.getText().isEmpty() && !oraPartenza.getText().isEmpty() && !oraArrivo.getText().isEmpty()) {
             try {
                 LocalTime localTimePartenza = LocalTime.parse(oraPartenza.getText(), formatterTime);
                 LocalTime localTimeArrivo = LocalTime.parse(oraArrivo.getText(), formatterTime);
@@ -138,16 +144,16 @@ public class AggiungiCorsaAmministratoreController {
                 Time timeArrivo = Time.valueOf(localTimeArrivo);
                 Date dataCorsa = formatter.parse(data.getText());
                 if(inviaggio.getTrattaCorrente()!=null){
-                    inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()),dataCorsa,luogoPartenza.getText(),luogoArrivo.getText(),timePartenza ,timeArrivo ,Float.valueOf(costoBase.getText()).floatValue());
-                    Stage stage = (Stage) bottoneConferma.getScene().getWindow();
-                    stage.close();
-                    Stage newStage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
-                    newStage.setTitle("Bentornato Amministratore");
-                    newStage.setScene(new Scene(root));
-                    newStage.show();
-                }
-                else{
+                    if(inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()),dataCorsa,luogoPartenza.getText(),luogoArrivo.getText(),timePartenza ,timeArrivo ,Float.valueOf(costoBase.getText()).floatValue())) {
+                        tipoMezzo.setText("");
+                        data.setText("");
+                        luogoPartenza.setText("");
+                        luogoArrivo.setText("");
+                        oraPartenza.setText("");
+                        oraArrivo.setText("");
+                        costoBase.setText("");
+                    }
+                } else {
                     if(!codiceTratta.getText().isEmpty()){
                         if(inviaggio.inserisciNuovaCorsa(codiceTratta.getText())){
                             inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()),dataCorsa,luogoPartenza.getText(),luogoArrivo.getText(),timePartenza ,timeArrivo ,Float.parseFloat(costoBase.getText()));
@@ -168,6 +174,92 @@ public class AggiungiCorsaAmministratoreController {
                 }
             }catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public void onBottoneConferma(ActionEvent event) throws IOException {
+        if (inviaggio.getTrattaCorrente() != null) {
+            inviaggio.confermaInserimento();
+            Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+            stage.close();
+            Stage newStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
+            newStage.setTitle("Hello!");
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } else {
+            if (tipoMezzo.getText().isEmpty()) {
+                erroreTipo.setVisible(true);
+            } else {
+                erroreTipo.setVisible(false);
+            }
+
+            if (data.getText().isEmpty() || !patternData.matcher(data.getText()).matches()) {
+                erroreData.setVisible(true);
+            } else {
+                erroreData.setVisible(false);
+            }
+
+            if (luogoPartenza.getText().isEmpty()) {
+                errorePartenza.setVisible(true);
+            } else {
+                errorePartenza.setVisible(false);
+            }
+
+            if (luogoArrivo.getText().isEmpty()) {
+                erroreArrivo.setVisible(true);
+            } else {
+                erroreArrivo.setVisible(false);
+            }
+
+            if (costoBase.getText().isEmpty()) {
+                erroreCosto.setVisible(true);
+            } else {
+                erroreCosto.setVisible(false);
+            }
+
+            if (oraPartenza.getText().isEmpty() || !patternTime.matcher(oraPartenza.getText()).matches()) {
+                erroreOraPartenza.setVisible(true);
+                oraPartenza.setText("");
+            } else {
+                erroreOraPartenza.setVisible(false);
+            }
+
+            if (oraArrivo.getText().isEmpty() || !patternTime.matcher(oraArrivo.getText()).matches()) {
+                erroreOraArrivo.setVisible(true);
+                oraArrivo.setText("");
+            } else {
+                erroreOraArrivo.setVisible(false);
+            }
+
+            if (!tipoMezzo.getText().isEmpty() && !data.getText().isEmpty() && !luogoPartenza.getText().isEmpty() && !luogoArrivo.getText().isEmpty()
+                    && !costoBase.getText().isEmpty() && !oraPartenza.getText().isEmpty() && !oraArrivo.getText().isEmpty()) {
+                try {
+                    LocalTime localTimePartenza = LocalTime.parse(oraPartenza.getText(), formatterTime);
+                    LocalTime localTimeArrivo = LocalTime.parse(oraArrivo.getText(), formatterTime);
+                    Time timePartenza = Time.valueOf(localTimePartenza);
+                    Time timeArrivo = Time.valueOf(localTimeArrivo);
+                    Date dataCorsa = formatter.parse(data.getText());
+                    if (!codiceTratta.getText().isEmpty()) {
+                        if (inviaggio.inserisciNuovaCorsa(codiceTratta.getText())) {
+                            inviaggio.inserisciCorsa(Integer.parseInt(tipoMezzo.getText()), dataCorsa, luogoPartenza.getText(), luogoArrivo.getText(), timePartenza, timeArrivo, Float.parseFloat(costoBase.getText()));
+                            Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+                            stage.close();
+                            Stage newStage = new Stage();
+                            Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
+                            newStage.setTitle("Bentornato Amministratore");
+                            newStage.setScene(new Scene(root));
+                            newStage.show();
+                        } else {
+                            erroreTratta.setVisible(true);
+                        }
+                    } else {
+                        erroreTratta.setVisible(true);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

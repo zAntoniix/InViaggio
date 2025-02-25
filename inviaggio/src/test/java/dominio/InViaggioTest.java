@@ -48,7 +48,10 @@ class InViaggioTest {
 
     @Test
     void testInserisciNuovaTratta() {
-        assertTrue(inviaggio.inserisciNuovaTratta( 0,"Catania","Milano"));
+        assertTrue(inviaggio.inserisciNuovaTratta( 2,"Catania","Milano"));
+        assertFalse(inviaggio.inserisciNuovaTratta( 2,"Catania","Catania"));
+        assertFalse(inviaggio.inserisciNuovaTratta( 1,"Catania","Milano"));
+        assertTrue(inviaggio.inserisciNuovaTratta( 1,"Catania","Catania"));
         tr2 = inviaggio.getTrattaCorrente();
         assertInstanceOf(Tratta.class, inviaggio.getTrattaCorrente());
         assertTrue(tr2.equals(inviaggio.getTrattaCorrente()));

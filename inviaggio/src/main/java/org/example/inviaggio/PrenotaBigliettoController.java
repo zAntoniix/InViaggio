@@ -184,11 +184,14 @@ public class PrenotaBigliettoController {
     //comportamento non appena viene premuto il tasto conferma biglietto
     public void onConfermaBottoneBiglietto(ActionEvent event) throws IOException {
         inviaggio.confermaBiglietto();
-        inviaggio.getClienteLoggato().confermaBiglietto(inviaggio.getBigliettoCorrente());
         System.out.println(inviaggio.getClienteLoggato().getElencoBiglietti());
-        bottoneSceltaBiglietto.setVisible(false);//Nascondo il bottone che conferma il biglietto per evitare errori
-        biglietto.setVisible(false);
-        viewBiglietto.setVisible(false);
+        Stage stage = (Stage) bottoneSceltaBiglietto.getScene().getWindow();
+        stage.close();
+        Stage newStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("homeCliente.fxml"));
+        newStage.setTitle("Home Page");
+        newStage.setScene(new Scene(root));
+        newStage.show();
     }
 
     public void onBackClick(ActionEvent event) throws IOException {

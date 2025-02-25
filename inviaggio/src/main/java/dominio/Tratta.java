@@ -13,6 +13,10 @@ public class Tratta extends Observable{
     private LinkedHashMap<String,Corsa> elencoCorse;
     private LinkedList<Corsa> elencoCorseDaSospendere;
 
+    // Tipo tratta
+    // 1 = urbano (partenza = arrivo)
+    // 2 = extraurbano (partenza != arrivo)
+
     //Costruttore
     public Tratta(int tipoTratta, String cittaPartenza, String cittaArrivo, String codTratta) {
         this.tipoTratta = tipoTratta;
