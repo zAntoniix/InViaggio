@@ -33,7 +33,20 @@ public class Tratta extends Observable{
     }
 
     public String generaCodiceCorsa() {
-        String codCorsa = "C" + (elencoCorse.size()+1) + codTratta;
+        String codCorsa = "";
+        int numero = 0;
+        if(elencoCorse.isEmpty()) {
+            codCorsa = "C" + (elencoCorse.size()+1) + codTratta;
+        } else {
+            String ultimaCorsa = elencoCorse.lastEntry().getKey(); //C1T1
+            int indexOfC = ultimaCorsa.indexOf("C");
+            int indexOfT = ultimaCorsa.indexOf("T");
+
+            if (indexOfC != -1 && indexOfT != -1 && indexOfT > indexOfC) {
+                numero = Integer.parseInt(ultimaCorsa.substring(indexOfC + 1, indexOfT));
+            }
+            codCorsa = "C" + (numero+1) + codTratta;
+        }
         return codCorsa;
     }
 

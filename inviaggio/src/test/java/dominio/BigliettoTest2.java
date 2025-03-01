@@ -37,7 +37,7 @@ class BigliettoTest2 {
     @Test
     void testGetBigliettiAnnullabili() {
         // mi aspetto false in quanto mancano meno di 12 ore alla partenza (oggi 6/2/25 alle 10:10)
-        // assertFalse(b1.getBigliettiAnnullabili());
+        assertFalse(b1.getBigliettiAnnullabili());
         //mi aspetto true in quanto il biglietto è riferito a una corsa di giugno (oggi 6/2/25 alle 10:10)
         assertTrue(b2.getBigliettiAnnullabili());
     }

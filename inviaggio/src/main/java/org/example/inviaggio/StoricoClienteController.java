@@ -36,8 +36,13 @@ InViaggio inViaggio = InViaggio.getInstance();
             while(iterator.hasNext()){
                 Map.Entry<String,Biglietto> entry=iterator.next();
                 Biglietto b =entry.getValue();
-                String s = b.getCodice() + " " + b.getStato() + " " + formatter.format(b.getCorsaPrenotata().getData()) + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() + " " + b.getCorsaPrenotata().getOraPartenza()+"\n";
-                testo.appendText(s);
+                if (b.getCorsaPrenotata().getTipoMezzo() == 1) {
+                    String s = b.getCodice() + " " + "Autobus" + " " + b.getStato() + " " + formatter.format(b.getCorsaPrenotata().getData()) + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() + " " + b.getCorsaPrenotata().getOraPartenza()+"\n";
+                    testo.appendText(s);
+                } else {
+                    String s = b.getCodice() + " " + "Treno" + " " + b.getStato() + " " + formatter.format(b.getCorsaPrenotata().getData()) + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() + " " + b.getCorsaPrenotata().getOraPartenza()+"\n";
+                    testo.appendText(s);
+                }
             }
         }catch (Exception e){
             e.printStackTrace();

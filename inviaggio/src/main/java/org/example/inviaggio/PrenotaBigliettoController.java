@@ -125,8 +125,13 @@ public class PrenotaBigliettoController {
                         corseDisponibili.setDisable(false);
                         bottoneSceltaCorsa.setVisible(true);
                         for (Corsa c : listaCorse) { //Scorro la lista di corse
-                            String s = new String(" " + c.getCodCorsa() + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " + c.getCostoBase() + "€");
-                            cr.add(s);
+                            if (c.getTipoMezzo() == 1) {
+                                String s = new String(" " + c.getCodCorsa() + " " + "Autobus" + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " + c.getCostoBase() + "€");
+                                cr.add(s);
+                            } else {
+                                String s = new String(" " + c.getCodCorsa() + " " + "Treno" + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() + " " + c.getOraPartenza().toString() + " " + c.getOraArrivo().toString() + " " + c.getCostoBase() + "€");
+                                cr.add(s);
+                            }
                         }
                         corseDisponibili.getItems().addAll(cr);
                     }
@@ -173,9 +178,15 @@ public class PrenotaBigliettoController {
             Biglietto b = new Biglietto(codiceBiglietto, costoBase, c);
             inviaggio.setBigliettoCorrente(b);
             // Inizio creazione Stringa
-            String s = new String("Luogo Partenza: " + c.getLuogoPartenza() + "\n" + "Luogo Arrivo: "+
-                    c.getLuogoArrivo() + "\n" +"Data: "+ c.getData() + "\n"+"Ora partenza: "+ c.getOraPartenza().toString() + "\n"+"Ora Arrivo: " + c.getOraArrivo().toString()+ "\n"+"Costo totale: "+b.getCostoFinale()+"€");
-            biglietto.setText(s);
+            if(c.getTipoMezzo() == 1) {
+                String s = new String("Tipologia Mezzo: Autobus \n" + "Luogo Partenza: " + c.getLuogoPartenza() + "\n" + "Luogo Arrivo: "+
+                        c.getLuogoArrivo() + "\n" +"Data: "+ c.getData() + "\n"+"Ora partenza: "+ c.getOraPartenza().toString() + "\n"+"Ora Arrivo: " + c.getOraArrivo().toString()+ "\n"+"Costo totale: "+b.getCostoFinale()+"€");
+                biglietto.setText(s);
+            } else {
+                String s = new String("Tipologia Mezzo: Treno \n" + "Luogo Partenza: " + c.getLuogoPartenza() + "\n" + "Luogo Arrivo: "+
+                        c.getLuogoArrivo() + "\n" +"Data: "+ c.getData() + "\n"+"Ora partenza: "+ c.getOraPartenza().toString() + "\n"+"Ora Arrivo: " + c.getOraArrivo().toString()+ "\n"+"Costo totale: "+b.getCostoFinale()+"€");
+                biglietto.setText(s);
+            }
             biglietto.setEditable(false);
             bottoneSceltaBiglietto.setVisible(true);//Visualizzo il bottone del conferma biglietto
         }

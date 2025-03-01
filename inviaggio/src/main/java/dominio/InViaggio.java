@@ -101,7 +101,19 @@ public class InViaggio {
     }
 
     public String generaCodBiglietto() {
-        String codBiglietto = "B" + (clienteLoggato.getElencoBiglietti().size()+1);
+        String codBiglietto = "";
+        int numero = 0;
+        if(clienteLoggato.getElencoBiglietti().isEmpty()) {
+            codBiglietto = "B" + (clienteLoggato.getElencoBiglietti().size()+1);
+        } else {
+            String ultimoBiglietto = clienteLoggato.getElencoBiglietti().lastEntry().getKey(); //C1T1
+            int indexOfB = ultimoBiglietto.indexOf("B");
+
+            if (indexOfB != -1) {
+                numero = Integer.parseInt(ultimoBiglietto.substring(indexOfB+1, ultimoBiglietto.length()));
+            }
+            codBiglietto = "B" + (numero+1);
+        }
         return codBiglietto;
     }
 

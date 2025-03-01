@@ -67,12 +67,17 @@ public class ModificaBigliettoController {
         ObservableList<String> bg = FXCollections.observableArrayList();
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         for(Biglietto b : inviaggio.mostraBigliettiModificabili()){
-            String s = " "+b.getCodice() + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() +" " +formatoData.format(b.getCorsaPrenotata().getData()) + " " + b.getCorsaPrenotata().getOraPartenza();
-            bg.add(s);
+            if(b.getCorsaPrenotata().getTipoMezzo() == 1) {
+                String s = " "+b.getCodice() + " " + "Autobus" + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() +" " +formatoData.format(b.getCorsaPrenotata().getData()) + " " + b.getCorsaPrenotata().getOraPartenza();
+                bg.add(s);
+            } else {
+                String s = " "+b.getCodice() + " " + "Treno" + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() +" " +formatoData.format(b.getCorsaPrenotata().getData()) + " " + b.getCorsaPrenotata().getOraPartenza();
+                bg.add(s);
+            }
         }
         listaModificabili.getItems().setAll(bg);
         listaModificabili.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaModificabili);
-        listaTratte.disableProperty().bind(Bindings.createBooleanBinding( //Bindo la listView delle tratte al textField, finchè è vuoto non fa utilizzare la listView
+        listaTratte.disableProperty().bind(Bindings.createBooleanBinding( //Bindo la listView delle tratte al textField, finché è vuoto non fa utilizzare la listView
                 () -> data.getText().isEmpty(),
                 data.textProperty()
         ));

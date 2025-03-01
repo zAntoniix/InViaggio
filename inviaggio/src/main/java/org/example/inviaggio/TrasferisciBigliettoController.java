@@ -47,8 +47,13 @@ public class TrasferisciBigliettoController {
         CF.setVisible(false);
         ObservableList<String> bg = FXCollections.observableArrayList();
         for(Biglietto b : inviaggio.trasferisciBiglietto()){
-            String s = new String(" "+b.getCodice()+" "+b.getCorsaPrenotata().getLuogoPartenza()+" "+b.getCorsaPrenotata().getLuogoArrivo()+ " "+b.getCorsaPrenotata().getOraPartenza());
-            bg.add(s);
+            if(b.getCorsaPrenotata().getTipoMezzo() == 1) {
+                String s = new String(" "+b.getCodice()+" "+"Autobus"+" "+b.getCorsaPrenotata().getLuogoPartenza()+" "+b.getCorsaPrenotata().getLuogoArrivo()+ " "+b.getCorsaPrenotata().getOraPartenza());
+                bg.add(s);
+            } else {
+                String s = new String(" "+b.getCodice()+" "+"Treno"+" "+b.getCorsaPrenotata().getLuogoPartenza()+" "+b.getCorsaPrenotata().getLuogoArrivo()+ " "+b.getCorsaPrenotata().getOraPartenza());
+                bg.add(s);
+            }
         }
         elencoBiglietti.getItems().addAll(bg); //Riempio la ListView
         elencoBiglietti.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista);

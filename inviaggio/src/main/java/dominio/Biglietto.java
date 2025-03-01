@@ -42,44 +42,11 @@ public class Biglietto {
         LocalDateTime dataAttuale = LocalDateTime.now();
         LocalDateTime dataCorsa = corsaPrenotata.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalTime oraCorsa = corsaPrenotata.getOraPartenza().toLocalTime();
-        LocalDate giornoSuccessivo = dataAttuale.toLocalDate().plusDays(1);
-    if(dataAttuale.getYear() == dataCorsa.getYear() || giornoSuccessivo.getYear() == dataCorsa.getYear()){
-        //Controllo Mese
-        if (dataAttuale.getMonth() == dataCorsa.getMonth() || giornoSuccessivo.getMonth() == dataCorsa.getMonth()) {
-            //Controllo giorno
-            if (dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() >= 1 || dataCorsa.getDayOfMonth() - dataAttuale.getDayOfMonth() < -26) {
-                //Controllo Ora nel caso giorno prima
-                if (dataAttuale.toLocalTime().compareTo(oraCorsa) < 0) {
-                    //Controllo minuti
-                    if (dataAttuale.toLocalTime().getMinute() <= oraCorsa.getMinute()) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                    //Fine controllo minuti
-                } else {
-                    return false;
-                }
-                //Fine controllo ore
-            }
-            if (dataAttuale.getDayOfMonth() - dataCorsa.getDayOfMonth() > 1) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        if (dataAttuale.getMonth().getValue() < dataCorsa.getMonth().getValue()) {
+        LocalDateTime dataCompleta = dataCorsa.withHour(oraCorsa.getHour()).withMinute(oraCorsa.getMinute()).withSecond(oraCorsa.getSecond());
+        Duration differenza = Duration.between(dataAttuale, dataCompleta);
+        if(differenza.toHours() >= 24){
             return true;
-        } else {
-            return false;
-        }
-
-        } if(dataAttuale.getYear() < dataCorsa.getYear()){
-        return true;
-        }
-        else{
-            return false;
-        }
+        } else return false;
     }
 
     public boolean verificaBigliettoPerCorsa(Corsa c){

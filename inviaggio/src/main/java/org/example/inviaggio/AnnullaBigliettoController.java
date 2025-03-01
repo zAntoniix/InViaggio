@@ -36,8 +36,13 @@ public class AnnullaBigliettoController {
         verifica.setVisible(false);
         ObservableList<String> bt = FXCollections.observableArrayList();
         for(Biglietto b : inviaggio.annullaPrenotazione()){
-            String s =new String(" " + b.getCodice() + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() + " " + b.getCorsaPrenotata().getOraPartenza() + " "+ b.getCorsaPrenotata().getData());
-            bt.add(s);
+            if(b.getCorsaPrenotata().getTipoMezzo() == 1) {
+                String s =new String(" " + b.getCodice() + " " + "Autobus" + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() + " " + b.getCorsaPrenotata().getOraPartenza() + " "+ b.getCorsaPrenotata().getData());
+                bt.add(s);
+            } else {
+                String s =new String(" " + b.getCodice() + " " + "Treno" + " " + b.getCorsaPrenotata().getLuogoPartenza() + " " + b.getCorsaPrenotata().getLuogoArrivo() + " " + b.getCorsaPrenotata().getOraPartenza() + " "+ b.getCorsaPrenotata().getData());
+                bt.add(s);
+            }
         }
         listaBiglietti.getItems().addAll(bt); //Riempio la ListView
         listaBiglietti.getSelectionModel().selectedItemProperty().addListener(this::cambiaSceltaLista); //Abilito la funzione che deve eseguire ogni volta che cambia elemento
