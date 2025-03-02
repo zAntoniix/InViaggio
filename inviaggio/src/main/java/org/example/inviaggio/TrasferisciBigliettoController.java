@@ -73,6 +73,7 @@ public class TrasferisciBigliettoController {
             erroreCF.setVisible(true);
         }else{
             erroreCF.setVisible(false);
+            bottoneConferma.setVisible(false);
             inviaggio.selezionaBigliettoDaTrasferire(codice);
             if(inviaggio.trasferimentoBiglietto(CF.getText())){
                 testo.setText("Trasferimento biglietto al cliente " + CF.getText() + " avvenuto con successo");

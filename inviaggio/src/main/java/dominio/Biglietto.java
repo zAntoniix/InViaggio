@@ -64,7 +64,7 @@ public class Biglietto {
         LocalTime orario = corsaPrenotata.getOraPartenza().toLocalTime();
         LocalDateTime dataCorsaCompleta = dataCorsa.withHour(orario.getHour()).withMinute(orario.getMinute()).withSecond(orario.getSecond());
         Duration differenza = Duration.between(dataModifica, dataCorsaCompleta);
-        if(differenza.toHours() > 12){
+        if(differenza.toHours() > 12 && stato.equals("Valido")){
             return true;
         } else return false;
     }

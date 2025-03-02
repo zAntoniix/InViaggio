@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 public class PrenotaBigliettoController {
@@ -112,10 +114,11 @@ public class PrenotaBigliettoController {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //Permette di dare il patter alla data
                 try {
                     Date date = formatter.parse(dataScelta.getText()); //Prendo la data dal textbox e la converto in un tipo Date
-                    inviaggio.richiediCorsePerData(date);
                     listaCorse = inviaggio.richiediCorsePerData(date); //Uso il metodo richiediCorsePerData per farmi ritornare la lista delle corse per quella data rispettando l'SD
+                    LocalDate attuale = LocalDate.now();
+                    LocalDate corsa = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     corseDisponibili.setVisible(true);
-                    if (listaCorse.isEmpty()) {
+                    if (listaCorse.isEmpty() || corsa.isBefore(attuale)) {
                         bottoneSceltaCorsa.setVisible(false);
                         String s = new String("Nessuna corsa presente in questa data");
                         cr.add(s);
@@ -136,7 +139,7 @@ public class PrenotaBigliettoController {
                         corseDisponibili.getItems().addAll(cr);
                     }
                 } catch (ParseException e) {
-                    erroreData.setText("Inserire Data nel fotmato gg/mm/aaaa");
+                    erroreData.setText("Inserire Data nel formato gg/mm/aaaa");
                     erroreData.setVisible(true);
                     dataScelta.setVisible(true);
                     data.setVisible(true);
@@ -145,7 +148,7 @@ public class PrenotaBigliettoController {
                     nomeCorse.setVisible(false);
                 }
             } else {
-                erroreData.setText("Inserire Data nel fotmato gg/mm/aaaa");
+                erroreData.setText("Inserire Data nel formato gg/mm/aaaa");
             }
         }
     }

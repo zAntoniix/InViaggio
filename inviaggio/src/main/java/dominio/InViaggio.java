@@ -294,14 +294,13 @@ public class InViaggio {
     public boolean rimuoviCorsa(String codCorsa) {
         LinkedList<Corsa> corsaDaEliminare = new LinkedList<>();
         trattaSelezionata.getElencoCorseDaSospendere().add(trattaSelezionata.selezionaCorsa(codCorsa));
+        corsaDaEliminare.add(trattaSelezionata.selezionaCorsa(codCorsa));
         Cliente clienteAttuale;
         if(trattaSelezionata.getElencoCorse().remove(codCorsa) != null) {
             trattaSelezionata.notifyObservers();
             for(Cliente cl : elencoClienti) {
                 clienteAttuale = cl;
-                if(!clienteAttuale.annullaBigliettoPerSospensione(corsaDaEliminare)){
-                    // riaggiungere i biglietti
-                }
+                clienteAttuale.annullaBigliettoPerSospensione(corsaDaEliminare);
             }
         }
         return true;

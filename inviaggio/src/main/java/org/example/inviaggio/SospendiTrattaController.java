@@ -123,6 +123,14 @@ public class SospendiTrattaController {
                    elencoCorseSospese.getItems().addAll(cs);
                    elencoCorseSospese.setVisible(true);
                    labelElencoCorse.setVisible(true);
+
+                   Stage stage = (Stage) bottoneConferma.getScene().getWindow();
+                   stage.close();
+                   Stage newStage = new Stage();
+                   Parent root = FXMLLoader.load(getClass().getResource("paginaPrincipaleAmministratore.fxml"));
+                   newStage.setTitle("Benvenuto");
+                   newStage.setScene(new Scene(root));
+                   newStage.show();
                }
             }catch (Exception e){
                 e.printStackTrace();

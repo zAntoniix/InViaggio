@@ -72,6 +72,7 @@ public class RimuoviCorsaController {
     }
 
     private void cambiaSceltaListaTratta(Observable observable) {
+        elencoCorseSospese.getItems().clear();
         ObservableList<String> elencoSelezionato = elencoTratte.getSelectionModel().getSelectedItems();
         String getElementoSelezionato= (elencoSelezionato.isEmpty())?"Nessun elemento selezionato":elencoSelezionato.toString();
         String[] parte = getElementoSelezionato.split(" "); //Serve per spezzettare la stringa in un array di stringhe, crea una stringa ogni spazio
@@ -92,15 +93,18 @@ public class RimuoviCorsaController {
         ObservableList<String> elencoSelezionato = elencoCorseSospese.getSelectionModel().getSelectedItems();
         String getElementoSelezionato= (elencoSelezionato.isEmpty())?"Nessun elemento selezionato":elencoSelezionato.toString();
         String[] parte = getElementoSelezionato.split(" "); //Serve per spezzettare la stringa in un array di stringhe, crea una stringa ogni spazio
-        codiceCorsa = parte[0].replace("[", "").trim(); //Prendo il secondo elemento perchè il primo contiene [
+        codiceCorsa = parte[0].replace("[", " ").trim(); //Prendo il secondo elemento perchè il primo contiene [
     }
 
     public void onConfermaClick(ActionEvent event) throws IOException {
         inviaggio.rimuoviCorsa(codiceCorsa);
-        int selectedIndex = elencoCorseSospese.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1) {
-            elencoCorseSospese.getItems().remove(selectedIndex);
+        elencoCorseSospese.getItems().clear();
+        ObservableList<String> cs = FXCollections.observableArrayList();
+        for(Corsa c : inviaggio.mostraCorse()){
+            String s = c.getCodCorsa() + " "+ formatter.format(c.getData())+ " " + formatoOra.format(c.getOraPartenza()) + " " + c.getLuogoPartenza() + " " + c.getLuogoArrivo() ;
+            cs.add(s);
         }
+        elencoCorseSospese.getItems().addAll(cs);
     }
 
     public void onAnnullaClick(ActionEvent event) throws IOException {

@@ -25,6 +25,7 @@ public class Cliente implements Observer{
         this.elencoBiglietti = new LinkedHashMap<String,Biglietto>();
         this.elencoTratte = new LinkedList<>();
         this.notifica = false;
+        this.messaggio = " ";
     }
 
     //Metodi
@@ -226,6 +227,7 @@ public class Cliente implements Observer{
 
     @Override
     public void update(Observable o) {
+        String messaggio1 = "";
         Tratta trattaDaOsservare = (Tratta) o;
         LinkedList<Corsa> listaCorse = trattaDaOsservare.getListaCorse();
         LinkedList<Corsa> listaCorseEliminate = trattaDaOsservare.getElencoCorseDaSospendere();
@@ -238,18 +240,20 @@ public class Cliente implements Observer{
                 }
             }
         }
-        messaggio=("Per la tratta "+ trattaDaOsservare.getCittaPartenza() + " " + trattaDaOsservare.getCittaArrivo() + " sono state eliminate le seguenti corse: " );
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatoOra = new SimpleDateFormat("HH:mm");
         for(Corsa c : listaCorseEliminate){
-            messaggio += "\n";
-            messaggio += formatoData.format(c.getData());
-            messaggio +=" ";
-            messaggio +=" ora partenza ";
-            messaggio += formatoOra.format(c.getOraPartenza());
-            messaggio +=" ora arrivo ";
-            messaggio += formatoOra.format(c.getOraArrivo());
+            messaggio1 += "Per la tratta "+ trattaDaOsservare.getCittaPartenza() + " " + trattaDaOsservare.getCittaArrivo() + " sono state eliminate le seguenti corse: ";
+            messaggio1 += "\n";
+            messaggio1 += formatoData.format(c.getData());
+            messaggio1 +=" ";
+            messaggio1 +=" ora partenza ";
+            messaggio1 += formatoOra.format(c.getOraPartenza());
+            messaggio1 +=" ora arrivo ";
+            messaggio1 += formatoOra.format(c.getOraArrivo());
+            messaggio1 += "\n";
         }
+        messaggio += messaggio1;
         setNotifica(true);
     }
 }
